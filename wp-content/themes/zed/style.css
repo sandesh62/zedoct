@@ -1,0 +1,31 @@
+/*
+Theme Name: zed
+Theme URI: #
+Author: zed
+Author URI: #
+Description: 
+Version: 2.9
+Requires PHP: 5.2.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: 
+Text Domain: zed
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+img {
+    max-width:100%;
+	height: auto !important;
+}
+.preloader1 {
+	display: none !important;
+}
+section.hero.hero-style-2.heros {
+	background-image: url(https://zedaid.org/wp-content/uploads/2021/07/New-Project.png);
+	background-repeat: no-repeat;
+	background-size: contain !important;
+	background-position: center center;
+	height:700px !important;
+}

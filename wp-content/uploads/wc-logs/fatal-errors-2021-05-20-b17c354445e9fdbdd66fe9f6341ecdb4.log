@@ -1,0 +1,87 @@
+2021-05-20T19:02:14+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:391
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1232): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 391
+
+2021-05-20T19:02:42+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:391
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1232): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 391
+
+2021-05-20T19:03:53+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php:502
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1214): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php on line 502
+
+2021-05-20T19:04:39+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php:502
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1214): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php on line 502
+
+2021-05-20T19:05:00+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php:502
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1214): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php on line 502
+
+2021-05-20T19:08:31+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php:502
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1215): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php on line 502
+
+2021-05-20T19:09:04+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php:502
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php(1215): aasort(Array, 'location')
+#1 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#3 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#4 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/functions.php on line 502
+
+2021-05-20T19:11:37+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1215
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1215
+
+2021-05-20T19:14:56+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1215
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1215
+
+2021-05-20T19:16:07+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1215
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1215
+

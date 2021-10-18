@@ -1,0 +1,1281 @@
+
+<!DOCTYPE html>
+
+<!--[if IE 7]>
+
+<html class="ie ie7" lang="en-US">
+
+<![endif]-->
+
+<!--[if IE 8]>
+
+<html class="ie ie8" lang="en-US">
+
+<![endif]-->
+
+<!--[if !(IE 7) & !(IE 8)]><!-->
+
+<html lang="en-US">
+
+<!--<![endif]-->
+
+
+
+<head><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();
+</script>
+
+
+
+    <link rel="icon" href="https://zedaid.org//wp-content/uploads/2021/01/favicon-512x512-1.png" type="image" sizes="16x16">
+
+
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width">
+
+    <title>Browse Fundraisers | ZED &#8211; CrowdSourcing Platform</title><style id="rocket-critical-css">img{max-width:100%;height:auto!important}.preloader1{display:none!important}@font-face{font-display:swap;font-family:'themify';src:url(https://zedaid.org/wp-content/themes/zed/fonts/themify.eot?-fvbane);src:url(https://zedaid.org/wp-content/themes/zed/fonts/themify.eot?#iefix-fvbane) format('embedded-opentype'),url(https://zedaid.org/wp-content/themes/zed/fonts/themify.woff?-fvbane) format('woff'),url(https://zedaid.org/wp-content/themes/zed/fonts/themify.ttf?-fvbane) format('truetype'),url(https://zedaid.org/wp-content/themes/zed/fonts/themify.svg?-fvbane#themify) format('svg');font-weight:normal;font-style:normal}[class^="ti-"]{font-family:'themify';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ti-close:before{content:"\e646"}.ti-youtube:before{content:"\e728"}.ti-instagram:before{content:"\e73d"}.ti-facebook:before{content:"\e741"}@font-face{font-display:swap;font-family:"Flaticon";src:url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.eot);src:url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.eot?#iefix) format("embedded-opentype"),url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.woff2) format("woff2"),url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.woff) format("woff"),url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.ttf) format("truetype"),url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.svg#Flaticon) format("svg");font-weight:normal;font-style:normal}@media screen and (-webkit-min-device-pixel-ratio:0){@font-face{font-display:swap;font-family:"Flaticon";src:url(https://zedaid.org/wp-content/themes/zed/fonts/Flaticon.svg#Flaticon) format("svg")}}[class*=" flaticon-"]:before,[class*=" flaticon-"]:after{font-family:Flaticon;font-size:50px;font-style:normal;margin-left:20px}.flaticon-call:before{content:"\f107"}.flaticon-envelope:before{content:"\f108"}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav{display:block}a{background-color:transparent}h1{margin:0.67em 0;font-size:2em}img{border:0}button{margin:0;font:inherit;color:inherit}button{overflow:visible}button{text-transform:none}button{-webkit-appearance:button}button::-moz-focus-inner{padding:0;border:0}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-size:10px}body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}button{font-family:inherit;font-size:inherit;line-height:inherit}a{color:#337ab7;text-decoration:none}img{vertical-align:middle}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}h1,h3{font-family:inherit;font-weight:100;line-height:1.1;color:inherit}h1,h3{margin-top:20px;margin-bottom:10px}h1{font-size:36px}h3{font-size:24px}p{margin:0 0 10px}.text-primary{color:#337ab7}ul{margin-top:0;margin-bottom:10px}ul ul{margin-bottom:0}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:750px}}@media (min-width:992px){.container{width:970px}}@media (min-width:1200px){.container{width:1170px}}.row{margin-right:-15px;margin-left:-15px}.col-lg-4,.col-md-3,.col-md-4,.col-sm-6,.col-xs-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px}.col-xs-12{float:left}.col-xs-12{width:100%}@media (min-width:768px){.col-sm-6{float:left}.col-sm-6{width:50%}}@media (min-width:992px){.col-md-3,.col-md-4{float:left}.col-md-4{width:33.33333333%}.col-md-3{width:25%}}@media (min-width:1200px){.col-lg-4{float:left}.col-lg-4{width:33.33333333%}}.collapse{display:none}.nav{padding-left:0;margin-bottom:0;list-style:none}.nav>li{position:relative;display:block}.nav>li>a{position:relative;display:block;padding:10px 15px}.navbar{position:relative;min-height:50px;margin-bottom:20px;border:1px solid transparent}@media (min-width:768px){.navbar{border-radius:4px}}@media (min-width:768px){.navbar-header{float:left}}.navbar-collapse{padding-right:15px;padding-left:15px;overflow-x:visible;-webkit-overflow-scrolling:touch;border-top:1px solid transparent;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.1)}@media (min-width:768px){.navbar-collapse{width:auto;border-top:0;-webkit-box-shadow:none;box-shadow:none}.navbar-collapse.collapse{display:block!important;height:auto!important;padding-bottom:0;overflow:visible!important}}.container>.navbar-collapse,.container>.navbar-header{margin-right:-15px;margin-left:-15px}@media (min-width:768px){.container>.navbar-collapse,.container>.navbar-header{margin-right:0;margin-left:0}}.navbar-brand{float:left;height:50px;padding:15px 15px;font-size:18px;line-height:20px}.navbar-brand>img{display:block}@media (min-width:768px){.navbar>.container .navbar-brand{margin-left:-15px}}.navbar-nav{margin:7.5px -15px}.navbar-nav>li>a{padding-top:10px;padding-bottom:10px;line-height:20px}@media (min-width:768px){.navbar-nav{float:left;margin:0}.navbar-nav>li{float:left}.navbar-nav>li>a{padding-top:15px;padding-bottom:15px}}@media (min-width:768px){.navbar-right{float:right!important;margin-right:-15px}}.navbar-default{background-color:#f8f8f8;border-color:#e7e7e7}.navbar-default .navbar-brand{color:#777}.navbar-default .navbar-nav>li>a{color:#777}.navbar-default .navbar-collapse{border-color:#e7e7e7}.container:after,.container:before,.nav:after,.nav:before,.navbar-collapse:after,.navbar-collapse:before,.navbar-header:after,.navbar-header:before,.navbar:after,.navbar:before,.row:after,.row:before{display:table;content:" "}.container:after,.nav:after,.navbar-collapse:after,.navbar-header:after,.navbar:after,.row:after{clear:both}@-ms-viewport{width:device-width}html{font-size:16px}body{font-family:"Hind Vadodara",sans-serif;background-color:#ffffff;font-size:16px;font-size:1rem;color:#000000;-webkit-font-smoothing:antialiased;overflow-x:hidden}@media (max-width:767px){body{font-size:14px}}p{color:#000000;line-height:1.6em;font-size:16px;font-weight:400}h1,h3{font-family:"Hind Vadodara",sans-serif;color:#000}ul{padding-left:0;margin:0}a{text-decoration:none;color:#000}img{max-width:100%}.page-wrapper{position:relative;overflow:hidden}.fi:before{margin:0}.theme-btn{background-color:#3d3d8a;color:#fff;font-weight:500;padding:13px 38px;border-radius:5px;display:inline-block}@media (max-width:991px){.theme-btn{font-size:14px;font-size:0.875rem;padding:10px 25px}}.tp-site-header .navigation{background-color:#202120;margin-bottom:0;border:0;-webkit-border-radius:0;-moz-border-radius:0;-o-border-radius:0;-ms-border-radius:0;border-radius:0}.tp-site-header .navigation>.container{position:relative}.tp-site-header .navigation .navbar-brand{height:auto}.tp-site-header #navbar{text-transform:uppercase}.tp-site-header #navbar>ul li a{color:#fff;text-transform:capitalize}@media screen and (min-width:992px){.tp-site-header #navbar li{position:relative}.tp-site-header #navbar>ul>li>a{font-size:16px;font-size:1.06667rem}.tp-site-header #navbar>ul .sub-menu{background-color:#202120;width:250px;position:absolute;left:0;top:130%;z-index:10;visibility:hidden;opacity:0}.tp-site-header #navbar>ul>li .sub-menu li{border-bottom:1px solid #292929;background:#fff}.tp-site-header #navbar>ul>li .sub-menu a{font-size:14px;display:block;padding:12px 20px;color:#fff;font-weight:500}}@media (max-width:991px){.tp-site-header #navbar>ul>li a{display:block;font-size:14px;font-size:0.93333rem}.tp-site-header #navbar>ul>li .sub-menu li{border-bottom:1px solid #2e2c2c}.tp-site-header #navbar>ul .sub-menu>li:last-child{border-bottom:0}.tp-site-header #navbar>ul>li>.sub-menu a{padding:8px 15px 8px 45px;color:#000000;font-weight:500}.tp-site-header #navbar>ul .menu-item-has-children>a{position:relative}.tp-site-header #navbar>ul .menu-item-has-children>a:before{font-family:"themify";content:"\e64b";font-size:11px;font-size:0.73333rem;position:absolute;right:15px;top:50%;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-o-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}}@media screen and (min-width:992px){.tp-site-header .navbar-header .open-btn{display:none}.tp-site-header #navbar .close-navbar{display:none}}@media (max-width:991px){.tp-site-header .container{width:100%}.tp-site-header .navbar-header button{background-color:#3d3d8a;width:40px;height:35px;border:0;padding:5px 10px;-webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;border-radius:3px;outline:0;position:absolute;right:15px;top:6px;z-index:20}.tp-site-header .navbar-header button span{background-color:#fff;display:block;height:2px;margin-bottom:5px}.tp-site-header .navbar-header button span:last-child{margin:0}.tp-site-header #navbar{background:#fff;display:block!important;width:280px;height:100%!important;margin:0;padding:0;position:fixed;right:-300px;top:0;z-index:100}.tp-site-header #navbar ul a{color:#000}.tp-site-header #navbar .navbar-nav{height:100%;overflow:auto}.tp-site-header #navbar .close-navbar{background-color:#3d3d8a;width:40px;height:40px;color:#fff;border:0;-webkit-border-radius:50%;-moz-border-radius:50%;-o-border-radius:50%;-ms-border-radius:50%;border-radius:50%;outline:none;position:absolute;left:-18px;top:10px;z-index:20}.tp-site-header #navbar>ul>li{border-bottom:1px solid #dbd1d1}.tp-site-header #navbar>ul>li>a{padding:10px 15px 10px 35px;color:#000000;font-weight:500;margin-top:0px!important;margin-left:0px!important;border-radius:0px;text-align:left;padding-left:30px!important}}@media (max-width:767px){.tp-site-header .navbar-header .navbar-brand{font-size:24px}.tp-site-header #navbar .navbar-nav{margin:0}}@media (max-width:991px){.tp-site-header .navbar-collapse.collapse{display:none}.tp-site-header .navbar-header{float:none;background:#fff}.tp-site-header .navbar-right{float:none}.tp-site-header .navbar-nav{float:none}.tp-site-header .navbar-nav>li{float:none}}@media (max-width:450px){.navbar-brand>img{max-width:198px}}.tp-header-style-2 .navigation ul{list-style:none}@media screen and (min-width:992px){.tp-header-style-2 .navigation .navbar-brand{margin-top:10px}.tp-header-style-2 #navbar>ul>li>a{padding:40px 0px 40px 25px}.tp-header-style-2 #navbar>ul .sub-menu{-webkit-box-shadow:0px 15px 60px -19px black;box-shadow:0px 15px 60px -19px black}}@media screen and (min-width:1200px){.tp-header-style-2 #navbar>ul>li>a{padding:40px 0px 40px 25px}}@media (max-width:991px){.tp-header-style-2 .navbar-header button{top:23px}}.tp-site-header{position:absolute;z-index:120;width:100%;background:#1e1e1e}#ball{position:fixed;width:80px;height:80px;border:2px solid #999999;border-radius:50%;opacity:1;box-sizing:border-box;-webkit-transform:scale(0.5);transform:scale(0.5)}.parallax-wrap{width:40px;height:40px;display:inline-flex;position:relative;justify-content:center;align-items:center}.parallax-element{height:40px;width:40px;text-align:center;line-height:40px}@media (max-width:590px){.theme-btn{padding:10px 18px}}.tp-site-footer,.tp-site-footer{background:#fff;position:relative;font-size:15px;overflow:hidden}.tp-ne-footer{background:#062265}.tp-site-footer ul{list-style:none}.tp-site-footer p,.tp-site-footer li{color:#000}.tp-site-footer .container{position:relative}.tp-site-footer .tp-upper-footer{padding:30px 0}@media (max-width:991px){.tp-site-footer .tp-upper-footer{padding:60px 0 0}}@media (max-width:767px){.tp-site-footer .tp-upper-footer{padding:60px 0 0}}@media (max-width:991px){.tp-site-footer .tp-upper-footer .col{min-height:235px;margin-bottom:70px}}@media (max-width:767px){.tp-site-footer .tp-upper-footer .col{min-height:auto;margin-bottom:60px}}.tp-site-footer .widget-title{margin-bottom:30px}@media (max-width:767px){.tp-site-footer .widget-title{margin-bottom:20px}}.tp-site-footer .widget-title h3{font-size:23px;font-weight:bold;color:#000;margin:0;text-transform:capitalize;position:relative}@media (max-width:991px){.tp-site-footer .widget-title h3{font-size:20px;font-size:1.25rem}}.tp-site-footer .about-widget .logo{max-width:180px}.tp-site-footer .about-widget p{margin-bottom:0.8em;line-height:1.9em;width:70%}.tp-site-footer .about-widget ul{overflow:hidden;padding-top:10px}.tp-site-footer .about-widget ul li{font-size:22px;float:left}.tp-site-footer .about-widget ul li .parallax-wrap,.tp-site-footer .about-widget ul li .parallax-element{width:unset;height:unset}.tp-site-footer .about-widget ul>li+li{margin-left:25px}.tp-site-footer .about-widget ul a{color:#fff}.tp-site-footer .link-widget{overflow:hidden}@media screen and (min-width:1200px){.tp-site-footer .link-widget{padding-left:20px}}@media (max-width:1199px){.tp-site-footer .link-widget{padding-left:20px}}@media (max-width:991px){.tp-site-footer .link-widget{padding-left:0}}@media (max-width:767px){.tp-site-footer .link-widget{max-width:350px}}.tp-site-footer .link-widget ul li{position:relative}.tp-site-footer .link-widget ul a{color:#000}.tp-site-footer .link-widget ul>li+li{margin-top:15px}.tp-site-footer .contact-ft ul li .fi:before{font-size:20px;margin-right:15px;color:#fc706c}.tp-site-footer .contact-ft ul li{padding-bottom:10px}.tp-site-footer .contact-ft{margin-top:20px}.tp-site-footer .tp-lower-footer{text-align:center;position:relative;background:#3d3d8a}.tp-site-footer .tp-lower-footer .row{padding:20px 0;position:relative}.tp-header-style-2 .navigation{background:#fff!important}@media (max-width:1200px){.tp-site-footer .contact-ft ul li{padding-bottom:10px;font-size:13px}}ul{list-style:none}p{color:#3d3d8a}.button12{background-color:#fcce15;-webkit-border-radius:10px;border-radius:10px;border:none;color:#ffffff;display:inline-block;font-family:Arial;font-size:20px;padding:5px 10px;text-align:center;text-decoration:none;-webkit-animation:glowing 1500ms infinite;-moz-animation:glowing 1500ms infinite;-o-animation:glowing 1500ms infinite;animation:glowing 1500ms infinite}@-webkit-keyframes glowing{0%{background-color:#fcce15;-webkit-box-shadow:0 0 3px #fcce15}50%{background-color:#fcce15;-webkit-box-shadow:0 0 40px #fcce15}100%{background-color:#fcce15;-webkit-box-shadow:0 0 3px #fcce15}}@-moz-keyframes glowing{0%{background-color:#b20000;-moz-box-shadow:0 0 3px #b20000}50%{background-color:#ff0000;-moz-box-shadow:0 0 40px #ff0000}100%{background-color:#b20000;-moz-box-shadow:0 0 3px #b20000}}@-o-keyframes glowing{0%{background-color:#fcce15;box-shadow:0 0 3px #b20000}50%{background-color:#fcce15;box-shadow:0 0 40px #ff0000}100%{background-color:#fcce15;box-shadow:0 0 3px #b20000}}@keyframes glowing{0%{background-color:#fcce15;box-shadow:0 0 3px #fcce15}50%{background-color:#fcce15;box-shadow:0 0 40px #fcce15}100%{background-color:#fcce15;box-shadow:0 0 3px #fcce15}}li.menu-item-has-children a{color:#3d3d8a!important}.ti-facebook:before{content:"\e741";color:#102b6f}.ti-instagram:before{content:"\e73d";color:#d62c5b}.fa-heart:before{content:"\f004";color:#fff}.preloader1{background-color:rgba(255,255,255,0.7);width:100%;height:100%;position:fixed;z-index:1000}#loading-image{position:absolute;top:50%;left:48%;z-index:100}.theme_label_colour{color:#3d3d8a!important}</style><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="preload" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext&#038;display=swap" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" /></noscript><link rel="preload" href="https://zedaid.org/wp-content/cache/min/1/e395623f74dd851906747516babe3ff9.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all" data-minify="1" />
+
+    <!-- <meta name="Description" content=""> -->
+
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+
+    <link rel="pingback" href="https://zedaid.org/xmlrpc.php">
+
+    <!--[if lt IE 9]>
+
+	<script src="https://zedaid.org/wp-content/themes/zed/js/html5.js?ver=3.7.0"></script>
+
+	<![endif]-->
+
+    <meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="ZED - CrowdSourcing Platform &raquo; Feed" href="https://zedaid.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ZED - CrowdSourcing Platform &raquo; Comments Feed" href="https://zedaid.org/comments/feed/" />
+<link rel="alternate" type="text/calendar" title="ZED - CrowdSourcing Platform &raquo; iCal Feed" href="https://zedaid.org/events/?ical=1" />
+<style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+
+
+<style id='contact-form-7-inline-css'>
+.wpcf7 .wpcf7-recaptcha iframe {margin-bottom: 0;}.wpcf7 .wpcf7-recaptcha[data-align="center"] > div {margin: 0 auto;}.wpcf7 .wpcf7-recaptcha[data-align="right"] > div {margin: 0 0 0 auto;}
+</style>
+
+
+
+
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='https://zedaid.org/wp-content/themes/zed/css/ie.css?ver=20140701' media='all' />
+<![endif]-->
+<script type="rocketlazyloadscript" src='https://zedaid.org/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" src='https://zedaid.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js' defer></script>
+<link rel="https://api.w.org/" href="https://zedaid.org/wp-json/" /><link rel="alternate" type="application/json" href="https://zedaid.org/wp-json/wp/v2/pages/1833" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://zedaid.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://zedaid.org/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.7.2" />
+<link rel="canonical" href="https://zedaid.org/browse-fundraisers/" />
+<link rel='shortlink' href='https://zedaid.org/?p=1833' />
+<meta name="tec-api-version" content="v1"><meta name="tec-api-origin" content="https://zedaid.org"><link rel="https://theeventscalendar.com/" href="https://zedaid.org/wp-json/tribe/events/v1/" /><style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><link rel="icon" href="https://zedaid.org/wp-content/uploads/2021/06/cropped-Logo-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://zedaid.org/wp-content/uploads/2021/06/cropped-Logo-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://zedaid.org/wp-content/uploads/2021/06/cropped-Logo-180x180.png" />
+<meta name="msapplication-TileImage" content="https://zedaid.org/wp-content/uploads/2021/06/cropped-Logo-270x270.png" />
+<script type="rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script>    <style>
+section.hero.hero-style-2.heros {background-image: url(https://zedaid.org/wp-content/uploads/2021/07/New-Project.png);	background-repeat: no-repeat;	background-size: contain !important;	background-position: center center;	height:700px !important;}
+</style>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script type="rocketlazyloadscript" async src="https://www.googletagmanager.com/gtag/js?id=G-G07S511HVY"></script>
+
+<script type="rocketlazyloadscript">window.addEventListener('DOMContentLoaded', function() {
+
+    window.dataLayer = window.dataLayer || [];
+
+
+
+    function gtag() {
+
+        dataLayer.push(arguments);
+
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-G07S511HVY');
+
+
+
+    jQuery(document).ready(function() {
+
+        jQuery(window).keydown(function(event) {
+
+            if (event.keyCode == 13) {
+
+                event.preventDefault();
+
+                return false;
+
+            }
+
+        });
+
+    });
+
+});</script>
+
+
+
+<!-- Google Analytics -->
+
+<script type="rocketlazyloadscript">
+
+    (function(i, s, o, g, r, a, m) {
+
+        i['GoogleAnalyticsObject'] = r;
+
+        i[r] = i[r] || function() {
+
+            (i[r].q = i[r].q || []).push(arguments)
+
+        }, i[r].l = 1 * new Date();
+
+        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+
+        a.async = 1;
+
+        a.src = g;
+
+        m.parentNode.insertBefore(a, m)
+
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-Y', 'auto');
+
+    ga('send', 'pageview');
+
+</script>
+
+<!-- End Google Analytics -->
+
+<!-- Facebook Pixel Code -->
+
+<script type="rocketlazyloadscript">
+
+!function(f,b,e,v,n,t,s)
+
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+n.queue=[];t=b.createElement(e);t.async=!0;
+
+t.src=v;s=b.getElementsByTagName(e)[0];
+
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '221166453062059');
+
+fbq('track', 'PageView');
+
+</script>
+
+<noscript><img height="1" width="1" style="display:none"
+
+src="https://www.facebook.com/tr?id=221166453062059&ev=PageView&noscript=1"
+
+/></noscript>
+
+<!-- End Facebook Pixel Code -->
+
+<style>
+
+    
+
+</style>
+
+</head>
+
+
+
+
+
+<body class="">
+
+    <!-- start page-wrapper -->
+
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+
+        <!-- <div class="preloader">
+
+            <div class="sk-folding-cube">
+
+                <div class="sk-cube1 sk-cube"></div>
+
+                <div class="sk-cube2 sk-cube"></div>
+
+                <div class="sk-cube4 sk-cube"></div>
+
+                <div class="sk-cube3 sk-cube"></div>
+
+            </div>
+
+        </div> -->
+
+        <div class="preloader1">
+            <img width="32" height="32" id="loading-image" src="https://zedaid.org/wp-content/themes/zed/images/loader.gif" alt="Loading..." />
+        </div>
+
+        <!-- end preloader -->
+
+        <!-- Start header -->
+
+        <header id="header" class="tp-site-header tp-header-style-2">
+
+            <!-- end topbar -->
+
+            <nav class="navigation navbar navbar-default">
+
+                <div class="container">
+
+                    <div class="navbar-header">
+
+                        <button type="button" class="open-btn">
+
+                            <span class="sr-only">Toggle navigation</span>
+
+                            <span class="icon-bar"></span>
+
+                            <span class="icon-bar"></span>
+
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand" href="https://zedaid.org/"><img src="https://zedaid.org/wp-content/themes/zed/images/zed.png" width="50" alt="logo"></a>
+
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
+
+                        <button class="close-navbar"><i class="ti-close"></i></button>
+
+                        <ul class="nav navbar-nav">
+
+                            <li class="menu-item-has-children">
+
+                                <a href="https://zedaid.org/browse-fundraisers/fundraisers-location/">Browse Campaigns</a>
+
+                                <ul class="sub-menu">
+
+                                    <li><a href="https://zedaid.org/browse-fundraisers/fundraisers-location/">By Map</a></li>
+
+                                    <li><a href="https://zedaid.org/browse-fundraisers/">By Name</a></li>
+
+                                </ul>
+
+                            </li>
+
+<!--                            <li class="menu-item-has-children">
+
+                                <a href="javascript:void(0)">How It Works</a></li>-->
+
+                            <li>
+
+                                <a href="https://zedaid.org/covid-detail/"  class="theme_label_colour">Covid Support</a>
+
+                            </li>
+                            <li>
+                                <a href="https://zedaid.org/i-need/"  class="theme_label_colour">iNeed!</a>
+                            </li>
+
+                            
+                                <li><a class="theme-btn button12" onclick="startcamp()" style="padding:10px;margin-top:30px;font-weight:500;margin-left:20px;">Start a Campaign</a></li>
+
+
+
+                            
+
+
+                            
+                                <li>
+
+                                    <a href="https://zedaid.org/login" class="theme_label_colour">Sign In</a>
+
+                                </li>
+
+                            
+
+
+
+
+                            <!--  <li class="menu-item-has-children">
+
+                                <a href="#">Blog</a>
+
+                                <ul class="sub-menu">
+
+                                    <li><a href="blog.html">Blog right sidebar</a></li>
+
+                                    <li><a href="blog-left.html">Blog left sidebar</a></li>
+
+                                    <li><a href="blog-fulwidth.html">Blog fullwidth</a></li>
+
+                                    <li class="menu-item-has-children">
+
+                                        <a href="#">Blog details</a>
+
+                                        <ul class="sub-menu">
+
+                                            <li><a href="blog-single.html">Blog details right sidebar</a></li>
+
+                                            <li><a href="blog-single-left.html">Blog details left sidebar</a></li>
+
+                                            <li><a href="blog-single-fluid.html">Blog details fullwidth</a></li>
+
+                                        </ul>
+
+                                    </li>
+
+                                </ul>
+
+                            </li>
+
+                            <li><a href="contact.html">Contact</a></li> -->
+
+                        </ul>
+
+                    </div><!-- end of nav-collapse -->
+
+                    <!-- <div class="cart-search-contact">
+
+                        <div class="mini-cart">
+
+                            <button class="cart-toggle-btn"> <i class="fi flaticon-shopping-bag"></i> <span class="cart-count">02</span></button>
+
+                            <div class="mini-cart-content">
+
+                                <div class="mini-cart-title">
+
+                                    <p>Shopping Cart</p>
+
+                                </div>
+
+                                <div class="mini-cart-items">
+
+                                    <div class="mini-cart-item clearfix">
+
+                                        <div class="mini-cart-item-image">
+
+                                            <a href="#"><img width="50" height="50" src="https://zedaid.org/wp-content/themes/zed/images/shop/mini/img-1.jpg" alt="Hoodie with zipper"></a>
+
+                                        </div>
+
+                                        <div class="mini-cart-item-des">
+
+                                            <a href="#">Hoodie with zipper</a>
+
+                                            <span class="mini-cart-item-price">$25.15</span>
+
+                                            <span class="mini-cart-item-quantity">x 1</span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mini-cart-item clearfix">
+
+                                        <div class="mini-cart-item-image">
+
+                                            <a href="#"><img width="50" height="50" src="https://zedaid.org/wp-content/themes/zed/images/shop/mini/img-2.jpg" alt="Hoodie with zipper"></a>
+
+                                        </div>
+
+                                        <div class="mini-cart-item-des">
+
+                                            <a href="#">Hoodie with zipper</a>
+
+                                            <span class="mini-cart-item-price">$12.99</span>
+
+                                            <span class="mini-cart-item-quantity">x 2</span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="mini-cart-action clearfix">
+
+                                    <span class="mini-checkout-price">$255.12</span>
+
+                                    <a href="" class="theme-btn-s4">View Cart</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="header-search-form-wrapper">
+
+                            <button class="search-toggle-btn"><i class="fi flaticon-magnifying-glass"></i></button>
+
+                            <div class="header-search-form">
+
+                                <form>
+
+                                    <div>
+
+                                        <input type="text" class="form-control" placeholder="Search here...">
+
+                                        <button type="submit"><i class="fi flaticon-magnifying-glass"></i></button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div> -->
+
+                </div><!-- end of container -->
+
+            </nav>
+
+            
+
+        </header>
+
+        <!-- end of header --><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="wpoceans">
+    <title>Causes | Zed</title>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .bod {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .top-left {
+            position: absolute;
+            top: 1px;
+            left: 0;
+            background-color: #3D3D8A;
+            padding: 10px;
+            color: #fff;
+            border-bottom-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        input#vehicle1 {
+            width: 15px;
+            height: 15px;
+        }
+        .cause-top {
+            background: #ffffff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            height: 150px; /*change by : Jalpa | Change Date : 30 june 2021*/
+        }
+        .page-link.active {
+            background-color: #3d3d8a;
+            color: white;
+        }
+        .viewdetails{
+            margin-right: 0 !important;
+        }
+        .cause-text ul li a {
+            margin-right: 0 !important;   
+        }
+        .container1 {
+            margin-top: 10px !important;
+        }
+        .container1 img{
+            margin-right: 10px !important;
+        }
+        @media (max-width: 991px) {
+            .tp-blog-sidebar {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+        <!-- start preloader -->
+        <div class="preloader1" style="display: none;">
+        <img width="32" height="32" id="loading-image" src="https://zedaid.org/wp-content/themes/zed/images/loader.gif" alt="Loading..." />
+        </div>
+        <!-- end preloader -->
+        <!-- .tp-breadcumb-area start -->
+        <div class="tp-breadcumb-area tp-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tp-breadcumb-wrap">
+                            <h2>Browse Campaigns</h2>
+                        </div>
+                        <!-- .tp-counter-area start -->
+                        <div class="tp-counter-area causeslistcounter">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                                                                <div class="tp-counter-grids">
+                                            <div class="grid">
+                                                <div>
+                                                    <h2><span class="odometer" data-count="146">146</span></h2>
+                                                </div>
+                                                <p>Life Enablers</p>
+                                            </div>
+                                            <div class="grid">
+                                                <div>
+                                                    <h2><span class="odometer" data-count="8">8</span></h2>
+                                                </div>
+                                                <p>CAMPAIGNS</p>
+                                            </div>
+                                            <div class="grid">
+                                                <div>
+                                                    <h2><span class="odometer" data-count="303178">303178</span></h2>
+                                                </div>
+                                                <p>#ZedLives</p>
+                                            </div>
+                                            <div class="grid">
+                                                <div>
+                                                    <h2><span class="odometer" data-count="1">1</span></h2>
+                                                </div>
+                                                <p>ZED EVENTS</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .tp-counter-area end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .tp-breadcumb-area end -->
+        <!-- start tp-blog-single-section -->
+        <section class="tp-blog-single-section section-pad" style="background: #eee;">
+            <div class="container">
+                <div class="row">
+                                        <div class="row">
+                        <div class="widget search-widget ">
+                            <form class="mapbyname" id="mapbyname" action="">
+                                <div>
+                                    <input type="hidden" name="type" value="">
+                                    <input type="text" name="c" value="" class="form-control serach" placeholder="Search For Campaigns"/>
+                                    <button class="btn" id="searchbtn" type="submit"><i class="ti-search icons"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col col-md-3 col-sm-6 col-12">
+                            <div class="tp-blog-sidebar">
+                                <div class="widget category-widget">
+                                    <form>
+                                        <ul>
+                                            <!-- <li class="bor" onclick="window.location.href='https://zedaid.org/browse-fundraisers/?type=1'"><a href="https://zedaid.org/browse-fundraisers/?type=1"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" >Fundraiser</a></li>
+                                            <li class="bor" onclick="window.location.href='https://zedaid.org/browse-fundraisers/?type=2'"><a href="https://zedaid.org/browse-fundraisers/?type=2"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" >Material donation</a></li>
+                                            <li class="bor" onclick="window.location.href='https://zedaid.org/browse-fundraisers/?type=3'"><a href="https://zedaid.org/browse-fundraisers/?type=3"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" >Charity products</a></li> -->
+
+                                                                                        <li class="bor"><input type="checkbox" class="cat_type" id="vehicle1" name="cattype" value="1" >Fundraiser</li>
+                                            <li class="bor"><input type="checkbox" class="cat_type" id="vehicle1" name="cattype" value="2" >Material donation</li>
+                                            <li class="bor"><input type="checkbox" class="cat_type" id="vehicle1" name="cattype" value="3" >Marketplace for Charity Products</li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-md-9 col-sm-6 col-12">
+                                                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=195'">
+                                                    <img src="https://zedaid.org/fundraiserimg/495875402IMG-20210804-WA0194 (1).jpg" alt="" width="100%">
+                                                                                                            <div class="top-left">ZED Verified</div>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=195">Ankur Balvikas Kendra - Monthly Expenses - August 2021</a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by akshada Bhosale</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:0% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>0.00</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 0<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR0</div>-->
+                                                    <div> INR 150,000<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR150,000</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/fundraiser-detail/?id=195" class="dbtn viewdetails">Ended</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    <div>Campaign Ended</div>
+                                                                                                            </div>
+                                                                                                        <div>0<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=194'">
+                                                    <img src="https://zedaid.org/fundraiserimg/720766740Screenshot_20210802-222847_1627923568628.jpg" alt="" width="100%">
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=194">Community Kitchen Program</a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by GRACE OF GLORY MINISTRY TRUST</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:0% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>0.00</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 0<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR0</div>-->
+                                                    <div> INR 681,148<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR681,148</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/donation/?id=194" class="dbtn ">Donate</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    131<div>Days Left</div>
+                                                                                                            </div>
+                                                                                                        <div>0<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=191'">
+                                                    <img src="https://zedaid.org/fundraiserimg/1250825774IMG-20210802-WA0006.jpg" alt="" width="100%">
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=191">Cancer </a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by Pratik Parab</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:7.8503333333333% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>7.85</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 23,551<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR23,551</div>-->
+                                                    <div> INR 300,000<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR300,000</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/donation/?id=191" class="dbtn ">Donate</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    11<div>Days Left</div>
+                                                                                                            </div>
+                                                                                                        <div>18<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=189'">
+                                                    <img src="https://zedaid.org/fundraiserimg/1239513087smartphones campaign.png" alt="" width="100%">
+                                                                                                            <div class="top-left">ZED Verified</div>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=189">Donate your Smart phone to a needy student</a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by Tushar Gangurde</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:6% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>6.00</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> Qty 3<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> Qty3</div>-->
+                                                    <div> Qty 50<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> Qty50</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/material-donation/?id=189" class="dbtn ">Show Interest</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    9<div>Days Left</div>
+                                                                                                            </div>
+                                                                                                        <div>1<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=185'">
+                                                    <img src="https://zedaid.org/fundraiserimg/683818052Flood Campaign.png" alt="" width="100%">
+                                                                                                            <div class="top-left">ZED Verified</div>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=185">Flood Relief - Supporting NGOs on ground based on their assessment</a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by Tushar Gangurde</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:13.4701% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>13.47</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 134,701<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR134,701</div>-->
+                                                    <div> INR 1,000,000<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR1,000,000</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/donation/?id=185" class="dbtn ">Donate</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    9<div>Days Left</div>
+                                                                                                            </div>
+                                                                                                        <div>81<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=180'">
+                                                    <img src="https://zedaid.org/fundraiserimg/889185182Campaign image.png" alt="" width="100%">
+                                                                                                            <div class="top-left">ZED Verified</div>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=180">Ankur Orphanage Students school fees sponsorship </a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by ZedAid</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:100% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>100.00</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 83,700<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR83,700</div>-->
+                                                    <div> INR 83,700<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR83,700</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/fundraiser-detail/?id=180" class="dbtn viewdetails">Closed</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    <div>Campaign Ended</div>
+                                                                                                            </div>
+                                                                                                        <div>16<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=25'">
+                                                    <img src="https://zedaid.org/fundraiserimg/1.jpeg" alt="" width="100%">
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=25">Sitting Valleyball practitioners for para Olympic request two wheelchairs</a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by ZedAid</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:100% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>100.00</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 16,000<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR16,000</div>-->
+                                                    <div> INR 16,000<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR16,000</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/fundraiser-detail/?id=25" class="dbtn viewdetails">Closed</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    <div>Campaign Ended</div>
+                                                                                                            </div>
+                                                                                                        <div>2<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="cause-item">
+                                            <div class="cause-top">
+                                                <div class="bod" onclick="window.location.href='https://zedaid.org/fundraiser-detail/?id=24'">
+                                                    <img src="https://zedaid.org/fundraiserimg/2.jpeg" alt="" width="100%">
+                                                                                                            <div class="top-left">ZED Verified</div>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="cause-text">
+                                                <h3 class="cp-name"><a href="https://zedaid.org/fundraiser-detail/?id=24">Widows Empowerment with Sweing Machine</a></h3>
+                                                <div class="container1" style="    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                    <img src="https://zedaid.org/wp-content/themes/zed/images/user.png" width="30">
+                                                                                                            <span>by ZedAid</span>
+                                                     
+                                                </div>
+                                                <div class="progress-section pbar">
+                                                    <div class="process">
+                                                        <div class="progress pbars">
+                                                            <div class="progress-bar pbars" style="width:100% !important;">
+                                                                <div class="progress-value">
+                                                                    <span>100.00</span>%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pbar2">
+                                                    <div> INR 80,000<div>Raised</div></div>
+                                                    <!--<div><span>Raised:</span> INR80,000</div>-->
+                                                    <div> INR 80,000<div>Goal</div></div>
+                                                    <!--<div><span>Goal:</span> INR80,000</div>-->
+                                                </div>
+                                                                                                    <ul>
+                                                        <li class="licause"><a href="https://zedaid.org/fundraiser-detail/?id=24" class="dbtn viewdetails">Closed</a></li>
+                                                    </ul>
+                                                                                                <div class="pbar2" style="margin-top:5px">
+                                                    <div>
+                                                                                                                    <div>Campaign Ended</div>
+                                                                                                            </div>
+                                                                                                        <div>5<div>Donors</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class='col-lg-12 col-md-12 col-sm-12 col-12'><ul class='pagination'><li class='page-item'><a class='page-link active' href='https://zedaid.org/browse-fundraisers/?pg=1'>1</a></li></ul></div>                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </div> <!-- end container -->
+    </section>
+    <!-- end tp-blog-single-section -->
+    </div>
+    </div>
+    <!-- end of page-wrapper -->
+    <div id="magic-cursor">
+        <div id="ball">
+            <div id="ball-drag-x"></div>
+            <div id="ball-drag-y"></div>
+            <div id="ball-loader"></div>
+        </div>
+    </div>
+    <!-- All JavaScript files
+    ================================================== -->
+    <script type="rocketlazyloadscript" src="https://zedaid.org/wp-content/themes/zed/js/jquery.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="https://zedaid.org/wp-content/themes/zed/js/bootstrap.min.js" defer></script>
+    <!-- Plugins for this template -->
+    <script type="rocketlazyloadscript" data-minify="1" src="https://zedaid.org/wp-content/cache/min/1/wp-content/themes/zed/js/jquery-plugin-collection.js?ver=1629628597" defer></script>
+    <script type="rocketlazyloadscript" src="https://zedaid.org/wp-content/themes/zed/js/gsap.min.js" defer></script>
+    <!-- Custom script for this template -->
+    <script type="rocketlazyloadscript" data-minify="1" src="https://zedaid.org/wp-content/cache/min/1/wp-content/themes/zed/js/script.js?ver=1629628597" defer></script>
+
+    <script type="rocketlazyloadscript">window.addEventListener('DOMContentLoaded', function() {
+    $(document).ready(function() {
+        $('input').keyup(function(event) {
+            if (event.which === 13)
+            {
+                event.preventDefault();
+                $('#mapbyname').submit();
+            }
+        });
+
+        
+        $('.cat_type').click(function(){
+            var arr = [];
+            $.each($("input[name='cattype']:checked"), function(){
+                arr.push($(this).val());
+            });
+            var id = arr.join(",");
+            var url = 'https://zedaid.org/browse-fundraisers/?type='+id;
+            window.location.href=url;
+        });
+    });
+    });</script>
+<script type="rocketlazyloadscript">"use strict";var wprRemoveCPCSS=function wprRemoveCPCSS(){var elem;document.querySelector('link[data-rocket-async="style"][rel="preload"]')?setTimeout(wprRemoveCPCSS,200):(elem=document.getElementById("rocket-critical-css"))&&"remove"in elem&&elem.remove()};window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext&#038;display=swap" /><link rel="stylesheet" href="https://zedaid.org/wp-content/cache/min/1/e395623f74dd851906747516babe3ff9.css" media="all" data-minify="1" /></noscript></body>
+</html>
+<!-- start footer-->
+<!-- news-letter-section end-->
+<head>
+    <style>
+    .ti-youtube:before {
+    content: "\e728";
+    color: #EA1E15;
+}
+        @media (max-width: 767px){
+            
+        
+        .abc{
+            float:none;color:#fff !important
+        }
+    }
+    @media (min-width: 768px){
+        .abc{
+            float:left !important;color:#fff !important
+        }
+    }
+        </style>
+
+</head>
+
+<div class="tp-ne-footer">
+    <!-- start tp-site-footer -->
+    <footer class="tp-site-footer">
+        <div class="tp-upper-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-4 col-md-3 col-sm-6">
+                        <div class="widget about-widget">
+                            <div class="logo widget-title">
+                                <img src="https://zedaid.org/wp-content/themes/zed/images/zed.png" width="50" alt="blog">
+                            </div>
+                            <p>Creating more helping hands by bridging the gap between donors and the people lacking the necessities of life </p>
+                            <ul>
+                            <!-- /*change by : Jalpa | Change Date : 30 june 2021*/ -->
+                                <li>
+                                    <div class="parallax-wrap">
+                                        <div class="parallax-element">
+                                            <a href="https://m.facebook.com/ZED-Foundation-102464085193955/?ref=bookmarks" target="_blank">
+                                                <i class="ti-facebook"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- <li>
+                                    <div class="parallax-wrap">
+                                        <div class="parallax-element">
+                                            <a href="#">
+                                                <i class="ti-twitter-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li> -->
+                                <li>
+                                    <div class="parallax-wrap">
+                                        <div class="parallax-element">
+                                            <a href="https://www.instagram.com/zedfoundation/" target="_blank">
+                                                <i class="ti-instagram"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="parallax-wrap">
+                                        <div class="parallax-element">
+                                            <a href="https://www.youtube.com/watch?app=desktop&v=s5AMF3yb53E&t=3s" target="_blank">
+                                                <i class="ti-youtube"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- /*change by : Jalpa | Change Date : 30 june 2021*/ -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4 col-md-4 col-sm-6">
+                        <div class="widget link-widget">
+                            <div class="widget-title">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <!--<li><a href="javascript:void(0)">How It Works</a></li>-->
+                                <li><a href="https://zedaid.org/covid-detail/">Covid Support</a></li>
+                                <li><a href="https://zedaid.org/privacy-policy/">Privacy Policy</a></li>
+                                <li><a href="https://zedaid.org/aml-policy/">AML Policy</a></li>
+                                <li><a href="https://zedaid.org/term-of-use/">Terms of Use</a></li>
+                                <li><a href="https://zedaid.org/refund-policy/">Refund Policy</a></li>
+                                <li><a href="https://zedaid.org/cancellation-policy/">Cancellation Policy</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4 col-lg-offset-1 col-md-4 col-sm-6">
+                        <div class="widget market-widget tp-service-link-widget">
+                            <div class="widget-title">
+                                <h3>Contact </h3>
+                            </div>                            
+                            <div class="contact-ft">
+                                <ul>
+                                    <!-- <li><i class="fi flaticon-pin"></i>28 Street, New York City, USA</li> -->
+                                    <li><i class="fi flaticon-call"></i><a href="tel:+91 7208701981">+91 7208701981</a></li>
+                                    <li><i class="fi flaticon-envelope"></i><a href="mailto:info@zedaid.org">info@zedaid.org</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col col-lg-3 col-md-3 col-sm-6">
+                        <div class="widget instagram">
+                            <div class="widget-title">
+                                <h3>Instagram</h3>
+                            </div>
+                            <ul class="d-flex">
+                                <li><a href="#"><img width="85" height="85" src="https://zedaid.org/wp-content/themes/zed/images/insta.jpg" alt=""></a></li>
+                                <li><a href="#"><img width="85" height="85" src="https://zedaid.org/wp-content/themes/zed/images/insta.jpg" alt=""></a></li>
+                                <li><a href="#"><img width="85" height="85" src="https://zedaid.org/wp-content/themes/zed/images/insta.jpg" alt=""></a></li>
+                                <li><a href="#"><img width="85" height="85" src="https://zedaid.org/wp-content/themes/zed/images/insta.jpg" alt=""></a></li>
+                                <li><a href="#"><img width="85" height="85" src="https://zedaid.org/wp-content/themes/zed/images/insta.jpg" alt=""></a></li>
+                                <li><a href="#"><img width="85" height="85" src="https://zedaid.org/wp-content/themes/zed/images/insta.jpg" alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+            </div> <!-- end container -->
+        </div>
+        <div class="tp-lower-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <span class="abc">Designed with
+                            <i class="fa fa-heart text-primary"></i> by
+                            <a href="https://innovuratech.com/" target="_blank" style="color:#fff !important">Innovura Technologies</a>
+                        </span>
+                        <span style="float:right;color:#fff !important">
+                            Copyright © 2021 ZED Platforms - All Rights Reserved. </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end tp-site-footer -->
+</div>
+</div>
+<!-- end of page-wrapper -->
+<div id="magic-cursor">
+    <div id="ball">
+        <div id="ball-drag-x"></div>
+        <div id="ball-drag-y"></div>
+        <div id="ball-loader"></div>
+    </div>
+</div>
+<!-- All JavaScript files
+    ================================================== -->
+<script type="rocketlazyloadscript" src="https://zedaid.org/wp-content/themes/zed/js/jquery.min.js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" src="https://zedaid.org/wp-content/cache/min/1/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js?ver=1629628596" defer></script>
+<script type="rocketlazyloadscript" src="https://zedaid.org/wp-content/themes/zed/js/bootstrap.min.js" defer></script>
+<!-- Plugins for this template -->
+<script type="rocketlazyloadscript" data-minify="1" src="https://zedaid.org/wp-content/cache/min/1/wp-content/themes/zed/js/jquery-plugin-collection.js?ver=1629628597" defer></script>
+<script type="rocketlazyloadscript" src="https://zedaid.org/wp-content/themes/zed/js/gsap.min.js" defer></script>
+<!-- Custom script for this template -->
+<script type="rocketlazyloadscript" data-minify="1" src="https://zedaid.org/wp-content/cache/min/1/wp-content/themes/zed/js/script.js?ver=1629628597" defer></script>
+<script type="rocketlazyloadscript">window.addEventListener('DOMContentLoaded', function() {
+    function startcamp() {
+        $.cookie("actual_link", null, { path: '/' });
+                $.cookie("actual_link", "https://zedaid.org/start-campaign/", {
+            path: '/'
+        });
+        window.location.replace("https://zedaid.org/login/");
+    }
+
+    jQuery(document).ready(function () {
+        window.onbeforeunload = function (e) {
+            jQuery('.preloader1').css('display','block');
+        }
+        jQuery(window).load(function () {
+            jQuery('.preloader1').css('display','none');
+        });
+    });
+});</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext&#038;display=swap" /><link rel="stylesheet" href="https://zedaid.org/wp-content/cache/min/1/e395623f74dd851906747516babe3ff9.css" media="all" data-minify="1" /></noscript></body>
+
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1629694071 -->

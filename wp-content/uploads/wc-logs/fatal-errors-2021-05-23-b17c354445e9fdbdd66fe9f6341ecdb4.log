@@ -1,0 +1,32 @@
+2021-05-23T16:26:47+00:00 CRITICAL Uncaught Error: Call to a member function fetch_assoc() on null in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1868
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1868
+
+2021-05-23T16:27:14+00:00 CRITICAL Uncaught Error: Call to a member function fetch_assoc() on null in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1868
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1868
+
+2021-05-23T16:28:33+00:00 CRITICAL Uncaught Error: Call to a member function fetch_assoc() on null in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1868
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1868
+
+2021-05-23T16:30:34+00:00 CRITICAL Uncaught Error: Call to a member function fetch_assoc() on null in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php:1868
+Stack trace:
+#0 /home/jedaites/public_html/zed/wp-includes/template-loader.php(106): include()
+#1 /home/jedaites/public_html/zed/wp-blog-header.php(19): require_once('/home/jedaites/...')
+#2 /home/jedaites/public_html/zed/index.php(17): require('/home/jedaites/...')
+#3 {main}
+  thrown in /home/jedaites/public_html/zed/wp-content/themes/alone/templates/browsefundraiserlocationcovidlist.php on line 1868
+

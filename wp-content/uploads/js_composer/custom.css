@@ -1,0 +1,43 @@
+.fw-site-logo .main-logo {
+	width: 50px !important;
+}
+.startfundclass{
+    line-height: 45px;
+    margin: 0;
+    padding: 7px 18px;
+    color: #fff;
+    background: #0ec4f7;
+    transition: 0.4s ease;
+    font-size: 16px;
+    font-family: 'Poppins';
+    letter-spacing: 0px;
+    font-style: normal;
+    font-weight: 500;
+    border: medium none;
+    text-transform: uppercase;
+}
+.startfundclass a span{
+    color: #fff;
+}
+.startfundclass a span:hover{
+    color: #fff;
+}
+
+.startfundclassmenu{
+    background: #0ec4f7;
+border-radius: 50px;
+}
+
+.startfundclassmenu a{
+    color: white !important;
+    line-height: 45px !important;
+    padding: 5px 15px !important;
+}
+
+.startfundclassmenu a span:hover{
+    color: white !important;
+}
+
+body.is-header-sticky .startfundclassmenu a span{
+    color: white !important;
+}

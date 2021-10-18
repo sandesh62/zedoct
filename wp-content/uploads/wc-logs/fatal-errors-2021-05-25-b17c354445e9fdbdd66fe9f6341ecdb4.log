@@ -1,0 +1,50 @@
+2021-05-25T13:00:24+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:01:31+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:13:54+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:21:48+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:22:04+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:25:06+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:25:42+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 50
+
+2021-05-25T13:42:22+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:48
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 48
+
+2021-05-25T13:44:35+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:48
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 48
+
+2021-05-25T13:47:14+00:00 CRITICAL Uncaught Error: Call to a member function get_results() on array in /home/jedaites/public_html/zed/changestatus.php:48
+Stack trace:
+#0 {main}
+  thrown in /home/jedaites/public_html/zed/changestatus.php on line 48
+
