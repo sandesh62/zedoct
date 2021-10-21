@@ -335,7 +335,7 @@ $userId = $user_ID;
         $res = $results[0];
         $idd = $res->id;
     }
-    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $idd;
+    $shareurl = BASE_URL . 'campaign-detail/?id=' . $idd;
 
     $today = date("Y-m-d");
     $resultsipa = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigncount WHERE campaign_Id IN (" . $idd . ") AND DATE_FORMAT(created_at, '%Y-%m-%d') = '" . $today . "'", ARRAY_A);
@@ -796,7 +796,7 @@ $userId = $user_ID;
                                                         $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $recs->video);
                                                         $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";
                                                     }
-                                                    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $recs->id;
+                                                    $shareurl = BASE_URL . 'campaign-detail/?id=' . $recs->id;
 
                                                     ?>
                                             <tr>

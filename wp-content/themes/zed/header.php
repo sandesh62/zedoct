@@ -353,13 +353,13 @@ global $wpdb, $user_ID;
 
                             <li class="menu-item-has-children">
 
-                                <a href="<?= BASE_URL ?>browse-fundraisers/fundraisers-location/">Browse Campaigns</a>
+                                <a href="<?= BASE_URL ?>browse-campaigns/campaigns-location/">Browse Campaigns</a>
 
                                 <ul class="sub-menu">
 
-                                    <li><a href="<?= BASE_URL ?>browse-fundraisers/fundraisers-location/">By Map</a></li>
+                                    <li><a href="<?= BASE_URL ?>browse-campaigns/campaigns-location/">By Map</a></li>
 
-                                    <li><a href="<?= BASE_URL ?>browse-fundraisers/">By Name</a></li>
+                                    <li><a href="<?= BASE_URL ?>browse-campaigns/">By Name</a></li>
 
                                 </ul>
 

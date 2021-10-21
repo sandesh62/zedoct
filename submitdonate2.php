@@ -187,7 +187,7 @@ get_header();
 <body>
 <div class="loadingBar">
     <div class="loadingBarText">
-        <img src="https://jedaitestbed.in/zed/loder.png" alt="loader">
+        <img src="https://zedaid.org/loder.png" alt="loader">
     </div>
 </div>
 

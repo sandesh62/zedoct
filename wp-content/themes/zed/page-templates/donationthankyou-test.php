@@ -117,7 +117,7 @@ get_header(); ?>
                   </div> -->
                   <h4 style="text-align: center;margin-top:5px;margin-bottom: 20px;color:#3D3D8A">Your transaction Id is <?php echo $paymentId?></h4>
                   <h4 style="text-align: center;margin-top:15%;margin-bottom: 20px;color:#3D3D8A">You can donate in similar campaigns by visiting campaigns here </h4>
-                  <a href="<?= BASE_URL; ?>browse-fundraisers/" class="button1thanks">Our Campaigns</a>                  
+                  <a href="<?= BASE_URL; ?>browse-campaigns/" class="button1thanks">Our Campaigns</a>                  
                 </div>
               </div>
             </div>

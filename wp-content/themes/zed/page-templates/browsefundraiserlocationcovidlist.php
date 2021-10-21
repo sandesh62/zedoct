@@ -482,12 +482,12 @@ get_header();
                             <div class="bor">
                                 <input type="checkbox" value="1" class="custom-control-input covidid" id="covidid1" 
                                 name="covidid" /> <label class="custom-control-label " for="covidid1">
-                                <img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital.png" width="20" height="20" /> Covid Hospital 
+                                <img src="https://zedaid.org/wp-content/uploads/2021/04/hospital.png" width="20" height="20" /> Covid Hospital 
                                 <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSfR0ZsMu09XUge0pGt9aVvZWtSozgu8clMkxJPgsJ8tO_xIZQ/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a>
                                 </label></div>
-                            <div class="bor line_spacing_top_15"><input type="checkbox" value="2" class="custom-control-input covidid" id="covidid2" name="covidid" /> <label class="custom-control-label " for="covidid2"><img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection.png" width="20" height="20" /> Remdesivir Injection <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSdJLHyM_ABs6TGDKq4YlPY4Xt8RKek2HaLK-7EpZZOlNVfICg/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a></label></div>
-                            <div class="bor line_spacing_top_15"><input type="checkbox" value="3" class="custom-control-input covidid" id="covidid3" name="covidid" /> <label class="custom-control-label " for="covidid3"><img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma.png" width="20" height="20" /> Plasma <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSesttYE86RQjK9TpCJDi-TtDWtNlZAydxex2C2hqylWhzFJvQ/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a></label></div>
-                            <div class="bor line_spacing_top_15"><input type="checkbox" value="4" class="custom-control-input covidid" id="covidid4" name="covidid" /> <label class="custom-control-label " for="covidid4"><img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen-tank.png" width="20" height="20" /> Oxygen Cylinder <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSdDS0SZ_XOLkK8dG-9ACOPRQCXZv2sjKAXa3my7n0rht0g_yA/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a></label></div>
+                            <div class="bor line_spacing_top_15"><input type="checkbox" value="2" class="custom-control-input covidid" id="covidid2" name="covidid" /> <label class="custom-control-label " for="covidid2"><img src="https://zedaid.org/wp-content/uploads/2021/04/injection.png" width="20" height="20" /> Remdesivir Injection <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSdJLHyM_ABs6TGDKq4YlPY4Xt8RKek2HaLK-7EpZZOlNVfICg/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a></label></div>
+                            <div class="bor line_spacing_top_15"><input type="checkbox" value="3" class="custom-control-input covidid" id="covidid3" name="covidid" /> <label class="custom-control-label " for="covidid3"><img src="https://zedaid.org/wp-content/uploads/2021/04/plasma.png" width="20" height="20" /> Plasma <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSesttYE86RQjK9TpCJDi-TtDWtNlZAydxex2C2hqylWhzFJvQ/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a></label></div>
+                            <div class="bor line_spacing_top_15"><input type="checkbox" value="4" class="custom-control-input covidid" id="covidid4" name="covidid" /> <label class="custom-control-label " for="covidid4"><img src="https://zedaid.org/wp-content/uploads/2021/04/oxygen-tank.png" width="20" height="20" /> Oxygen Cylinder <a class="add-icon" href="https://docs.google.com/forms/d/e/1FAIpQLSdDS0SZ_XOLkK8dG-9ACOPRQCXZv2sjKAXa3my7n0rht0g_yA/viewform?usp=sf_link" target="_blank"> <img src="https://zedaid.org/wp-content/uploads/2021/04/add-1.png" width="20" height="20"></a></label></div>
                         </div>
                     </div>
                 </div>
@@ -500,17 +500,17 @@ get_header();
                         <div class="row">
                             <div class="col-md-12 line_spacing_top_15">
                                 <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status">
-                                <img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/available.png" />
+                                <img src="https://zedaid.org/wp-content/uploads/2021/04/available.png" />
                                 <label style="font-size: 15px;display: inline;">Available</label>
                             </div>
                             <div class="col-md-12 line_spacing_top_15">
                                 <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="2" class="service_status">
-                                <img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/to_be_available.png" />
+                                <img src="https://zedaid.org/wp-content/uploads/2021/04/to_be_available.png" />
                                 <label style="font-size: 15px;display: inline;">To be Available</label>
                             </div>
                             <div class="col-md-12 line_spacing_top_15">
                                 <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="3" class="service_status">
-                                <img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/not_available.png" />
+                                <img src="https://zedaid.org/wp-content/uploads/2021/04/not_available.png" />
                                 <label style="font-size: 15px;display: inline;">Not Available</label>
                             </div>
                          </div>
@@ -554,15 +554,15 @@ get_header();
 
                     <div id="service_status1">
                         <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status1">
-                        <img style="width: 16px;" src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/available.png" />
+                        <img style="width: 16px;" src="https://zedaid.org/wp-content/uploads/2021/04/available.png" />
                         <label style="font-size: 15px;display: inline;">Available</label>
                         
                         <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="2" class="service_status1">
-                        <img style="width: 16px;" src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/to_be_available.png" />
+                        <img style="width: 16px;" src="https://zedaid.org/wp-content/uploads/2021/04/to_be_available.png" />
                         <label style="font-size: 15px;display: inline;">To be Available</label>
 
                         <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="3" class="service_status1">
-                        <img style="width: 16px;" src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/not_available.png" />
+                        <img style="width: 16px;" src="https://zedaid.org/wp-content/uploads/2021/04/not_available.png" />
                         <label style="font-size: 15px;display: inline;">Not Available</label>
                     </div>
 
@@ -804,19 +804,19 @@ get_header();
                                 if (locations[i][4] == 1) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_available.png',
                                         map: map
                                     });
                                 } else if (locations[i][4] == 2) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_tobe_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_tobe_available.png',
                                         map: map
                                     });
                                 } else {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_not_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_not_available.png',
                                         map: map
                                     });
                                 }
@@ -824,19 +824,19 @@ get_header();
                                 if (locations[i][4] == 1) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_available.png',
                                         map: map
                                     });
                                 } else if (locations[i][4] == 2) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_to_be_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_to_be_available.png',
                                         map: map
                                     });
                                 } else {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_not_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_not_available.png',
                                         map: map
                                     });
                                 }
@@ -845,19 +845,19 @@ get_header();
                                 if (locations[i][4] == 1) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_available.png',
                                         map: map
                                     });
                                 } else if (locations[i][4] == 2) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_tobe_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_tobe_available.png',
                                         map: map
                                     });
                                 } else {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_not_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_not_available.png',
                                         map: map
                                     });
                                 }
@@ -865,19 +865,19 @@ get_header();
                                 if (locations[i][4] == 1) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_available.png',
                                         map: map
                                     });
                                 } else if (locations[i][4] == 2) {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_tobe_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_tobe_available.png',
                                         map: map
                                     });
                                 } else {
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                        icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_not_available.png',
+                                        icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_not_available.png',
                                         map: map
                                     });
                                 }
@@ -1059,19 +1059,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_tobe_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_tobe_available.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_not_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_not_available.png',
                                                     map: map
                                                 });
                                             }
@@ -1079,19 +1079,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-38-–-1.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-38-–-1.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-39-–-1.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-39-–-1.png',
                                                     map: map
                                                 });
                                             }
@@ -1100,19 +1100,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_tobe_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_tobe_available.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_not_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_not_available.png',
                                                     map: map
                                                 });
                                             }
@@ -1120,19 +1120,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_tobe_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_tobe_available.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_not_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_not_available.png',
                                                     map: map
                                                 });
                                             }
@@ -1202,19 +1202,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_tobe_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_tobe_available.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_not_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_not_available.png',
                                                     map: map
                                                 });
                                             }
@@ -1222,19 +1222,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-38-–-1.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-38-–-1.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-39-–-1.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-39-–-1.png',
                                                     map: map
                                                 });
                                             }
@@ -1243,19 +1243,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_tobe_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_tobe_available.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_not_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_not_available.png',
                                                     map: map
                                                 });
                                             }
@@ -1263,19 +1263,19 @@ get_header();
                                             if (locations[i][4] == 1) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_available.png',
                                                     map: map
                                                 });
                                             } else if (locations[i][4] == 2) {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_tobe_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_tobe_available.png',
                                                     map: map
                                                 });
                                             } else {
                                                 marker = new google.maps.Marker({
                                                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_not_available.png',
+                                                    icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_not_available.png',
                                                     map: map
                                                 });
                                             }
@@ -1345,19 +1345,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_tobe_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_tobe_available.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_not_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_not_available.png',
                                                 map: map
                                             });
                                         }
@@ -1365,19 +1365,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-38-–-1.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-38-–-1.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-39-–-1.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-39-–-1.png',
                                                 map: map
                                             });
                                         }
@@ -1386,19 +1386,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_tobe_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_tobe_available.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_not_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_not_available.png',
                                                 map: map
                                             });
                                         }
@@ -1406,19 +1406,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_tobe_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_tobe_available.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_not_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_not_available.png',
                                                 map: map
                                             });
                                         }
@@ -1488,19 +1488,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_tobe_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_tobe_available.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/hospital_not_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/hospital_not_available.png',
                                                 map: map
                                             });
                                         }
@@ -1508,19 +1508,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/injection_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/injection_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-38-–-1.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-38-–-1.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/Component-39-–-1.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/Component-39-–-1.png',
                                                 map: map
                                             });
                                         }
@@ -1529,19 +1529,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_tobe_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_tobe_available.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/plasma_not_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/plasma_not_available.png',
                                                 map: map
                                             });
                                         }
@@ -1549,19 +1549,19 @@ get_header();
                                         if (locations[i][4] == 1) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_available.png',
                                                 map: map
                                             });
                                         } else if (locations[i][4] == 2) {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_tobe_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_tobe_available.png',
                                                 map: map
                                             });
                                         } else {
                                             marker = new google.maps.Marker({
                                                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                icon: 'https://jedaitestbed.in/zed/wp-content/uploads/2021/04/oxygen_not_available.png',
+                                                icon: 'https://zedaid.org/wp-content/uploads/2021/04/oxygen_not_available.png',
                                                 map: map
                                             });
                                         }

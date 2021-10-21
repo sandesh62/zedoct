@@ -86,7 +86,7 @@ global $wpdb;
                 <div class="row">
                     <div class="col-12">
                         <div class="tp-breadcumb-wrap">
-                            <h2>Browse Fundraisers</h2>
+                            <h2>Browse Campaigns</h2>
                         </div>
                         <!-- .tp-counter-area start -->
                         <div class="tp-counter-area causeslistcounter">
@@ -322,7 +322,7 @@ global $wpdb;
                                             $fundtitle = $res['fundraiser_title'];
                                         }
 
-                                        $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res['id'];
+                                        $shareurl = BASE_URL . 'campaign-detail/?id=' . $res['id'];
 
                                         if ($res['campaign_typeId'] == 2) {
                                             $goal_amount = $res['item_qty'];

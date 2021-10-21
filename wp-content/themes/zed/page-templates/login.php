@@ -177,8 +177,8 @@ get_header();
                                         $redirect_to = BASE_URL;
                                     }else{
                                         $a = BASE_URL.'/';
-                                        $b = BASE_URL.'browse-fundraisers/fundraisers-location/';
-                                        $c = BASE_URL.'browse-fundraisers/';
+                                        $b = BASE_URL.'browse-campaigns/campaigns-location/';
+                                        $c = BASE_URL.'browse-campaigns/';
                                         $d = BASE_URL.'covid-detail/';
                                         $e = BASE_URL.'start-campaign/';
                                         if ($_COOKIE[$cookie_name] == $a || $_COOKIE[$cookie_name] == $b || $_COOKIE[$cookie_name] == $c || $_COOKIE[$cookie_name] == $d || $_COOKIE[$cookie_name] == $e) {

@@ -56,7 +56,7 @@ foreach ($resultscc as $res) {
 
 
 
-    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res['id'];
+    $shareurl = BASE_URL . 'campaign-detail/?id=' . $res['id'];
 
 
 

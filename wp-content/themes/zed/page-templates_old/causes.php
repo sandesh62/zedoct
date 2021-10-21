@@ -84,7 +84,7 @@ global $wpdb;
                 <div class="row">
                     <div class="col-12">
                         <div class="tp-breadcumb-wrap">
-                            <h2>Browse Fundraisers</h2>
+                            <h2>Browse Campaigns</h2>
                         </div>
                         <!-- .tp-counter-area start -->
                         <div class="tp-counter-area causeslistcounter">
@@ -163,9 +163,9 @@ global $wpdb;
                                 <div class="widget category-widget">
                                     <form>
                                         <ul>
-                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-fundraisers/?type=1'; ?>'"><a href="<?= BASE_URL . 'browse-fundraisers/?type=1'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '1'){?>checked<?php } ?>>Fundraiser</a></li>
-                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-fundraisers/?type=2'; ?>'"><a href="<?= BASE_URL . 'browse-fundraisers/?type=2'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '2'){?>checked<?php } ?>>Material donation</a></li>
-                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-fundraisers/?type=3'; ?>'"><a href="<?= BASE_URL . 'browse-fundraisers/?type=3'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '3'){?>checked<?php } ?>>Charity products</a></li>
+                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-campaigns/?type=1'; ?>'"><a href="<?= BASE_URL . 'browse-campaigns/?type=1'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '1'){?>checked<?php } ?>>Fundraiser</a></li>
+                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-campaigns/?type=2'; ?>'"><a href="<?= BASE_URL . 'browse-campaigns/?type=2'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '2'){?>checked<?php } ?>>Material donation</a></li>
+                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-campaigns/?type=3'; ?>'"><a href="<?= BASE_URL . 'browse-campaigns/?type=3'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '3'){?>checked<?php } ?>>Charity products</a></li>
                                         </ul>
                                     </form>
                                 </div>
@@ -184,7 +184,7 @@ global $wpdb;
                             }
                             if ($results) {
                                 foreach ($results as $res) {
-                                    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res->id;
+                                    $shareurl = BASE_URL . 'campaign-detail/?id=' . $res->id;
                                     if ($campaign_typeId == 1) {
                                         $donationurl = BASE_URL . 'donation/?id=' . $res->id;
                                         $btntext = 'Donate';

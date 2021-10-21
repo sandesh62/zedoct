@@ -293,7 +293,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
                 $fundtitle = $res['fundraiser_title'];
               }
 
-              $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res['id'];
+              $shareurl = BASE_URL . 'campaign-detail/?id=' . $res['id'];
 
               if ($res['campaign_typeId'] == 2) {
                 $goal_amount = $res['item_qty'];

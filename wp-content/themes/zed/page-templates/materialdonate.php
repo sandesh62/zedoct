@@ -355,7 +355,7 @@ get_header();
   </div>
   <div class="modal fade" id="donateint" tabindex="-1" role="dialog" aria-labelledby="startfunrmodalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" style="background-image: url(http://jedaitestbed.in/Zed_2021/wp-content/uploads/2021/07/hh.jpg); height: 418px;
+      <div class="modal-content" style="background-image: url(https://zedaid.org/wp-content/uploads/2021/07/hh.jpg); height: 418px;
     background-repeat: no-repeat;">
         <div class="modal-header" style="padding: 15px 0px 0px 0px;">
           <h4 class="modal-title text-center" id="exampleModalLongTitle"><?php echo $fundtitle; ?></h4>
@@ -378,7 +378,7 @@ get_header();
   <script src="<?php echo bloginfo('template_directory'); ?>/js/script.js"></script>
   <script>
     <?php
-    $curl = BASE_URL . 'fundraiser-detail/?id=' . $id;
+    $curl = BASE_URL . 'campaign-detail/?id=' . $id;
     ?>
     $('#donateint').on('hidden.bs.modal', function() {
         console.log("Outside Clicked");

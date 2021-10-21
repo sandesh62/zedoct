@@ -182,9 +182,9 @@ global $wpdb;
                                 <div class="widget category-widget">
                                     <form>
                                         <ul>
-                                            <!-- <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-fundraisers/?type=1'; ?>'"><a href="<?= BASE_URL . 'browse-fundraisers/?type=1'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '1'){?>checked<?php } ?>>Fundraiser</a></li>
-                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-fundraisers/?type=2'; ?>'"><a href="<?= BASE_URL . 'browse-fundraisers/?type=2'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '2'){?>checked<?php } ?>>Material donation</a></li>
-                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-fundraisers/?type=3'; ?>'"><a href="<?= BASE_URL . 'browse-fundraisers/?type=3'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '3'){?>checked<?php } ?>>Charity products</a></li> -->
+                                            <!-- <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-campaigns/?type=1'; ?>'"><a href="<?= BASE_URL . 'browse-campaigns/?type=1'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '1'){?>checked<?php } ?>>Fundraiser</a></li>
+                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-campaigns/?type=2'; ?>'"><a href="<?= BASE_URL . 'browse-campaigns/?type=2'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '2'){?>checked<?php } ?>>Material donation</a></li>
+                                            <li class="bor" onclick="window.location.href='<?= BASE_URL . 'browse-campaigns/?type=3'; ?>'"><a href="<?= BASE_URL . 'browse-campaigns/?type=3'; ?>"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" <?php if($type == '3'){?>checked<?php } ?>>Charity products</a></li> -->
 
                                             <?php 
                                             $type_arr = explode(',',$type);
@@ -235,7 +235,7 @@ global $wpdb;
 
                             if ($results) {
                                 foreach ($results as $res) {
-                                    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res->id;
+                                    $shareurl = BASE_URL . 'campaign-detail/?id=' . $res->id;
                                     if ($res->campaign_typeId == 1) {
                                         $donationurl = BASE_URL . 'donation/?id=' . $res->id;
                                         // $donationurl = "javascript:void(0)";
@@ -426,9 +426,9 @@ global $wpdb;
                                             $active = "active";
                                         }
                                         if ($type) {
-                                            $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-fundraisers/?pg=".$i."&type=".$type."'>".$i."</a></li>";	
+                                            $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-campaigns/?pg=".$i."&type=".$type."'>".$i."</a></li>";	
                                         }else{
-                                            $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-fundraisers/?pg=".$i."'>".$i."</a></li>";
+                                            $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-campaigns/?pg=".$i."'>".$i."</a></li>";
                                         }
                                         
                                     }
@@ -485,7 +485,7 @@ global $wpdb;
                 arr.push($(this).val());
             });
             var id = arr.join(",");
-            var url = '<?= BASE_URL . 'browse-fundraisers/?type=' ?>'+id;
+            var url = '<?= BASE_URL . 'browse-campaigns/?type=' ?>'+id;
             window.location.href=url;
         });
     });

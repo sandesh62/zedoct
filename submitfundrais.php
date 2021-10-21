@@ -92,7 +92,7 @@ $user_emailu = $resultsusers[0]->user_email;
 $display_name = $resultsusers[0]->display_name;
 $all_meta_for_user = get_user_meta($resultsusers[0]->ID);
 $phoneu = $all_meta_for_user['billing_phone'][0];
-$detaillink = BASE_URL . "fundraiser-detail-admin/?id=" . $lastid;
+$detaillink = BASE_URL . "campaign-detail-admin/?id=" . $lastid;
 $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigntypes WHERE id =" . $campaign_typeId, OBJECT);
 $res = $results[0];
 $campt = $resultsc[0]->title;
@@ -115,7 +115,7 @@ $message2 = fread($myfile,filesize($file));
 $message2 = str_replace('{{Name}}', $display_name , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{title}}', $fundtitle , $message2);
-$detaillink = BASE_URL . "fundraiser-detail/?id=" . $lastid;
+$detaillink = BASE_URL . "campaign-detail/?id=" . $lastid;
 $message2 = str_replace('{{RESET_LINK}}', $detaillink , $message2);
 // Compose a simple HTML email message
 // $message2 = '<html><body>';

@@ -317,7 +317,7 @@
   <script src="<?php echo bloginfo('template_directory'); ?>/js/script.js"></script>
   <script>
     <?php
-    $curl = BASE_URL . 'fundraiser-detail/?id=' . $id;
+    $curl = BASE_URL . 'campaign-detail/?id=' . $id;
     ?>
     $('#donateint').on('hidden.bs.modal', function() {
       window.location.replace("<?= $curl; ?>");

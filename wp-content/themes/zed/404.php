@@ -37,7 +37,7 @@ get_header(); ?>
     <section class="info-text-wrapper">
         <div class="container">
             <span class="thank-you-image">
-                <img src="http://jedaitestbed.in/Zed_2021/wp-content/uploads/2021/07/aa-scaled.jpg" alt="404-Not-Found" width="1000px"/>
+                <img src="https://zedaid.org/wp-content/uploads/2021/07/aa-scaled.jpg" alt="404-Not-Found" width="1000px"/>
             </span>
             
             <a href="<?= BASE_URL; ?>" class="btn btn-primary">Go Home</a>

@@ -104,7 +104,7 @@ if ($success === true) {
         $on_behalf_of = $display_name;       
     }
 
-    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $campaign_Id;
+    $shareurl = BASE_URL . 'campaign-detail/?id=' . $campaign_Id;
 
 
     /* Email sent to the Campaigner*/

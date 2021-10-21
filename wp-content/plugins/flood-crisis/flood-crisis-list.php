@@ -518,7 +518,7 @@ function flood_crisis_manage_view()
 
 					<input type="submit" class='btn btn-success btn-xs' value="Import" style="padding: 6px 12px;display: inline;float: left;margin-left: 10px">
 
-					<a class='' style="padding: 6px 12px;display: inline;float: left;" href="https://jedaitestbed.in/zed/sampleexportdata.php"> Sample import file</a>
+					<a class='' style="padding: 6px 12px;display: inline;float: left;" href="https://zedaid.org/sampleexportdata.php"> Sample import file</a>
 
 				</form>
 
@@ -1061,10 +1061,10 @@ function flood_crisis_manage_import()
 
 			$row++;
 		}
-		wp_redirect('https://jedaitestbed.in/zed/wp-admin/admin.php?page=flood-crisis-view');
+		wp_redirect('https://zedaid.org/wp-admin/admin.php?page=flood-crisis-view');
 		exit;
 	} else {
-		wp_redirect('https://jedaitestbed.in/zed/wp-admin/admin.php?page=flood-crisis-view&file=no');
+		wp_redirect('https://zedaid.org/wp-admin/admin.php?page=flood-crisis-view&file=no');
 		exit;
 	}
 }

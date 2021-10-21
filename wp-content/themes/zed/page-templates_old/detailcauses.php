@@ -59,7 +59,7 @@ get_header(); ?>
     $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
     $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";
   }
-  $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $id;
+  $shareurl = BASE_URL . 'campaign-detail/?id=' . $id;
   if ($campaign_typeId == 1) {
     $donationurl = BASE_URL . 'donation/?id=' . $res->id;
     $btntext = 'Donate';
@@ -329,7 +329,7 @@ get_header(); ?>
                   ?>
                   <h3 class="share-s">Every social media share can bring ₹5,000</h3>
                   <?php
-                  $sharelinnk = BASE_URL . 'fundraiser-detail/?id=' . $id;
+                  $sharelinnk = BASE_URL . 'campaign-detail/?id=' . $id;
                   ?>
                   <ul>
                     <li><a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= $sharelinnk; ?>&t=<?= $fundtitle; ?>" class="bn"><i class="ti-facebook fb"></i></a></li>

@@ -222,7 +222,7 @@ $resultsdonaccxe = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts WHERE 
             $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 order by id DESC limit 3", OBJECT);
             if ($results) {
                 foreach ($results as $res) {
-                    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res->id;
+                    $shareurl = BASE_URL . 'campaign-detail/?id=' . $res->id;
                     if ($campaign_typeId == 1) {
                         $donationurl = BASE_URL . 'donation/?id=' . $res->id;
                         $btntext = 'Donate';

@@ -219,7 +219,7 @@ $userId = $user_ID;
         $res = $results[0];
         $idd = $res->id;
     }
-    $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $idd;
+    $shareurl = BASE_URL . 'campaign-detail/?id=' . $idd;
     $resultsipa = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigncount WHERE campaign_Id IN(" . $idd . ")", ARRAY_A);
 
     foreach ($results as $resv) {
@@ -402,23 +402,23 @@ $userId = $user_ID;
                                     </div>
                                     <div class="cause-text">
                                         <ul style="margin-top: 0px;">
-                                            <li><a style="background-color:#25d366" href="https://web.whatsapp.com/send?text=http://localhost/zedfinal/ZEDAid/fundraiser-detail/?id=128" target="_blank"><i class="fab fa-whatsapp ff" aria-hidden="true"></i>Share On Whatsapp</a></li>
+                                            <li><a style="background-color:#25d366" href="https://web.whatsapp.com/send?text=http://localhost/zedfinal/ZEDAid/campaign-detail/?id=128" target="_blank"><i class="fab fa-whatsapp ff" aria-hidden="true"></i>Share On Whatsapp</a></li>
                                         </ul>
                                         <ul style="margin-top: 0px;">
-                                            <li class=""><a style="background-color:#3b5998" href="https://www.facebook.com/sharer.php?u=http://localhost/zedfinal/ZEDAid/fundraiser-detail/?id=128/" target="_blank"><i class="fab fa-facebook ff" aria-hidden="true"></i>Share On Facebook</a></li>
+                                            <li class=""><a style="background-color:#3b5998" href="https://www.facebook.com/sharer.php?u=http://localhost/zedfinal/ZEDAid/campaign-detail/?id=128/" target="_blank"><i class="fab fa-facebook ff" aria-hidden="true"></i>Share On Facebook</a></li>
                                         </ul>
                                         <!-- <ul style="margin-top: 0px;">
                                             <li class=""><a style="background-color:#0078ff" href="#"><i class="fab fa-facebook-messenger ff"></i>Share On Messenger</a></li>
                                         </ul> -->
                                         <ul style="margin-top: 0px;">
-                                            <li class=""><a style="background-color:#1da1f2" href="https://twitter.com/share?url=http://localhost/zedfinal/ZEDAid/fundraiser-detail/?id=128/&amp;text=Study Materials" target="_blank"><i class="fab fa-twitter ff" aria-hidden="true"></i>Share On Twitter</a></li>
+                                            <li class=""><a style="background-color:#1da1f2" href="https://twitter.com/share?url=http://localhost/zedfinal/ZEDAid/campaign-detail/?id=128/&amp;text=Study Materials" target="_blank"><i class="fab fa-twitter ff" aria-hidden="true"></i>Share On Twitter</a></li>
                                         </ul>
                                         <ul style="margin-top: 0px;">
-                                            <li class=""><a style="background-color:#be362b" href="mailto:?subject=Your Subject&amp;body=Check out this fundraiser http://localhost/zedfinal/ZEDAid/fundraiser-detail/?id=128." target="_blank"><i class="far fa-envelope ff" aria-hidden="true"></i>Share Via E-mail</a></li>
+                                            <li class=""><a style="background-color:#be362b" href="mailto:?subject=Your Subject&amp;body=Check out this fundraiser http://localhost/zedfinal/ZEDAid/campaign-detail/?id=128." target="_blank"><i class="far fa-envelope ff" aria-hidden="true"></i>Share Via E-mail</a></li>
                                         </ul>
                                         <ul style="margin-top: 0px;">
-                                            <input type="text" style="display:none;" id="myInput" value="http://localhost/zedfinal/ZEDAid/fundraiser-detail/?id=128">
-                                            <p id="p1" style="display:none;">http://localhost/zedfinal/ZEDAid/fundraiser-detail/?id=128</p>
+                                            <input type="text" style="display:none;" id="myInput" value="http://localhost/zedfinal/ZEDAid/campaign-detail/?id=128">
+                                            <p id="p1" style="display:none;">http://localhost/zedfinal/ZEDAid/campaign-detail/?id=128</p>
                                             <li class=""><a style="color: #000;background: #fff;border: 2px solid #444;" href="javascript:void(0)" onclick="copyToClipboard('#p1')"><i class="fas fa-link ff" aria-hidden="true"></i>Copy Share Link</a></li>
                                         </ul>
                                         <div class="modal fade" id="copiedtext" tabindex="-1" role="dialog" aria-labelledby="startfunrmodalTitle" aria-hidden="true">

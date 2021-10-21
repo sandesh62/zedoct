@@ -53,7 +53,7 @@ $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigntypes WHERE
 $res = $results[0];
 $campt = $resultsc[0]->title;
 
-$detaillink = BASE_URL . "fundraiser-detail-admin/?id=" . $id;
+$detaillink = BASE_URL . "campaign-detail-admin/?id=" . $id;
 
 $subjectnn = "ZED$id - $campt - $fundtitle - $res->address - Has been dis-approved by ZedAid due to non-compliance of the ZedAid policies, you may connect with ZedAid at the link : $detaillink";
 

@@ -204,7 +204,7 @@ global $wpdb;
         
                                 <div class="row">
                                     <div class="col-md-5 line_spacing_top_15">
-                                       <img src="https://jedaitestbed.in/zed/wp-content/uploads/2021/04/available.png" />
+                                       <img src="https://zedaid.org/wp-content/uploads/2021/10/available.png" />
                                        <label style="font-size: 15px;display: inline;">Active</label>
                                     </div>
                                     <div class="col-md-7 line_spacing_top_15">
@@ -393,7 +393,7 @@ global $wpdb;
                                             $fundtitle = $res['fundraiser_title'];
                                         }
 
-                                        $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res['id'];
+                                        $shareurl = BASE_URL . 'campaign-detail/?id=' . $res['id'];
 
                                         if ($res['campaign_typeId'] == 2) {
                                             $goal_amount = $res['item_qty'];

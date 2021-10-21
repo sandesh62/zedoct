@@ -767,7 +767,7 @@ function my_cool_plugin_settings_page()
             <?php
                 if ($results) {
                     foreach ($results as $res) {
-                        $shareurl = BASE_URL . 'fundraiser-detail-admin/?id=' . $res->id;
+                        $shareurl = BASE_URL . 'campaign-detail-admin/?id=' . $res->id;
                         if ($res->campaign_typeId == 2) {
                             $fundtitle = $res->item_name;
                         } else if ($res->campaign_typeId == 3) {
@@ -1013,7 +1013,7 @@ function my_cool_plugin_settings_page2()
             <?php
                 if ($results) {
                     foreach ($results as $res) {
-                        $shareurl = BASE_URL . 'fundraiser-detail/?id=' . $res->id;
+                        $shareurl = BASE_URL . 'campaign-detail/?id=' . $res->id;
                         if ($res->campaign_typeId == 2) {
                             $fundtitle = $res->item_name;
                         } else if ($res->campaign_typeId == 3) {
