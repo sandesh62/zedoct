@@ -66,7 +66,7 @@ if ($campaign_typeId1 == 2) {
 $img_type = $_POST['img_type'];
 //$video = $_POST['video'];
 
-
+$update_by = $_POST['update_by'];
 
 $short_description = $_POST['short_description'];
 /*
@@ -127,22 +127,22 @@ $res = $resultsedit[0];
     if(($res->campaignedit_id) == $campaign_id && ($res->update_status) =='1' ){
         $sql2 = $wpdb->prepare(
             "INSERT INTO `wp_campaignsedit`      
-               (campaignedit_id,admin_approved,zed_verified,userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at) 
-         values ('" . $campaign_id . "','" . $admin_approved . "','" . $zed_verified . "','" . $userId . "','" . $campaign_typeId1 . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $filename . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"
+               (campaignedit_id,admin_approved,zed_verified,userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at,update_by) 
+         values ('" . $campaign_id . "','" . $admin_approved . "','" . $zed_verified . "','" . $userId . "','" . $campaign_typeId1 . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $filename . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."','".$userId."')"
         );
         $wpdb->query($sql2);
     
     }elseif(($res->campaignedit_id) == $campaign_id && ($res->update_status) =='0'){
     
     
-      $wpdb->get_results("UPDATE wp_campaignsedit SET lives_count = '".$lives_count."', address = '".$address."', latitude = '".$latitude."', longitude = '".$longitude."',img_type = '".$img_type."', image = '".$filename."',video = '".$video."' ,fundraiser_title = '".$fundraiser_title."', goal_amount = '".$goal_amount."', user_type = '".$user_type."', ngo_name = '".$ngo_name."',individual_person = '".$individual_person."', beneficiary_name = '".$beneficiary_name."', cause = '".$cause."', item_name = '".$item_name."', item_qty = '".$item_qty."',location_of_need = '".$location_of_need."', product_name = '".$product_name."', product_qty = '".$product_qty."', product_price = '".$product_price."' ,product_location_of_need = '".$product_location_of_need."', short_description = '".$short_description."', end_date = '".$end_date."', created_at = '".$created_at."' WHERE campaignedit_id = $campaign_id AND update_status=''");
+      $wpdb->get_results("UPDATE wp_campaignsedit SET lives_count = '".$lives_count."', address = '".$address."', latitude = '".$latitude."', longitude = '".$longitude."',img_type = '".$img_type."', image = '".$filename."',video = '".$video."' ,fundraiser_title = '".$fundraiser_title."', goal_amount = '".$goal_amount."', user_type = '".$user_type."', ngo_name = '".$ngo_name."',individual_person = '".$individual_person."', beneficiary_name = '".$beneficiary_name."', cause = '".$cause."', item_name = '".$item_name."', item_qty = '".$item_qty."',location_of_need = '".$location_of_need."', product_name = '".$product_name."', product_qty = '".$product_qty."', product_price = '".$product_price."' ,product_location_of_need = '".$product_location_of_need."', short_description = '".$short_description."', end_date = '".$end_date."', created_at = '".$created_at."', update_by = '".$userId."' WHERE campaignedit_id = $campaign_id AND update_status=''");
     
     }else{
     
         $sql2 = $wpdb->prepare(
             "INSERT INTO `wp_campaignsedit`      
-               (campaignedit_id,admin_approved,zed_verified,userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at) 
-         values ('" . $campaign_id . "','" . $admin_approved . "','" . $zed_verified . "','" . $userId . "','" . $campaign_typeId1 . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $filename . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"
+               (campaignedit_id,admin_approved,zed_verified,userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at, update_by) 
+         values ('" . $campaign_id . "','" . $admin_approved . "','" . $zed_verified . "','" . $userId . "','" . $campaign_typeId1 . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $filename . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."','".$userId."')"
         );
         $wpdb->query($sql2);
     
