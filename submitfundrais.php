@@ -81,8 +81,8 @@ if ($image) {
 // exit;
 $sql2 = $wpdb->prepare(
     "INSERT INTO `wp_campaigns`      
-       (userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need, image, video, short_description, end_date, created_at) 
- values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $image . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"
+       (userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at) 
+ values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $image . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"
 );
 $wpdb->query($sql2);
 $lastid = $wpdb->insert_id;

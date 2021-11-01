@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Map
+ * Template Name: Map1
  *
  * @package WordPress
  * @subpackage Twenty_Fourteen
@@ -235,7 +235,7 @@ global $wpdb;
 
                     <?php
 
-                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", ARRAY_A);
+                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status = 1", ARRAY_A);
                     $results = (array) $results;
                     ?>
                     <?php

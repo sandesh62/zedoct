@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Causes
+ * Template Name: Causes1
  *
  * @package WordPress
  * @subpackage Twenty_Fourteen
@@ -110,10 +110,10 @@ global $wpdb;
                                     <div class="col-lg-12">
                                         <?php
 
-                                        $resultsdonacc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE status = 1 AND ((paymetStatus = 1 AND campaign_typeId = 1) OR campaign_typeId != 1)", ARRAY_A);
-                                        $resultsdonaccxcam = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND `status` = 1", ARRAY_A);
-                                        $resultsdonaccx = $wpdb->get_results("SELECT sum(lives_count) as livecount FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", ARRAY_A);
-                                        $resultsdonaccxe = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'tribe_events' AND post_status = 'publish'", ARRAY_A);
+                                      $resultsdonacc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE status = 1 AND ((paymetStatus = 1 AND campaign_typeId = 1) OR campaign_typeId != 1)", ARRAY_A);
+                                        $resultsdonaccxcam = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", ARRAY_A);
+                                       $resultsdonaccx = $wpdb->get_results("SELECT sum(lives_count) as livecount FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", ARRAY_A);
+                                       $resultsdonaccxe = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'tribe_events' AND post_status = 'publish'", ARRAY_A);
                                         ?>
                                         <div class="tp-counter-grids">
                                             <div class="grid">
@@ -209,27 +209,27 @@ global $wpdb;
                             $start_from = ($page-1) * $limit;
                             
                             if (!empty($c) && empty($type)) {
-                                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND admin_approved = 1 order by id DESC LIMIT $start_from, $limit", OBJECT);
+                                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND admin_approved = 1 AND status = 1 order by id DESC LIMIT $start_from, $limit", OBJECT);
 
-                                $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND admin_approved = 1 order by id DESC", OBJECT);
+                                $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND admin_approved = 1 AND status = 1 order by id DESC", OBJECT);
                                 
                             } else if(!empty($type) && !empty($c)){
-                                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 order by id DESC LIMIT $start_from, $limit", OBJECT);
+                                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 AND status = 1 order by id DESC LIMIT $start_from, $limit", OBJECT);
 
-                                $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 order by id DESC", OBJECT); 
+                                $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 AND status = 1 order by id DESC", OBJECT); 
                             } else {
                                 if ($type) {
-                                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND campaign_typeId IN (" . $type . ") order by id DESC LIMIT $start_from, $limit", OBJECT);
+                                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status = 1 AND campaign_typeId IN (" . $type . ") order by id DESC LIMIT $start_from, $limit", OBJECT);
 
-                                    $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND campaign_typeId IN (" . $type . ") order by id DESC", OBJECT); 
+                                    $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status = 1 AND campaign_typeId IN (" . $type . ") order by id DESC", OBJECT); 
                                 } else {
-                                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 order by id DESC LIMIT $start_from, $limit", OBJECT);
+                                    $results = $wpdb->get_results("SELECT * FROM `wp_campaigns` WHERE admin_approved = 1 AND status = 1  order by id DESC LIMIT $start_from, $limit", OBJECT);
 
-                                    $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 order by id DESC", OBJECT); 
+                                    $campaigns = $wpdb->get_results("SELECT id FROM `wp_campaigns` WHERE admin_approved = 1 AND status = 1 order by id DESC", OBJECT); 
                                 }
                             }
 
-                            
+                           
                             $total_records = count($campaigns);  
                             $total_pages = ceil($total_records / $limit); 
 
@@ -308,7 +308,7 @@ global $wpdb;
                                         $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
                                         $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";
                                     }
-                                    $resultsdona = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE campaign_Id IN(" . $res->id . ") and status = 1 and ((paymetStatus = 1 AND campaign_typeId = 1) OR campaign_typeId != 1)");
+                                   $resultsdona = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE campaign_Id IN(" . $res->id . ") and status = 1 and ((paymetStatus = 1 AND campaign_typeId = 1) OR campaign_typeId != 1)");
 
                                     $userId = $res->userId;
                                     $user_name = '';

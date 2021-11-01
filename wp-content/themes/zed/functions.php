@@ -999,7 +999,11 @@ function my_cool_plugin_settings_page2()
             $total_pages = ceil($total_rows / $no_of_records_per_page);
 
             $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 ORDER BY id desc LIMIT $offset, $no_of_records_per_page", OBJECT);
-            ?>
+            
+			$resultsedit = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaignsedit WHERE update_status = 0 ORDER BY id desc LIMIT $offset, $no_of_records_per_page", OBJECT);
+
+			
+			?>
         <table class="form-table" border="1">
             <tr valign="top">
                 <td><b>Image</b></td>
@@ -1008,8 +1012,137 @@ function my_cool_plugin_settings_page2()
                 <td><b>Goal Amount</b></td>
                 <td><b>Achieve Amount</b></td>
                 <td><b>Detail</b></td>
+				<td><b>Update</b></td>
                 <td><b>Action</b></td>
             </tr>
+
+			<?php
+                if ($resultsedit) {
+                    foreach ($resultsedit as $res1) {
+                        $shareurlold = BASE_URL . 'campaign-detail/?id=' . $res1->campaignedit_id;
+                        $shareurl = BASE_URL . 'update-details-admin/?id=' . $res1->campaignedit_id;
+                        
+                        if ($res1->campaign_typeId == 2) {
+                            $fundtitle = $res1->item_name;
+                        } else if ($res1->campaign_typeId == 3) {
+                            $fundtitle = $res1->product_name;
+                        } else {
+                            $fundtitle = $res1->fundraiser_title;
+                        }
+
+                        if ($res1->campaign_typeId == 2) {
+                            $goal_amount = $res1->item_qty;
+                            $currency = 'QTY';
+                        } else if ($res1->campaign_typeId == 3) {
+                            $goal_amount = $res1->product_price * $res1->product_qty;
+                            $currency = $res1->currency;
+                        } else {
+                            $goal_amount = $res1->goal_amount;
+                            $currency = $res1->currency;
+                        }
+
+                        $resultsdonacc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE status = 1 AND campaign_Id IN(" . $res1->id . ")", ARRAY_A);
+                        $achieve_amount = 0;
+                        foreach ($resultsdonacc as $tt) {
+                            if ($tt['campaign_typeId'] == 3) {
+                                $achieve_amountn = $tt['amount'] ? $tt['amount'] * ($res1->product_price ? $res1->product_price : 0) : 0;
+                            } else {
+                                $achieve_amountn = $tt['amount'] ? $tt['amount'] : 0;
+                            }
+                            $achieve_amount += $achieve_amountn;
+                        }
+
+                        $userId = $res1->userId;
+                        $resultsusers = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}users WHERE id = " . $userId, OBJECT);
+                        $all_meta_for_user = get_user_meta($resultsusers[0]->ID);
+
+                        if ($res1->image) {
+                            $iimage = BASE_URL . 'fundraiserimg/' . $res1->image;
+                        } else {
+                            $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res1->video);
+                            $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
+                        }
+
+                        ?>
+                    <tr valign="top">
+                        <td><img width="100" height="100" src="<?php echo $iimage; ?>" /></td>
+                        <td><?php echo $fundtitle; ?></td>
+                        <td>
+                            <span><b>Name: </b><?= $resultsusers[0]->display_name; ?></span><br />
+                            <span><b>Email: </b><?= $resultsusers[0]->user_email; ?></span><br />
+                            <span><b>Phone Number: </b><?= $all_meta_for_user['billing_phone'][0]; ?></span>
+                        </td>
+                        <td><?php echo $currency; ?> <?php echo $goal_amount; ?></td>
+                        <td><?php echo $currency; ?> <?= $achieve_amount; ?></td>
+                        <td><a href="<?php echo $shareurlold; ?>" target="_blank">View</a></td>
+						<td>
+							<div style="padding: 3px;"><a href="<?php echo $shareurl; ?>" target="_blank">View Request</a></div>
+						</td>
+                        
+                            <td>
+                            <div style="padding: 3px;">
+                            <button type="button" class="btn btn-success align-middle" onclick="approveUpdateReq('<?php echo $res1->id; ?>');">Approve</button>
+                            </div>
+							<div style="padding: 3px;">
+                            <button type="button" class="btn btn-success align-middle" onclick="rejectUpdateReq('<?php echo $res1->id; ?>');">Reject</button>
+                             </div>
+
+                            </td>
+                        
+
+                    </tr>
+                <?php }
+                    } else {
+                        ?>
+                <tr valign="top">
+                    <td colspan="7"><b>No new update record.</b></td>
+                </tr>
+            <?php
+                } ?>
+
+<script>
+    function approveUpdateReq(id){
+      jQuery.ajax({
+          type: "POST",
+          url: '../approveUpdateReq.php',
+          data: {
+                    id: id
+                 },
+          success: function(response)
+          {
+            
+                  window.location.reload(true);
+              
+          }
+      });
+    }
+    function rejectUpdateReq(id){
+      jQuery.ajax({
+          type: "POST",
+          url: '../rejectUpdateReq.php',
+          data: {
+                    id: id
+                 },
+          success: function(response)
+          {
+            
+                  window.location.reload(true);
+              
+          }
+      });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
             <?php
                 if ($results) {
                     foreach ($results as $res) {
@@ -1067,6 +1200,7 @@ function my_cool_plugin_settings_page2()
                         <td><?php echo $currency; ?> <?php echo $goal_amount; ?></td>
                         <td><?php echo $currency; ?> <?= $achieve_amount; ?></td>
                         <td><a href="<?php echo $shareurl; ?>" target="_blank">View</a></td>
+						<td><a href="<?php echo $shareurl; ?>" target="_blank">update</a></td>
                         <?php
                                     if ($res->zed_verified) {
                                         ?>

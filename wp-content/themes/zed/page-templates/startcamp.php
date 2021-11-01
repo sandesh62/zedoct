@@ -317,12 +317,64 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
               if (status == google.maps.GeocoderStatus.OK) {
                 var latitude = results[0].geometry.location.lat();
                 var longitude = results[0].geometry.location.lng();
-
                 var mapCenter = new google.maps.LatLng(latitude, longitude); //Google map Coordinates
                 setMap(mapCenter, latitude, longitude, '');
+
               }
+              console.log(latitude);
+             console.log(longitude);
+             var map;
+             map = new google.maps.Map(document.getElementById('mapholder'), {
+			          center: mapCenter,
+			          zoom: 16					
+		        	});
+              marker =  new google.maps.Marker({
+		            	        position: new google.maps.LatLng(latitude, longitude),
+		            	        map: map,
+                          draggable:true,
+                          animation: google.maps.Animation.DROP,
+		            	    });
+
+
+              google.maps.event.addListener(marker, 'dragend', function() 
+              {
+              geocodePosition(marker.getPosition());
+              lat1 = this.getPosition().lat();
+              long1 = this.getPosition().lng();
+
+              console.log(lat1);
+              console.log(long1);
+              });
+
+                function geocodePosition(pos) 
+                {
+                  geocoder = new google.maps.Geocoder();
+                  geocoder.geocode
+                    ({
+                        latLng: pos
+     
+                    }, 
+                        function(results, status) 
+                        {
+                            if (status == google.maps.GeocoderStatus.OK) 
+                            {
+                                $("#searchTextField").val(results[0].formatted_address);
+                                $("#mapErrorMsg").hide(100);
+                            } 
+                            else 
+                            {
+                                $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+                            }
+                        }
+
+                        
+                    );
+                }
+              
             });
           });
+
+        
 
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -397,6 +449,10 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
             center: new google.maps.LatLng(latitude, longitude),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           });
+
+
+      
+
 
           var infowindow = new google.maps.InfoWindow();
 
@@ -939,7 +995,8 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
 
       if(currentTab == 2){
         var image_type = $("#image_type").val();
-        if(image_type == 0){
+        var videodiv1 = $("#youtubevideo").val();
+        if(image_type == 0 && videodiv1 == 0){
           $("#myFile").addClass("invalid");
           $(".image-error").css("display","");
           valid = false;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Causes
+ * Template Name: Causes2
  *
  * @package WordPress
  * @subpackage Twenty_Fourteen

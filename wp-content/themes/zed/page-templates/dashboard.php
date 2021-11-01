@@ -268,7 +268,7 @@ $userId = $user_ID;
             color: #fff;
             font-weight: 500;
             box-shadow: 0 0 7px #ffffff;
-            width: 400px;
+            width: 200px;
         }
         .preloader1 {
           background-color: rgba(255,255,255,0.7);
@@ -325,7 +325,7 @@ $userId = $user_ID;
     <!-- end preloader -->
     
     <?php
-    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status = 1 AND userId =" . $userId, OBJECT);
+    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status in (0,1) AND userId =" . $userId, OBJECT);
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND id =" . $id, OBJECT);
@@ -336,6 +336,7 @@ $userId = $user_ID;
         $idd = $res->id;
     }
     $shareurl = BASE_URL . 'campaign-detail/?id=' . $idd;
+    $editurl = BASE_URL . 'edit-campaign/?id=' . $idd;
 
     $today = date("Y-m-d");
     $resultsipa = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigncount WHERE campaign_Id IN (" . $idd . ") AND DATE_FORMAT(created_at, '%Y-%m-%d') = '" . $today . "'", ARRAY_A);
@@ -490,6 +491,7 @@ $userId = $user_ID;
                                     <div class="cause-text">
                                         <ul>
                                             <li class="licause"><a href="<?= $shareurl; ?>" class="dbtn">Go To Campaign</a></li>
+                                            <li class="licause" style="padding-top: 20px;"><a href="<?= $editurl; ?>" class="dbtn">Edit Campaign</a></li>
                                         </ul>
                                     </div>
                                 </div>                                
