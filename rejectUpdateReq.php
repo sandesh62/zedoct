@@ -55,12 +55,12 @@ $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigntypes WHERE
 $res = $results[0];
 $campt = $resultsc[0]->title;
 
-$detaillink = BASE_URL . "campaign-detail-admin/?id=" . $id;
+$detaillink = BASE_URL . "campaign-detail/?id=" . $id;
 
 $subjectnn = "ZED$id - $campt - $fundtitle - $res->address - Has been approved and verified by ZedAid, you can track the progress at : $detaillink";
 
 $to = $user_email;
-$subject = "ZED$id - $campt - $fundtitle - $address - Has been approved and verified by ZedAid";
+$subject = "ZED$id - $campt - $fundtitle - $address - Update Request has been rejected by ZedAid";
 $from = 'info@zedaid.org';
 
 // To send HTML mail, the Content-type header must be set
@@ -73,13 +73,9 @@ $headers .= 'From: ZED Foundation <' . $from . '>'."\r\n" .
     'Reply-To: ' . $from . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
-if($campTypeId == 1) {
-    $file = 'email/fundraiser_admin_verified.html';    
-} else {
-    $file = 'email/camp_admin_verified.html';
-}
 
 
+$file = 'email/camp_editreject.html';
 $myfile = fopen($file, "r") or die("Unable to open file!");
 $message2 = fread($myfile,filesize($file));
 

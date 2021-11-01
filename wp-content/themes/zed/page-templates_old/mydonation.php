@@ -254,7 +254,7 @@ $resultsdonacc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonati
                                             </div>
 
                                             <div class="col-md-10">
-                                                <p style="color:#000;font-weight:400;">Fundraiser Title : <?php echo $fundtitle; ?></p>
+                                                <p style="color:#000;font-weight:400;">Campaign Title : <?php echo $fundtitle; ?></p>
                                                 <p style="color:#000;font-weight:400;">Email : <?php echo $resul['emailId']; ?></p>
                                                 <p style="color:#000;font-weight:400;">Address : <?php echo $resul['address']; ?></p>
                                                 <p style="color:#000;font-weight:400;">Phone No : <?php echo $resul['phonenumber']; ?></p>
