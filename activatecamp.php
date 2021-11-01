@@ -7,7 +7,7 @@ global $wpdb;
 $campaign_id = $_POST['campaign_id'];
 
 $campaigns = $wpdb->get_row("SELECT * FROM wp_campaigns WHERE id = '".$campaign_id."'");
-$service_name = $services->service_name;
+
 $user_id = $services->userId;
 $start_date = date("d-m-Y", strtotime($services->start_date));
 $end_date = date("d-m-Y", strtotime($services->end_date));
@@ -18,10 +18,10 @@ $users = get_user_by('id',$user_id);
 $user_email = $users->user_email;
 $user_nicename = $users->user_nicename;
 
-$wpdb->query($wpdb->prepare("UPDATE wp_campaigns SET `status` = '1',  WHERE id=$campaign_id"));
+$wpdb->query($wpdb->prepare("UPDATE wp_campaigns SET `status` = '1' WHERE id=$campaign_id"));
 
 $to0 = $user_email;
-$subject0 =  "ZedAid - Service is deleted";
+$subject0 =  "ZedAid - Campaign is Activated";
 $from0 = 'info@zedaid.org';
 // To send HTML mail, the Content-type header must be set
 $headers0  = 'MIME-Version: 1.0' . "\r\n";

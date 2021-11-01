@@ -1147,6 +1147,7 @@ function my_cool_plugin_settings_page2()
                 if ($results) {
                     foreach ($results as $res) {
                         $shareurl = BASE_URL . 'campaign-detail/?id=' . $res->id;
+                        $shareEditAdmin = BASE_URL . 'edit-campaign-admin/?id=' . $res->id;
                         if ($res->campaign_typeId == 2) {
                             $fundtitle = $res->item_name;
                         } else if ($res->campaign_typeId == 3) {
@@ -1200,7 +1201,7 @@ function my_cool_plugin_settings_page2()
                         <td><?php echo $currency; ?> <?php echo $goal_amount; ?></td>
                         <td><?php echo $currency; ?> <?= $achieve_amount; ?></td>
                         <td><a href="<?php echo $shareurl; ?>" target="_blank">View</a></td>
-						<td><a href="<?php echo $shareurl; ?>" target="_blank">update</a></td>
+						<td><a href="<?php echo $shareEditAdmin ; ?>" target="_blank">update</a></td>
                         <?php
                                     if ($res->zed_verified) {
                                         ?>
