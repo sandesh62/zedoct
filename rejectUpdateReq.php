@@ -22,7 +22,7 @@ if ($res->campaign_typeId == 2) {
     $goal_amount = $res->goal_amount;
     $currency = $res->currency;
 }
-
+$address = $res->address;
 $campTypeId = $res->campaign_typeId;
 $targetDate = $res->end_date;
 
@@ -55,12 +55,12 @@ $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigntypes WHERE
 $res = $results[0];
 $campt = $resultsc[0]->title;
 
-$detaillink = BASE_URL . "campaign-detail/?id=" . $id;
+$detaillink = BASE_URL . "campaign-detail/?id=" . $res->campaignedit_id;
 
-$subjectnn = "ZED$id - $campt - $fundtitle - $res->address - Has been approved and verified by ZedAid, you can track the progress at : $detaillink";
+$subjectnn = "ZED$res->campaignedit_id - $campt - $fundtitle - $res->address - Has been approved and verified by ZedAid, you can track the progress at : $detaillink";
 
 $to = $user_email;
-$subject = "ZED$id - $campt - $fundtitle - $address - Update Request has been rejected by ZedAid";
+$subject = "ZED$res->campaignedit_id - $campt - $fundtitle - $address - Update Request has been rejected by ZedAid";
 $from = 'info@zedaid.org';
 
 // To send HTML mail, the Content-type header must be set
@@ -83,6 +83,7 @@ $message2 = str_replace('{{Name}}', $display_name , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{title}}', $fundtitle , $message2);
 $message2 = str_replace('{{UNIT}}', $currency , $message2);
+$message2 = str_replace('{{Address}}', $address , $message2);
 $message2 = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message2);
 $message2 = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message2);
 

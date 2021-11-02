@@ -21,7 +21,7 @@ if ($res->campaign_typeId == 2) {
     $goal_amount = $res->goal_amount;
     $currency = $res->currency;
 }
-
+$address = $res->address;
 $campTypeId = $res->campaign_typeId;
 $targetDate = $res->end_date;
 
@@ -42,17 +42,7 @@ if ($res->image) {
     $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
     $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
 }
-$fundraiser_title = $campaigns->fundraiser_title;
-$item_name = $campaigns->item_name;
-$product_name = $campaigns->product_name;
-$product_name = $campaigns->campaign_typeId;
-if ($campaign_typeId == 2) {
-    $fundtitle = $item_name;
-} else if ($campaign_typeId == 3) {
-    $fundtitle = $product_name;
-} else {
-    $fundtitle = $fundraiser_title;
-}
+
 $userId = $res->userId;
 $resultsusers = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}users WHERE id = " . $userId, OBJECT);
 $user_email = $resultsusers[0]->user_email;
@@ -91,6 +81,7 @@ $message2 = str_replace('{{Name}}', $display_name , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{title}}', $fundtitle , $message2);
 $message2 = str_replace('{{UNIT}}', $currency , $message2);
+$message2 = str_replace('{{Address}}', $address , $message2);
 $message2 = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message2);
 $message2 = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message2);
 

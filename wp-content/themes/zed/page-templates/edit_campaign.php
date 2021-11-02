@@ -1235,7 +1235,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
               <div class="drop-zone">
                 <span class="drop-zone__prompt"> <img src="<?= BASE_URL?>/fundraiserimg/<?= $categories->image; ?>" width="150"></span>
                 <input type="file" name="myFile" id="myFile1" class="drop-zone__input" style="opacity: 0;"> <!-- style="display: none;" -->
-                <!-- <input type="hidden" name="banner_img" id="banner_img" value=""> -->
+                 <input type="hidden" name="banner_img" id="banner_img" value="<?= $categories->image; ?>"> 
               </div>
             </p>
           </div>

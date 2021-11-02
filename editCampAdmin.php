@@ -77,36 +77,7 @@ $status = $_POST['status'];
 
 
 $short_description = $_POST['short_description'];
-/*
-$image = "";
-if ($img_type == 'image') {
-    if (isset($_FILES['image'])) {
-        $errors = array();
-        $file_name = $_FILES['image']['name'];
-        $file_size = $_FILES['image']['size'];
-        $file_tmp = $_FILES['image']['tmp_name'];
-        $file_type = $_FILES['image']['type'];
-        $file_ext = strtolower(end(explode('.', $_FILES['image']['name'])));
-        $file_name = rand() . $file_name;
-        move_uploaded_file($file_tmp, "fundraiserimg/" . $file_name);
-        $image = $file_name;
-    }
-} else {
-    $video = $_POST['video'];
-}
-if ($image) {
-    $iimage = BASE_URL . 'fundraiserimg/' . $image;
-} else {
-    $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $video);
-    $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
-}*/
-// echo $file_tmp;
-// echo "fundraiserimg/" . $file_name;
-// exit;
-// echo  "INSERT INTO `wp_campaigns`      
-// (userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need, image, video, short_description, end_date, created_at) 
-// values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $image . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"; 
-// exit;
+
 
 if($img_type == "image"){
     if(!empty($_FILES['myFile']['name'])){
@@ -114,7 +85,7 @@ if($img_type == "image"){
         $filename = round(microtime(true)) . '.' . end($temp);
         move_uploaded_file($_FILES["myFile"]["tmp_name"], "fundraiserimg/" . $filename);
     }else{
-        $filename = $_POST['myFile'];
+        $filename = $_POST['banner_img'];
     }
     $video = NULL;
 }else{
@@ -124,6 +95,23 @@ if($img_type == "image"){
     $video = $_POST['video'];
 
 }
+
+
+$sql21 = $wpdb->prepare(
+    "UPDATE wp_campaigns SET lives_count = '".$lives_count."', address = '".$address."', latitude = '".$latitude."', longitude = '".$longitude."',img_type ='".$img_type."',  image = '".$filename."',video = '".$video."' ,fundraiser_title = '".$fundraiser_title."', goal_amount = '".$goal_amount."', user_type = '".$user_type."', ngo_name = '".$ngo_name."',individual_person = '".$individual_person."', beneficiary_name = '".$beneficiary_name."', cause = '".$cause."', item_name = '".$item_name."', item_qty = '".$item_qty."',location_of_need = '".$location_of_need."', product_name = '".$product_name."', product_qty = '".$product_qty."', product_price = '".$product_price."' ,product_location_of_need = '".$product_location_of_need."', short_description = '".$short_description."', end_date = '".$end_date."', created_at = '".$created_at."', status = '".$status."' WHERE id =". $campaign_id
+);
+$wpdb->query($sql21);
+
+$sql22 = $wpdb->prepare(
+        "INSERT INTO `wp_campaignsedit`      
+           (campaignedit_id,admin_approved,zed_verified,userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at,update_status,update_by) 
+     values ('" . $campaign_id . "','" . $admin_approved . "','" . $zed_verified . "','" . $userId . "','" . $campaign_typeId1 . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $filename . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."','1','".$update_by."')"
+    );
+$wpdb->query($sql22);
+
+
+
+
 
 
 
@@ -168,6 +156,7 @@ $message2 = str_replace('{{Name}}', $display_name , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{title}}', $fundtitle , $message2);
 $message2 = str_replace('{{UNIT}}', $currency , $message2);
+$message2 = str_replace('{{Address}}', $address , $message2);
 $message2 = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message2);
 $message2 = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message2);
 
@@ -221,17 +210,6 @@ if ($err) {
 
 
 
-$sql21 = $wpdb->prepare(
-    "UPDATE wp_campaigns SET lives_count = '".$lives_count."', address = '".$address."', latitude = '".$latitude."', longitude = '".$longitude."',img_type ='".$img_type."',  image = '".$filename."',video = '".$video."' ,fundraiser_title = '".$fundraiser_title."', goal_amount = '".$goal_amount."', user_type = '".$user_type."', ngo_name = '".$ngo_name."',individual_person = '".$individual_person."', beneficiary_name = '".$beneficiary_name."', cause = '".$cause."', item_name = '".$item_name."', item_qty = '".$item_qty."',location_of_need = '".$location_of_need."', product_name = '".$product_name."', product_qty = '".$product_qty."', product_price = '".$product_price."' ,product_location_of_need = '".$product_location_of_need."', short_description = '".$short_description."', end_date = '".$end_date."', created_at = '".$created_at."', status = '".$status."' WHERE id =". $campaign_id
-);
-$wpdb->query($sql21);
-
-$sql22 = $wpdb->prepare(
-        "INSERT INTO `wp_campaignsedit`      
-           (campaignedit_id,admin_approved,zed_verified,userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need,img_type, image, video, short_description, end_date, created_at,update_status,update_by) 
-     values ('" . $campaign_id . "','" . $admin_approved . "','" . $zed_verified . "','" . $userId . "','" . $campaign_typeId1 . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $filename . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."','1','".$update_by."')"
-    );
-$wpdb->query($sql22);
 
 
 

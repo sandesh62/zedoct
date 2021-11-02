@@ -46,7 +46,7 @@ if ($user_type == 'ngo'){
     $cause = $_POST['cause'];
 }
 
-
+$targetDate=$_POST['end_date'];
 
 $item_name = $_POST['item_name'];
 $item_qty = $_POST['item_qty'];
@@ -69,44 +69,15 @@ $img_type = $_POST['img_type'];
 $update_by = $_POST['update_by'];
 
 $short_description = $_POST['short_description'];
-/*
-$image = "";
-if ($img_type == 'image') {
-    if (isset($_FILES['image'])) {
-        $errors = array();
-        $file_name = $_FILES['image']['name'];
-        $file_size = $_FILES['image']['size'];
-        $file_tmp = $_FILES['image']['tmp_name'];
-        $file_type = $_FILES['image']['type'];
-        $file_ext = strtolower(end(explode('.', $_FILES['image']['name'])));
-        $file_name = rand() . $file_name;
-        move_uploaded_file($file_tmp, "fundraiserimg/" . $file_name);
-        $image = $file_name;
-    }
-} else {
-    $video = $_POST['video'];
-}
-if ($image) {
-    $iimage = BASE_URL . 'fundraiserimg/' . $image;
-} else {
-    $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $video);
-    $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
-}*/
-// echo $file_tmp;
-// echo "fundraiserimg/" . $file_name;
-// exit;
-// echo  "INSERT INTO `wp_campaigns`      
-// (userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need, image, video, short_description, end_date, created_at) 
-// values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $image . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"; 
-// exit;
 
+//$resultscamp = $wpdb->get_results("SELECT image FROM {$wpdb->prefix}campaigns WHERE id = $campaign_id ORDER BY id desc"  , OBJECT);
 if($img_type == "image"){
     if(!empty($_FILES['myFile']['name'])){
         $temp = explode(".", $_FILES["myFile"]["name"]);
         $filename = round(microtime(true)) . '.' . end($temp);
         move_uploaded_file($_FILES["myFile"]["tmp_name"], "fundraiserimg/" . $filename);
     }else{
-        $filename = $_POST['myFile'];
+        $filename = $_POST['banner_img'];
     }
     $video = NULL;
 }else{
@@ -181,6 +152,9 @@ $res = $resultsedit[0];
     $message2 = str_replace('{{title}}', $fundtitle , $message2);
     $detaillink = BASE_URL . "campaign-detail/?id=" . $campaign_id;
     $message2 = str_replace('{{RESET_LINK}}', $detaillink , $message2);
+    $message2 = str_replace('{{Address}}', $address , $message2);
+    $message2 = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message2);
+    $message2 = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message2);
     // Compose a simple HTML email message
     // $message2 = '<html><body>';
     // $message2 .= '<h3>Hello, ' . $display_name . '</h3>';
@@ -237,8 +211,11 @@ $res = $resultsedit[0];
     $message = fread($myfile,filesize($file));
     $message = str_replace('{{campaign Name}}', $fundtitle , $message);
     $message = str_replace('{{title}}', $fundtitle , $message);
-    $message = str_replace('{{UNIT}}', $currency , $message);
-    $message = str_replace('{{AMOUNT}}', $goal_amount , $message);
+    $message = str_replace('{{UNIT}}', $currency , $message);    
+    $message = str_replace('{{Address}}', $address , $message);
+    $message = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message);
+    $message = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message);
+
     // Compose a simple HTML email message
     // $message = '<html><body>';
     // $message .= '<h3>Hello, admin</h3>';
