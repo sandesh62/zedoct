@@ -261,10 +261,4 @@ $res = $resultsedit[0];
 
 
 
-
-
-
-
-
-
-header("Location: " . BASE_URL . "edit-campaign/?id=".$campaign_id);
+header("Location: " . BASE_URL . "thank-you-2/?id=" . $campaign_id);

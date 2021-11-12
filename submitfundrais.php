@@ -115,6 +115,10 @@ $message2 = fread($myfile,filesize($file));
 $message2 = str_replace('{{Name}}', $display_name , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{title}}', $fundtitle , $message2);
+$message2 = str_replace('{{UNIT}}', $currency , $message2);
+$message2 = str_replace('{{AMOUNT}}', $goal_amount , $message2);
+$message2 = str_replace('{{Address}}', $address , $message2);
+$message2 = str_replace('{{TARGET_DATE}}', $end_date , $message2);
 $detaillink = BASE_URL . "campaign-detail/?id=" . $lastid;
 $message2 = str_replace('{{RESET_LINK}}', $detaillink , $message2);
 // Compose a simple HTML email message
@@ -157,7 +161,7 @@ if ($er2r) {
 }
 //////
 $subjectnn = "ZED$lastid - $campt - $fundtitle - $address - Has been initiated and needs your approval. Link : $detaillink";
-$to = 'info@zedaid.org';
+$to = 'noobielegends07@gmail.com';
 $subject = "ZED$lastid - $campt - $fundtitle - $address - Has been initiated and needs your approval";
 $from = 'info@zedaid.org';
 // To send HTML mail, the Content-type header must be set
@@ -175,6 +179,8 @@ $message = str_replace('{{campaign Name}}', $fundtitle , $message);
 $message = str_replace('{{title}}', $fundtitle , $message);
 $message = str_replace('{{UNIT}}', $currency , $message);
 $message = str_replace('{{AMOUNT}}', $goal_amount , $message);
+$message = str_replace('{{Address}}', $address , $message);
+$message = str_replace('{{TARGET_DATE}}', $end_date , $message);
 // Compose a simple HTML email message
 // $message = '<html><body>';
 // $message .= '<h3>Hello, admin</h3>';

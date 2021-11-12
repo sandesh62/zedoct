@@ -34,6 +34,9 @@ $user_type = $res->user_type;
 $product_name = $res->product_name;
 $product_location_of_need  = $res->product_location_of_need;
 $end_date = $res->end_date;
+
+
+$targetDate = $res->end_date;
 $product_price = $res->product_price;
 $product_qty = $res->product_qty;
 
@@ -103,6 +106,8 @@ $message2 = str_replace('{{Name}}', $display_name , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{title}}', $fundtitle , $message2);
 $message2 = str_replace('{{UNIT}}', $currency , $message2);
+$message2 = str_replace('{{Address}}', $address , $message2);
+
 $message2 = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message2);
 $message2 = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message2);
 

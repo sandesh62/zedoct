@@ -498,7 +498,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
     }
     }
       /* Piyush */
-      .preloader1 {
+      .preloader {
         background-color: rgba(255,255,255,0.7);
         width: 100%;
         height: 100%;
@@ -649,7 +649,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
   <!-- start page-wrapper -->
   <div class="page-wrapper">
     <!-- start preloader -->
-    <div class="preloader1" style="display: none;">
+    <div class="preloader" style="display: none;">
       <img id="loading-image" src="<?php echo bloginfo('template_directory'); ?>/images/loader.gif" alt="Loading..." />
     </div>
     <!-- end preloader -->
@@ -1314,7 +1314,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
  
       </div>
          <div class="licause " style="text-align: center;">
-            <a href="javascript:void(0)" class="btn btn-default btn-rounded mb-4 openBtn" onclick="editCampaign()">Update Campaign</a>
+            <a href="javascript:void(0)" class="btn btn-default btn-rounded mb-4 openBtn  loaderbtn" onclick="editCampaign()">Update Campaign</a>
         </div>
         <div class="new">
           <div class="licause " style="text-align: center;margin-right: 3%;">
@@ -1348,8 +1348,8 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
             </div>
 
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-indigo" id="supporter-btn" style="background: #ccc;" type="button" class="close stopService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
-                <button class="btn btn-indigo" id="supporter-btn" type="button" onclick="deactivateCampaign('<?= $campaign_id; ?>')">Confirm</button>
+                <button class="btn btn-indigo  loaderbtn" id="supporter-btn" style="background: #ccc;" type="button" class="close stopService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="btn btn-indigo  loaderbtn" id="supporter-btn" type="button" onclick="deactivateCampaign('<?= $campaign_id; ?>')">Confirm</button>
             </div>
           </div>
       </div>
@@ -1371,8 +1371,8 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
             </div>
 
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-indigo" id="supporter-btn" style="background: #ccc;" type="button" class="close resumeService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
-                <button class="btn btn-indigo" id="supporter-btn" type="button" onclick="activateCampaign('<?= $campaign_id; ?>')">Confirm</button>
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" style="background: #ccc;" type="button" class="close resumeService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" type="button" onclick="activateCampaign('<?= $campaign_id; ?>')">Confirm</button>
             </div>
           </div>
       </div>
@@ -1394,8 +1394,8 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
             </div>
 
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-indigo" id="supporter-btn" style="background: #ccc;" type="button" class="close deleteService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
-                <button class="btn btn-indigo" id="supporter-btn" type="button" onclick="deleteCampaign('<?= $campaign_id; ?>')">Confirm</button>
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" style="background: #ccc;" type="button" class="close deleteService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" type="button" onclick="deleteCampaign('<?= $campaign_id; ?>')">Confirm</button>
             </div>
           </div>
       </div>
@@ -1489,7 +1489,11 @@ $('body #user_type').change(function() {
     });
         
        
-  
+    $(document).ready(function () {
+          $(".loaderbtn").click(function () {  
+            $(".preloader").css('display', 'block');
+          });
+      });
 
 
     function editCampaign(){

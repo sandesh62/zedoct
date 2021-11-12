@@ -229,9 +229,9 @@ $userId = $user_ID;
             margin-right: 110%;
         }
 
-        li.licause {
+       /* li.licause {
             width: 400px;
-        }
+        }*/
 
         .rai3 {
             margin-left: 140% !important;

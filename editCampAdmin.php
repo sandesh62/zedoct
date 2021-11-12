@@ -52,6 +52,7 @@ $item_name = $_POST['item_name'];
 $item_qty = $_POST['item_qty'];
 $location_of_need = $_POST['location_of_need'];
 $end_date = date('Y-m-d',strtotime($_POST['end_date']));
+$targetDate = $_POST['end_date'];
 $product_name = $_POST['product_name'];
 $product_qty = $_POST['product_qty'];
 $product_price = $_POST['product_price'];
