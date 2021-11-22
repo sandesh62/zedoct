@@ -194,6 +194,40 @@
             jQuery('.preloader1').css('display','none');
         });
     });
+
+
+    var lat = $('#current_latitude').val();
+    var lng = $('#current_longitude').val();
+
+    var current_latitude = localStorage.getItem('current_latitude');
+    var current_longitude = localStorage.getItem('current_longitude');
+
+    if (current_latitude == '' || current_latitude == null) {
+        showPosition();
+    }
+
+    function showPosition() {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                $('#current_latitude').val(position.coords.latitude);
+                $('#current_longitude').val(position.coords.longitude);
+
+                localStorage.setItem('current_latitude', position.coords.latitude);
+                localStorage.setItem('current_longitude', position.coords.longitude);
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: '../current_location.php',
+                    data: 'latitude='+position.coords.latitude+'&longitude='+position.coords.longitude,
+                    success: function(response)
+                    {
+                    }
+                });
+
+            });
+        }
+    }
+
 </script>
 <?php
 ob_flush();

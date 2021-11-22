@@ -1,10 +1,79 @@
 <?php /* Template Name: floodcrisis Page */ ?>
 
+
+<meta  property="og:image" content="<?php echo  BASE_URL . 'wp-content/uploads/2021/08/I_NEED__1_-removebg-preview.png';?>" />
+
+
+<?php 
+    global $wpdb;
+    $titleshare='';
+    $imgshare='';
+    $descshare='';
+    if(!empty($_GET['id']) && isset($_GET['id'])){
+        $id = $_GET['id'];
+        $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}flood_crisis_data WHERE status != 2 AND id =" . $id, OBJECT);
+        foreach($results as $result ){
+            $titleshare=$result->name;
+            $imgshare =$result->image;
+            $descshare=$result->description;
+        }
+    }
+if (!empty($_GET['id']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
+}else{
+    $id = '';
+}
+?>
+
+<?php 
+$sharelink = $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+if(!empty( $_GET['id'])) {
+?>
+
+<!-- twitter meta tag --->
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="<?php echo $titleshare;?>"/>
+<meta property="twitter:description" content="<?php echo substr(strip_tags($descshare), 0, 100);?>"/>
+<meta property="twitter:url" content=content="<?php echo $sharelink;?>"/>
+<meta property="twitter:image:src" content="<?php echo  BASE_URL . 'wp-content/uploads/2021/08/I_NEED__1_-removebg-preview.png';?>"/>
+
+
+<!--- LinkedIn meta tag --->
+
+<meta prefix="og: http://ogp.me/ns#"  property="og:title" content="<?php echo $titleshare;?>" />
+<meta prefix="og: http://ogp.me/ns#"  property="og:image" content="<?php echo  BASE_URL . 'wp-content/uploads/2021/08/I_NEED__1_-removebg-preview.png';?>" />
+<meta prefix="og: http://ogp.me/ns#"  property="og:description" content="<?php echo substr(strip_tags($descshare), 0, 100);?>" />
+ <meta prefix="og: http://ogp.me/ns#" property='og:url' content="<?php echo $sharelink;?>"/>
+
+
+
+<!--- facebook meta tag --->
+
+ <meta property="og:title" content="<?php echo $titleshare;?>" />
+<meta  property="og:image" content="<?php echo  BASE_URL . 'wp-content/uploads/2021/08/I_NEED__1_-removebg-preview.png';?>" />
+<meta property="og:url" content="<?php echo $sharelink;?>" />
+<meta property="og:description" content="<?php echo substr(strip_tags($descshare), 0, 100);?>"  />
+ <?php }else{ ?>
+ <?php }?>
+
+
 <?php
 get_header();
 ?>
 <link rel='stylesheet' id='js_composer_front-css' href='<?= BASE_URL ?>wp-content/themes/alone/assets/css/jsc.css' type='text/css' media='all' />
-<style>
+<style>  
+  .mappop1{
+        width: auto;
+    }
+a.loc-icon {
+    position: absolute;
+   
+    margin: -33px 0px 10px 0px ;
+    left: 94%;
+}
+
+
     .bootbox-body {
         padding: 10px !important;
     }
@@ -109,6 +178,11 @@ get_header();
     }
 
     @media (max-width:767px) {
+        
+        a.loc-icon {
+    
+    left: 92%;
+}
         .card{
             width: 100%;
             margin-top: 42px !important;
@@ -484,7 +558,7 @@ get_header();
     <div class="container covid_page_section">
         
         <div class="widget search-widget section_between_space">
-            <input type="text" class="form-control serach locationtextboxcontrol" value="" name="location" id="location" placeholder="Enter address here" style="cursor: auto;padding: 10px !important;">
+            <input type="text" class="form-control serach locationtextboxcontrol searchField" value="" name="location" id="location" placeholder="Enter address here" style="cursor: auto;padding: 10px !important;">
         </div>
 
         <div class="row">
@@ -569,29 +643,26 @@ get_header();
                 </div>
              
                 <div class="tp-blog-sidebar legendstextdesktop">
-                    <div class="widget category-widget"  id="service_status">
+                    <div class="widget category-widget">
 
                         <label style="font-size: 18px;"><b>Legends</b></label>
 
                         <div class="row">
                             <div class="col-md-12 line_spacing_top_15">
-                                <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="0" class="service_status">
                                 <img src="<?= BASE_URL ?>wp-content/uploads/2021/08/request_open.png" />
                                 <label style="font-size: 15px;display: inline;">Request is open</label>
                             </div>
                             <div class="col-md-12 line_spacing_top_15">
-                                <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="3" class="service_status">
                                 <img src="<?= BASE_URL ?>wp-content/uploads/2021/08/orange_marker.png" />
                                 <label style="font-size: 15px;display: inline;">Supporter has responded on Request.</label>
                             </div>
-                            <div class="col-md-12 line_spacing_top_15">
-                                <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status">
+                        </div>
+                            <div class="line_spacing_top_15">
                                 <img src="<?= BASE_URL ?>wp-content/uploads/2021/07/inactive-1.png" />
                                 <label style="font-size: 15px;display: inline;">Request is Closed</label>
                             </div>
                          </div>
                     </div>
-                </div>
 
                 <div class="legendstextdesktop">
 
@@ -611,7 +682,7 @@ get_header();
 
             <div class="col-md-8">
 
-                <div id="mapholder2" class="d-none" style="width: 100%; height: 600px; position: relative; overflow: hidden;">
+                <div id="mapholder2" class="d-none" style="width: 100%; height: 500px; position: relative; overflow: hidden;">
                     <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
                 </div>
 
@@ -626,16 +697,13 @@ get_header();
 
                 <div class="">
                     <label style="font-size: 18px;"><b>Legends:</b></label>
-                    <div id="service_status1">
-                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="0" class="service_status1">
+                     <div>
                         <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/08/request_open.png"/>
                         <label style="font-size: 15px;display: inline;">Request is open</label>
 
-                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="3" class="service_status1">
                         <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/08/orange_marker.png"/>
                         <label style="font-size: 15px;display: inline;">Supporter has responded on Request.</label>
 
-                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status1">
                         <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/07/inactive-1.png"/>
                         <label style="font-size: 15px;display: inline;">Request is Closed</label>
                     </div>
@@ -710,6 +778,8 @@ get_header();
                                     jQuery("#latitude").val(latitude);
                                     jQuery("#longitude").val(longitude);
 
+                                    localStorage.setItem('searchLat',latitude)
+                                    localStorage.setItem('searchLong',longitude)
                                     console.log(latitude + "==" + longitude);
 
                                     var mapCenter = new google.maps.LatLng(latitude, longitude); //Google map Coordinates
@@ -773,16 +843,27 @@ get_header();
                         
                         var locationvv = jQuery("#location").val();
 
-                        console.log("comig");
+                        console.log(locationvv);
                         
                         if (search) {
                             jQuery("#latitude").val(latitude);
                             jQuery("#longitude").val(longitude);
                             var zoomv = 10;
                         } else {
+                             /* jQuery("#latitude").val('20.5937');
+                            jQuery("#longitude").val('78.9629');
+                            var zoomv = 4; */
+                            var current_latitude = localStorage.getItem('current_latitude');
+                            var current_longitude = localStorage.getItem('current_longitude');
+                            if (current_latitude == '' || current_latitude == null) {
                             jQuery("#latitude").val('20.5937');
                             jQuery("#longitude").val('78.9629');
-                            var zoomv = 4;
+                            var zoomv = 6;
+                            }else{
+                                jQuery("#latitude").val(current_latitude);
+                                jQuery("#longitude").val(current_longitude);
+                                var zoomv = 10;
+                            }
                         }
 
                         var latitudec = jQuery("#latitude").val();
@@ -856,7 +937,7 @@ get_header();
 
                                     // $supportDetails = '<br>Name: <b>'.$results_supports[0]['name'].'</b><br>Support Info: <b>'.$results_supports[0]['supportDetails'].'</b>';
 
-                                    if ( ($supporter_id == $userId && $userId != '0') || ($userId != '0' && $userId == $res['userId']) || ($emailid == $emailAddress) || ($emailid == $results_supports[0]['email']) || ($userId == '1') || $isLoggedInUserAdmin ) {
+                                    if ( ($supporter_id == $userId && $userId != '0') || ($userId != '0' && $userId == $res['userId']) || ($emailid == $emailAddress) || ($emailid == $results_supports[0]['email']) || ($userId == '1') ) {
                                         if ($status == '0' || $status == '3') {
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
                                         }else{
@@ -880,7 +961,7 @@ get_header();
                                     $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['name'].'</b><br>Contact: <b>'.$results_supports[0]['mobileNumber'].'</b><br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
                                     }
                                     if ($status == '0') {
-                                        if((($userId == $res['userId']) && $userId != 0) || ($emailid == $emailAddress) || ($userId == '1') || $isLoggedInUserAdmin){
+                                        if((($userId == $res['userId']) && $userId != 0) || ($emailid == $emailAddress)){
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
                                         }else if ($loginPhoneNumber != $mobileNumber) {
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupSupportThem('.$pid.','.$status.','.$userId.');">Support Them</button>';
@@ -894,9 +975,19 @@ get_header();
                                     }
                                 }
                                 $mstatus = $res['status'];
-                                $link="https://zedaid.org/i-need/?id=$pid";
+                                  
+                                $BASE_URL=  BASE_URL;
+                                $link=$BASE_URL."i-need/?id=$pid";
+                              
+                              
+                              
+                                /*$message_to_send = urlencode(rawurlencode("https://jedaidevbed.in/zedaid/i-need/id=".$pid))
+                                
+                             <a href="https://api.whatsapp.com/send?text=<?php echo $message_to_send; ?>">Share on WhatsApp <i class="fa fa-whatsapp"></i></a>*/
+                                
+
                                 ?>['<div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500;"><?php echo $categoryName; ?><br><br><?php echo $title; ?><br><br>Location: <?php echo $res['address']; ?><br>Contact: <?php echo $res['mobileNumber']; ?><br>Description: <?php echo $res['description']; ?><br><br><?= $lastUpdated; ?><br><?= $supportDetails.$chnageStatusBtn; ?><br><br><?php echo 'Share via : '; ?>
-                                <a target="_blank" href="https://api.whatsapp.com/send?text=<?= $link; ?>" class="bn"><i class="fa fa-whatsapp wp"></i></a><a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= $link; ?>" class="bn"><i class="ti-facebook fb"></i></a><a target="_blank" href="http://twitter.com/share?text=<?= $link; ?>" class="bn"><i class="ti-twitter-alt tw"></i></a></div><br>', <?php echo $res['latitude']; ?>, <?php echo $res['longitude']; ?>, <?php echo $res['categoryId']; ?>, <?php echo $mstatus; ?>,<?php echo $pid; ?>,  15],
+                                <a target="_blank" href="https://api.whatsapp.com/send?text=<?= $link; ?>" class="bn"><i class="fa fa-whatsapp wp"></i></a><a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= $link; ?>" class="bn"><i class="ti-facebook fb"></i></a><a target="_blank" href="http://twitter.com/share?text=<?= $link; ?>" class="bn"><i class="ti-twitter-alt tw"></i></a></div><br>', <?php echo $res['latitude']; ?>, <?php echo $res['longitude']; ?>, <?php echo $res['categoryId']; ?>, <?php echo $mstatus; ?>,<?php echo $pid; ?>, 15],
 
                                 <?php  
                             } ?>
@@ -1070,7 +1161,7 @@ get_header();
                     //Location
 
                     jQuery('.covidid').click(function() {
-                        var type="category";
+                       var type="category";
                         console.log("Covid Clicked");
                         //showLoadingBar();
                         var rid = '';
@@ -1155,14 +1246,38 @@ get_header();
 
                                     jQuery("#errorMap").addClass("d-none");
                                     jQuery("#mapholder2").removeClass("d-none");
+                          
+                                    var searchLat =   localStorage.getItem('searchLat');
+                                    var searchLong =   localStorage.getItem('searchLong');
+
+                                    if(jQuery('#location').val() != 0){
+                                        jQuery("#latitude").val(searchLat);
+                                    jQuery("#longitude").val(searchLong);
+                                    var zoomv = 10;
+
+                                    }else{
+                                    var current_latitude = localStorage.getItem('current_latitude');
+                                    var current_longitude = localStorage.getItem('current_longitude');
+                                     if (current_latitude == '' || current_latitude == null) {
+                                    jQuery("#latitude").val('20.5937');
+                                    jQuery("#longitude").val('78.9629');
+                                    var zoomv = 6;
+                                    }else{
+                                    jQuery("#latitude").val(current_latitude);
+                                    jQuery("#longitude").val(current_longitude);
+                                    var zoomv = 10;
+                                    }
+                                }
 
                                     var latitudec = jQuery("#latitude").val();
                                     var longitudec = jQuery("#longitude").val();
+                                    console.log (latitudec);
+                                    console.log (longitudec);
 
                                     var locations = data;
 
                                     var map = new google.maps.Map(document.getElementById('mapholder2'), {
-                                        zoom: 4,
+                                        zoom: zoomv,
                                         mapTypeControl: false,
                                         center: new google.maps.LatLng(latitudec, longitudec),
                                         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -1304,148 +1419,40 @@ get_header();
                                     jQuery("#errorMap").addClass("d-none");
                                     jQuery("#mapholder2").removeClass("d-none");
 
-                                    var latitudec = jQuery("#latitude").val();
-                                    var longitudec = jQuery("#longitude").val();
+                                    var searchLat =   localStorage.getItem('searchLat');
+                                    var searchLong =   localStorage.getItem('searchLong');
 
-                                    var locations = data;
-
-                                    var map = new google.maps.Map(document.getElementById('mapholder2'), {
-                                        zoom: 4,
-                                        mapTypeControl: false,
-                                        center: new google.maps.LatLng(latitudec, longitudec),
-                                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                                    });
-
-                                    var infowindow = new google.maps.InfoWindow();
-
-                                    var marker, i;
-
-                                    for (i = 0; i < locations.length; i++) {
-
-                                        if (locations[i][3] == 8) {
-                                            if (locations[i][4] == 1) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/rescue-gray.png',
-                                                    map: map
-                                                });
-                                            } else if (locations[i][4] == 3) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/rescue-amber.png',
-                                                    map: map
-                                                });
-                                            } else {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/rescue-red.png',
-                                                    map: map
-                                                });
-                                            }
-                                        } else if(locations[i][3] == 9){
-                                            if (locations[i][4] == 1) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/food-gray.png',
-                                                    map: map
-                                                });
-                                            } else if (locations[i][4] == 3) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/food-amber.png',
-                                                    map: map
-                                                });
-                                            } else {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/food-red.png',
-                                                    map: map
-                                                });
-                                            }
-                                        } else if(locations[i][3] == 10){
-                                            if (locations[i][4] == 1) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/medical-gray.png',
-                                                    map: map
-                                                });
-                                            } else if (locations[i][4] == 3) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/medical-amber.png',
-                                                    map: map
-                                                });
-                                            } else {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/medical-red.png',
-                                                    map: map
-                                                });
-                                            }
-                                        } else if(locations[i][3] == 11){
-                                            if (locations[i][4] == 1) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/finance-gray.png',
-                                                    map: map
-                                                });
-                                            } else if (locations[i][4] == 3) {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/finance-amber.png',
-                                                    map: map
-                                                });
-                                            } else {
-                                                marker = new google.maps.Marker({
-                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                                                    icon: '<?= BASE_URL ?>img/finance-red.png',
-                                                    map: map
-                                                });
-                                            }
-                                        }
-
-                                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                                            return function() {
-                                                infowindow.setContent(locations[i][0]);
-                                                infowindow.open(map, marker);
-                                            }
-                                        })(marker, i));
+                                    if(jQuery('#location').val() != 0){
+                                        jQuery("#latitude").val(searchLat);
+                                    jQuery("#longitude").val(searchLong);
+                                    var zoomv = 10;
+                                    }else{
+                                    var current_latitude = localStorage.getItem('current_latitude');
+                                    var current_longitude = localStorage.getItem('current_longitude');
+                                     if (current_latitude == '' || current_latitude == null) {
+                                    jQuery("#latitude").val('20.5937');
+                                    jQuery("#longitude").val('78.9629');
+                                    var zoomv = 6;
+                                    }else{
+                                    jQuery("#latitude").val(current_latitude);
+                                    jQuery("#longitude").val(current_longitude);
+                                    var zoomv = 10;
                                     }
-
-                                    // hideLoadingBar();
                                 }
-                            });
-                        }
-                    });
 
-                    jQuery('.service_status').click(function() {
-                        var type="status";
 
-                        var selected = new Array();
-                        jQuery("#service_status input[type=checkbox]:checked").each(function () {
-                            selected.push(this.value);
-                        });
                         
-                        jQuery.ajax({
-                            type: "POST",
-                            url: '<?php echo BASE_URL . 'filterfloodcrisis.php' ?>',
-                            dataType: 'json',
-                            data: {
-                                id: selected.join(","),
-                                type: type
-                            }, //--> send id of checked checkbox on other page
-                            success: function(data) {
-
-                                jQuery("#errorMap").addClass("d-none");
-                                jQuery("#mapholder2").removeClass("d-none");
-
-                                var latitudec = jQuery("#latitude").val();
+                                 var latitudec = jQuery("#latitude").val();
                                 var longitudec = jQuery("#longitude").val();
+
+                                console.log(latitudec);
+                                    console.log(longitudec);
+
 
                                 var locations = data;
 
                                 var map = new google.maps.Map(document.getElementById('mapholder2'), {
-                                    zoom: 4,
+                                    zoom: zoomv,
                                     mapTypeControl: false,
                                     center: new google.maps.LatLng(latitudec, longitudec),
                                     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -1455,12 +1462,7 @@ get_header();
 
                                 var marker, i;
 
-                                console.log(locations);
-
                                 for (i = 0; i < locations.length; i++) {
-
-                                    console.log(locations[i][3]);
-                                    console.log(locations[i][4]);
 
                                     if (locations[i][3] == 8) {
                                         if (locations[i][4] == 1) {
@@ -1555,6 +1557,7 @@ get_header();
                                 // hideLoadingBar();
                             }
                         });
+                    }
                     });
                 });
             </script>
@@ -1626,8 +1629,10 @@ get_header();
                                 </div>
                                 <div class="form-group valid">
                                     <label class="lbform">Address</label>
-                                    <input type="text" id="address1" name="address" placeholder="Enter Address" class="form-control">
+                                    <input type="text" id="address1" name="address" placeholder="Enter Address"  class="form-control" style="width: 95% !important;">
+                                   <a class="loc-icon" id="pop" href="#"><img src="<?= BASE_URL ?>wp-content/uploads/2021/08/request_open.png"></a>
                                     <span id="error-address1"></span>
+                                   
                                 </div>
                                 <input type="hidden" name="lat" id="lat" value="19.076011">
                                 <input type="hidden" name="lng" id="lng" value="72.877600">
@@ -1768,6 +1773,149 @@ get_header();
         </div>
         <!-- End -->
 
+        
+        <!-- map=popup -->
+        <div class="modal fade  " id="map-pop" tabindex="-1" role="dialog" aria-labelledby="startfunrmodalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mappop1" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center" id="exampleModalLongTitle">Location</h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="contact-map" id="mapholder" style="width: 100%;  height: 460px;border-radius: 10px;">
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+
+<?php
+ $ipaddress = '';
+ if (getenv('HTTP_CLIENT_IP'))
+   $ipaddress = getenv('HTTP_CLIENT_IP');
+ else if (getenv('HTTP_X_FORWARDED_FOR'))
+   $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+ else if (getenv('HTTP_X_FORWARDED'))
+   $ipaddress = getenv('HTTP_X_FORWARDED');
+ else if (getenv('HTTP_FORWARDED_FOR'))
+   $ipaddress = getenv('HTTP_FORWARDED_FOR');
+ else if (getenv('HTTP_FORWARDED'))
+   $ipaddress = getenv('HTTP_FORWARDED');
+ else if (getenv('REMOTE_ADDR'))
+   $ipaddress = getenv('REMOTE_ADDR');
+ else
+   $ipaddress = 1;
+ ?>
+
+
+ <script>
+
+
+        function initialize() {
+$.getJSON('https://ipapi.co/<?= $ipaddress; ?>/json', function(data) {
+    latitude = 20.5937;
+    longitude = 78.9629;
+  var mapCenter = new google.maps.LatLng(latitude, longitude);
+  setMap(mapCenter, latitude, longitude, '');
+  
+});
+
+var geocoder = new google.maps.Geocoder();
+
+var autocomplete = new google.maps.places.Autocomplete($("#address1")[0], {});
+google.maps.event.addListener(autocomplete, 'place_changed', function() {
+  var place = autocomplete.getPlace();
+  var address = place.formatted_address;
+  geocoder.geocode({
+    'address': address
+  }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var latitude = results[0].geometry.location.lat();
+      var longitude = results[0].geometry.location.lng();
+      var mapCenter = new google.maps.LatLng(latitude, longitude); //Google map Coordinates
+      setMap(mapCenter, latitude, longitude, '');
+
+      
+
+    }
+    console.log(latitude);
+   console.log(longitude);
+   var map;
+   map = new google.maps.Map(document.getElementById('mapholder'), {
+            center: mapCenter,
+            zoom: 16					
+          });
+    marker =  new google.maps.Marker({
+                      position: new google.maps.LatLng(latitude, longitude),
+                      map: map,
+                draggable:true,
+                animation: google.maps.Animation.DROP,
+                  });
+
+                  
+
+    google.maps.event.addListener(marker, 'dragend', function() 
+    {
+    geocodePosition(marker.getPosition());
+    lat1 = this.getPosition().lat();
+    long1 = this.getPosition().lng();
+
+
+    jQuery("#lat").val(lat1);
+                    jQuery("#lng").val(long1);
+
+    console.log(lat1);
+    console.log(long1);
+    });
+
+      function geocodePosition(pos) 
+      {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode
+          ({
+              latLng: pos
+
+          }, 
+              function(results, status) 
+              {
+                  if (status == google.maps.GeocoderStatus.OK) 
+                  {
+                      $("#address1").val(results[0].formatted_address);
+                      $("#mapErrorMsg").hide(100);
+                  } 
+                  else 
+                  {
+                      $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+                  }
+              }
+
+              
+          );
+      }
+    
+  });
+});
+
+
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+function setMap(mapCenter, latitude = 0, longitude = 0, locations = '') {
+
+var map = new google.maps.Map(document.getElementById('mapholder'), {
+  zoom: 4,
+  center: new google.maps.LatLng(latitude, longitude),
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+}
+</script>
+
+
+
+       
     </div>
 </section>
 <?php
@@ -1776,6 +1924,13 @@ get_footer();
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 
 <script>
+$(document).ready(function () {
+        $("#pop").click(function () {
+            $('#map-pop').modal('show'); 
+        });
+    });
+
+
     jQuery('.status-available').css('display','none');
     jQuery('.status-tobeavailable').css('display','none');
     jQuery('.status-notavailable').css('display','none');
@@ -1785,6 +1940,7 @@ get_footer();
         jQuery("#email1").val("");
         jQuery("#phone_number1").val("");
         jQuery("#address1").val("");
+        jQuery("#mapholder").val("");
         jQuery("#desc1").val("");
         jQuery("#desc1").text("");
         jQuery("#addCollections").trigger("reset");
@@ -1820,7 +1976,7 @@ get_footer();
         jQuery("#error-status").html("<span id='error-status' style=''></span>");
         jQuery("#error-mobile_number").html("<span id='error-mobile_number' style=''></span>");
     }
-
+/*
     jQuery('body').click(function (event) 
     {
         if(!jQuery(event.target).closest('#changeStatus').length && !jQuery(event.target).is('#changeStatus')) {
@@ -1864,7 +2020,7 @@ get_footer();
             jQuery("#error-address2").html("<span id='error-address2' style=''></span>");
             jQuery("#error-mobile_number2").html("<span id='error-mobile_number2' style=''></span>");
         }
-    });
+    });*/
 
     function openPopup(pid, userId){
         /* if(userId == 0){
@@ -1890,7 +2046,7 @@ get_footer();
 
     function openAddCollectionsPopup(categoryId,categoryName,userId){
 
-        var geocoder = new google.maps.Geocoder();
+       /* var geocoder = new google.maps.Geocoder();
 
         var input = document.getElementById('address1');
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -1912,7 +2068,7 @@ get_footer();
                     console.log(latitude + "==" + longitude);
                 }
             });
-        });
+        });*/
 
         /* if(userId == 0){
             window.location.href = "<?php echo get_site_url(); ?>/login";
