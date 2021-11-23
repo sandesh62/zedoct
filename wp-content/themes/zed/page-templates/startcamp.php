@@ -754,9 +754,10 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
 
       </div>
       <?php
-      $start_date = date("Y-m-d");
-      $date = strtotime($start_date);
-      $date = strtotime("+7 day", $date);
+      //$start_date = date("Y-m-d");
+      $start_date = date("Y-m-d",strtotime("+30 days"));
+     // $date = strtotime($start_date);
+      //$date = strtotime("+30 day", $start_date);
       ?>
       <p class="valid">
         <p>Campaign End Date</p> 

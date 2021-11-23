@@ -66,9 +66,9 @@ get_header(); ?>
   } else {
     $fundtitle = $res->fundraiser_title;
   }
-
-  if ($res->image) {
-    $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
+  $resultsimg = $wpdb->get_row("SELECT imageEdit FROM {$wpdb->prefix}campaignimgedit WHERE status = 0 AND campaignid =" . $res->campaignedit_id, OBJECT);
+  if (($res->img_type)=="image") {
+    $iimage = BASE_URL . 'fundraiserimg/'.$res->campaignedit_id.'/' . $resultsimg->imageEdit;
   } else {
     $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
     $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";

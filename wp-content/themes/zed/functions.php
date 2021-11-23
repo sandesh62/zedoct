@@ -790,9 +790,9 @@ function my_cool_plugin_settings_page()
                         $userId = $res->userId;
                         $resultsusers = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}users WHERE id = " . $userId, OBJECT);
                         $all_meta_for_user = get_user_meta($resultsusers[0]->ID);
-
-                        if ($res->image) {
-                            $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
+                        $resultsimg = $wpdb->get_row("SELECT image FROM {$wpdb->prefix}campaignimg WHERE campaignid =" . $res->id, OBJECT);
+                        if (($res->img_type)=="image") {
+                            $iimage = BASE_URL . 'fundraiserimg/'.$res->id.'/' . $resultsimg->image;
                         } else {
                             $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
                             $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
@@ -1055,9 +1055,11 @@ function my_cool_plugin_settings_page2()
                         $userId = $res1->userId;
                         $resultsusers = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}users WHERE id = " . $userId, OBJECT);
                         $all_meta_for_user = get_user_meta($resultsusers[0]->ID);
+                        $resultsimg = $wpdb->get_row("SELECT imageEdit FROM {$wpdb->prefix}campaignimgedit WHERE status= 0 AND campaignid =" . $res1->campaignedit_id, OBJECT);
 
-                        if ($res1->image) {
-                            $iimage = BASE_URL . 'fundraiserimg/' . $res1->image;
+                        if (($res1->img_type) =="image") {
+                            $iimage = BASE_URL . 'fundraiserimg/'.$res1->campaignedit_id.'/' . $resultsimg->imageEdit;
+
                         } else {
                             $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res1->video);
                             $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
@@ -1182,13 +1184,15 @@ function my_cool_plugin_settings_page2()
                         $resultsusers = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}users WHERE id = " . $userId, OBJECT);
                         $all_meta_for_user = get_user_meta($resultsusers[0]->ID);
 
-                        if ($res->image) {
-                            $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
+                        $resultsimg = $wpdb->get_row("SELECT image FROM {$wpdb->prefix}campaignimg WHERE  campaignid =" . $res->id, OBJECT);
+
+                        if (($res->img_type) =="image") {
+                            $iimage = BASE_URL . 'fundraiserimg/'.$res->id.'/' . $resultsimg->image;
+
                         } else {
                             $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
                             $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
                         }
-
                         ?>
                     <tr valign="top">
                         <td><img width="100" height="100" src="<?php echo $iimage; ?>" /></td>

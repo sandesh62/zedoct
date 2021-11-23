@@ -50,8 +50,8 @@ if ($campaign_typeId == 2) {
 $img_type = $_POST['img_type'];
 $video = $_POST['video'];
 $short_description = $_POST['short_description'];
-$image = "";
-if ($img_type == 'image') {
+//$image = "";
+/*if ($img_type == 'image') {
     if (isset($_FILES['image'])) {
         $errors = array();
         $file_name = $_FILES['image']['name'];
@@ -64,19 +64,22 @@ if ($img_type == 'image') {
         $image = $file_name;
     }
 } else {
-    $video = $_POST['video'];
-}
+    
+}*/
+//$video = $_POST['video'];
 
 $sql2 = $wpdb->prepare(
     "INSERT INTO `wp_campaigns`      
-       (userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need, image, video, short_description, end_date, created_at) 
- values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $image . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"
+       (userId, campaign_typeId, lives_count, address, latitude, longitude, fundraiser_title, currency, goal_amount, user_type, ngo_name, individual_person, beneficiary_name, cause, item_name, item_qty, location_of_need,product_name,product_qty,product_price,product_location_of_need, img_type, video, short_description, end_date, created_at) 
+ values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $img_type . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"
 );
 $wpdb->query($sql2);
 $lastid = $wpdb->insert_id;
 $output_dir = "fundraiserimg/";
 $fileCount = count($_FILES["files"]['name']);
 
+
+//$image_dir = "fundraiserimg/";
 /* $hiddfiles = $_POST['hiddfiles']['files'];
 echo "<pre>";
 print_r($hiddfiles);
@@ -85,34 +88,39 @@ exit; */
 //console.log("FILES_COUNT",$fileCount);
 for($i=0; $i < $fileCount; $i++)
 {
+
+  
+   
+
     $ImageName      = str_replace(' ','-',strtolower($_FILES['files']['name'][$i]));
     $ImageType      = $_FILES['files']['type'][$i]; //"image/png", image/jpeg etc.
     $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
     $ImageExt       = str_replace('.','',$ImageExt);
     $ImageName      = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
     $NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
-    $ret[$NewImageName]= $output_dir.$NewImageName;
+    //$ret[$NewImageName]= $output_dir.$NewImageName;
     // Try to create the directory if it does not exist 
     //console.log("lastID === ",$last_id);
-	if (!file_exists($output_dir . $last_id))
-	{
-		@mkdir($output_dir . $last_id, 0777);
-	}
-    move_uploaded_file($_FILES["files"]["tmp_name"][$i],$output_dir.$last_id."/".$NewImageName );
+
+	
+    @mkdir($output_dir . $lastid, 0777,true);
+	
+    move_uploaded_file($_FILES["files"]["tmp_name"][$i],$output_dir.$lastid.'/'.$NewImageName );
     //console.log("New Image Name === ",$NewImageName);
     $sql22 = $wpdb->prepare("INSERT INTO `wp_campaignimg` (campaignid, image) VALUES ('".$lastid."', '".$NewImageName."')");
     $wpdb->query($sql22);
-    $lid = $wpdb->insert_id;
+   // $lid = $wpdb->insert_id;
     //console.log("INSERTED IMAGE ID === ",$lid);
      //$insert_img = "insert into `wp_campaignimg` SET `campaignid`='11', `image`='".$NewImageName."'";
       //$result = $connection->query($insert_img);
 }
+/*
 if ($image) {
     $iimage = BASE_URL . 'fundraiserimg/' . $image;
 } else {
     $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $video);
     $iimage = "https://img.youtube.com/vi/" . $iimagei . "/maxresdefault.jpg";
-}
+}*/
 // echo $file_tmp;
 // echo "fundraiserimg/" . $file_name;
 // exit;
@@ -121,7 +129,7 @@ if ($image) {
 // values ('" . $userId . "','" . $campaign_typeId . "','" . $lives_count . "','" . $address . "','" . $latitude . "','" . $longitude . "','" . $fundraiser_title . "','" . $currency . "','" . $goal_amount . "','" . $user_type . "','" . $ngo_name . "','" . $individual_person . "','" . $beneficiary_name . "','" . $cause . "','" . $item_name . "','" . $item_qty . "','" . $location_of_need . "','" . $product_name . "','" . $product_qty . "','" . $product_price . "','" . $product_location_of_need . "','" . $image . "','" . $video . "','" . $short_description . "','".$end_date."', '".$created_at."')"; 
 // exit;
 
-$lastid = $wpdb->insert_id;
+//$lastid = $wpdb->insert_id;
 $user_info = get_userdata($userId);
 $resultsusers = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}users WHERE id = " . $userId, OBJECT);
 $user_emailu = $resultsusers[0]->user_email;

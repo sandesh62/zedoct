@@ -59,6 +59,9 @@ get_header(); ?>
   $id = $_GET['id'];
   $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE id =" . $id, OBJECT);
   $res = $results[0];
+
+  $resultsimg = $wpdb->get_row("SELECT image FROM {$wpdb->prefix}campaignimg WHERE campaignid =" . $id, OBJECT);
+
   if ($res->campaign_typeId == 2) {
     $fundtitle = $res->item_name;
   } else if ($res->campaign_typeId == 3) {
@@ -67,8 +70,8 @@ get_header(); ?>
     $fundtitle = $res->fundraiser_title;
   }
 
-  if ($res->image) {
-    $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
+  if (($res->img_type)=="image") {
+    $iimage = BASE_URL . 'fundraiserimg/'.$id.'/' . $resultsimg->image;
   } else {
     $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
     $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";

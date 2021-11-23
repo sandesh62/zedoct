@@ -53,6 +53,26 @@ get_header(); ?>
 <body>
   <?php
   global $wpdb;
+
+  if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+  $url = "https://";   
+else  
+  $url = "http://";   
+// Append the host(domain name, ip) to the URL.   
+$url= $_SERVER['HTTP_HOST'];   
+
+// Append the requested resource location to the URL   
+$url= $_SERVER['REQUEST_URI'];        
+
+
+
+//$url = 'http://https://jedaidevbed.in/zedaid/i-need/?id=31';
+$url_components = parse_url($url);
+parse_str($url_components['query'], $params);
+$request_id = array_key_exists('id',$params) ? $params['id'] : -1;
+
+
+
   $btn_status = 'active';
   $result = explode('/', $_GET['id']);
   $id = $result[0];
@@ -68,8 +88,10 @@ get_header(); ?>
   $campaign_typeId = $res->campaign_typeId;
   $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigntypes WHERE id =" . $campaign_typeId, OBJECT);
   $res = $results[0];
-  if ($res->image) {
-    $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
+  $resultImg = $wpdb->get_results("SELECT * FROM wp_campaignimgedit WHERE status = 0 AND campaignid =". $id, ARRAY_A);
+  $resImg = $resultImg[0];
+  if (($res->img_type)=="image") {
+    $iimage = BASE_URL . 'fundraiserimg/'.$res->id.'/' . $resImg->imageEdit;
   } else {
     $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
     $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";
@@ -209,6 +231,50 @@ get_header(); ?>
               <div class="tp-case-details-text">
                 <div id="Description">
                   <div class="tp-case-details-img">
+                              
+                  <?php
+                    if ($res->video) { 
+                        ?>
+
+
+                        <iframe width="750" height="300" src="https://www.youtube.com/embed/<?= str_replace("https://www.youtube.com/watch?v=", "", $res->video); ?>">
+                        </iframe>
+                           
+                    <?php
+
+                    } else{
+                        ?>
+
+
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">	  
+                                
+                            <div class="carousel-inner">	  
+                               
+                             <?php $i=0;foreach ($resultImg as $tt) : ?>
+                             <div class="item <?php if($i++==0) echo 'active'?>">
+                             <img src="<?php echo BASE_URL . 'fundraiserimg/'. $id. '/' . $tt ['imageEdit'];?>" 
+                             style="height:350px;" class="img-responsive center-block" >
+                             
+                             </div>  
+                           <?php endforeach; ?>
+ 
+                             </div>	 
+                             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                               <span class="glyphicon glyphicon-chevron-left"></span>
+                             </a>
+                             <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                               <span class="glyphicon glyphicon-chevron-right"></span>
+                             </a>	 
+                            
+                           </div>
+
+                        
+                    <?php
+                    }
+                    ?>
+                  </div>
+                    
+                     <!--<div class="tp-case-details-img">
                     <?php
                     if ($res->image) {
                         ?>
@@ -221,7 +287,7 @@ get_header(); ?>
                     <?php
                     }
                     ?>
-                  </div>
+                  </div>-->
                   <div class="tp-case-content">
                     <div class="tp-case-text-top">
                       <h2><?php echo $fundtitle; ?></h2>
