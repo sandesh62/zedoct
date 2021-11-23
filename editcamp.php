@@ -70,8 +70,21 @@ $update_by = $_POST['update_by'];
 
 $short_description = $_POST['short_description'];
 
+$editArray = $_POST['editarray'];
+$resultscamp = $wpdb->get_results("SELECT * FROM wp_campaignimg WHERE id IN ($editArray)");
+
+    foreach($resultscamp as $resimg){
+
+        $sql22 = $wpdb->prepare("INSERT INTO `wp_campaignimgedit` (campaignid, imageEdit) VALUES ('".$resimg->campaignid."', '". $resimg->image."')");
+        $wpdb->query($sql22);
+
+    }
+
+
+
+    
 //$resultscamp = $wpdb->get_results("SELECT image FROM {$wpdb->prefix}campaigns WHERE id = $campaign_id ORDER BY id desc"  , OBJECT);
-if($img_type == "image"){
+/*if($img_type == "image"){
     if(!empty($_FILES['myFile']['name'])){
         $temp = explode(".", $_FILES["myFile"]["name"]);
         $filename = round(microtime(true)) . '.' . end($temp);
@@ -86,6 +99,42 @@ if($img_type == "image"){
     
     $video = $_POST['video'];
 
+}*/
+
+
+$video = $_POST['video'];
+$output_dir = "fundraiserimg/";
+$fileCount = count($_FILES["files"]['name']);
+
+/* $hiddfiles = $_POST['hiddfiles']['files'];
+echo "<pre>";
+print_r($hiddfiles);
+exit; */
+
+//console.log("FILES_COUNT",$fileCount);
+for($i=0; $i < $fileCount; $i++)
+{
+    $ImageName      = str_replace(' ','-',strtolower($_FILES['files']['name'][$i]));
+    $ImageType      = $_FILES['files']['type'][$i]; //"image/png", image/jpeg etc.
+    $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+    $ImageExt       = str_replace('.','',$ImageExt);
+    $ImageName      = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+    $NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
+    $ret[$NewImageName]= $output_dir.$NewImageName;
+    // Try to create the directory if it does not exist 
+    //console.log("lastID === ",$last_id);
+	if (!file_exists($output_dir . $campaign_id))
+	{
+		@mkdir($output_dir . $campaign_id, 0777);
+	}
+    move_uploaded_file($_FILES["files"]["tmp_name"][$i],$output_dir.$campaign_id."/".$NewImageName );
+    //console.log("New Image Name === ",$NewImageName);
+    $sql23 = $wpdb->prepare("INSERT INTO `wp_campaignimgedit` (campaignid, imageEdit) VALUES ('".$campaign_id."', '".$NewImageName."')");
+    $wpdb->query($sql23);
+   // $lid = $wpdb->insert_id;
+    //console.log("INSERTED IMAGE ID === ",$lid);
+     //$insert_img = "insert into `wp_campaignimg` SET `campaignid`='11', `image`='".$NewImageName."'";
+      //$result = $connection->query($insert_img);
 }
 
 
@@ -261,4 +310,5 @@ $res = $resultsedit[0];
 
 
 
-header("Location: " . BASE_URL . "thank-you-2/?id=" . $campaign_id);
+header("Location: " . BASE_URL . "thank-you-2/?id=" . $campaign_id); 
+    

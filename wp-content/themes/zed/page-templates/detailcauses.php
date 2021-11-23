@@ -349,7 +349,7 @@ $request_id = array_key_exists('id',$params) ? $params['id'] : -1;
                                
                              <?php $i=0;foreach ($resultImg as $tt) : ?>
                              <div class="item <?php if($i++==0) echo 'active'?>">
-                             <img src="<?php echo BASE_URL . 'fundraiserimg/' . $tt ['image'];?>" 
+                             <img src="<?php echo BASE_URL . 'fundraiserimg/'. $res->id. '/' . $tt ['image'];?>" 
                              style="height:350px;" class="img-responsive center-block" >
                              
                              </div>  

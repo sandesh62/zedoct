@@ -21,7 +21,7 @@ $campaigns = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}campaigns WHERE status
 
 //$categories = $wpdb->get_results("SELECT * FROM wp_service_category_relation as scr LEFT JOIN wp_service_categories as sc ON scr.category_id = sc.id WHERE scr.service_id = '".$service_id."'");
 $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_campaigntypes as sc ON scr.campaign_typeId = sc.id WHERE scr.id = '".$campaign_id."'");
-$categoriesImg = $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_campaigntypes as sc ON scr.campaign_typeId = sc.id WHERE scr.id = '".$campaign_id."'");
+$categoriesImg = $wpdb->get_results("SELECT id , image FROM wp_campaignimg  WHERE campaignid = '".$campaign_id."'", ARRAY_A);
 
 ?>
 <!DOCTYPE html>
@@ -1327,14 +1327,66 @@ $categoriesImg = $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr
       <span class="btn btn-success fileinput-button" >
             <span>Select Attachment</span>
             <input type="file" name="files[]" id="files"  multiple accept="image/jpeg, image/png, image/gif," required /><br />
-        </span>
-        <output id="Filelist"></output>
-        <div id="hiddfiles">
+            
+          </span>
+        <output id="Filelist">
 
+        </output>
+        <div id="hiddfiles">
+        <input type="hidden" name="editarray"  id="editarray" value="" >
+        <ul class="thumb-Images">
+        <?php 
+ foreach($categoriesImg as $editImg):?>
+ <li><div class="img-wrap edit-wrap" id="<?=$editImg['id']?>"> <span class="close">×</span> 
+ <img src="https://localhost/zedoct/fundraiserimg/<?=$editImg['image']?>"  alt='<?=$editImg['image']?>' class="thumb  edithu " data-id="<?=$editImg['id']?>">
+ 
+</div>
+</li>
+   <?php  endforeach;?>
+        </ul>
         </div>    
         </div>
           </div>
 
+          <script>
+
+
+$(document).ready(function(){
+
+var images = []; // new Array() shorthand
+var count = 0;
+var id = 0;
+    var dvImages = $('.edit-wrap img');
+    $.each(dvImages, function(i) {
+        images.push($(this).attr("data-id"));
+    });
+
+    var A = images;
+    $('.close').on('click', e => {
+    let $this =$('.edit-wrap img');
+  //  $this.addClass('visible')
+   // let cardValue = $this.attr('data-id');
+  //  A.pop(cardValue);
+
+    for( var i = 0; i < A.length; i++){
+                    if ( A[i] === $this.attr('data-id')) {
+                        A.splice(i, 1);
+                    }
+                }
+
+   $("#editarray").val(A);
+   console.log(A);
+})
+$("#editarray").val(A);
+    console.log(A);
+});
+
+   // console.log(images);
+//alert(images.join(", "))
+
+
+          </script>
+ 
           <div class="videodiv valid" <?php if ($categories->img_type =="image"){?>style="display:none"<?php } ?>>
         <input type="text" id="youtubevideo" name="video" value="<?= $categories->video;?>" placeholder="Youtube video URL">
       </div>

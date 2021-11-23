@@ -302,12 +302,23 @@ global $wpdb;
                                             $percn=100;
                                         }
                                     }
-                                    if ($res->image) {
+/*                    
+                if ($res->image) {
                                         $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
                                     } else {
                                         $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
+                                        $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";  
+                                    }*/
+                                    $resultImg = $wpdb->get_results("SELECT * FROM wp_campaignimg WHERE campaignid =".$res->id, ARRAY_A);
+                                    
+                                    if ($res->video) {
+                                        $iimagei = str_replace("https://www.youtube.com/watch?v=", "", $res->video);
                                         $iimage = "https://img.youtube.com/vi/" . $iimagei . "/0.jpg";
+                                    } else {
+                                        foreach ($resultImg as $tt)
+                                        $iimage = BASE_URL . 'fundraiserimg/' .$res->id.'/' . $tt ['image'];
                                     }
+                                    
                                    $resultsdona = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE campaign_Id IN(" . $res->id . ") and status = 1 and ((paymetStatus = 1 AND campaign_typeId = 1) OR campaign_typeId != 1)");
 
                                     $userId = $res->userId;

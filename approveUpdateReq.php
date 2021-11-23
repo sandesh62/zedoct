@@ -8,7 +8,13 @@ global $wpdb;
 $id = $_POST['id'];
 
 $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaignsedit WHERE id =" . $id, OBJECT);
+
 $res = $results[0];
+$campaignedit_id = $res->campaignedit_id;
+
+$resultsImg = $wpdb->get_results("SELECT imageEdit FROM {$wpdb->prefix}campaignimgedit WHERE status = 0 AND campaignid =" . $campaignedit_id, ARRAY_A);
+
+
 $fundraiser_title = $res->fundraiser_title;
 
 if ($res->campaign_typeId == 2) {
@@ -57,7 +63,7 @@ $achieve_amount = $res->achieve_amount;
 
 $status = $res->status;
 $img_type = $res->img_type;
-$image = $res->image;
+//$image = $res->image;
 $video = $res->video;
 
 $short_description = $res->short_description;
@@ -170,17 +176,31 @@ $message .= '<p><b>Goal Amount:</b>' . $currency . ' ' . $goal_amount.'</p>';
 $message .= '<p><b>Achived Amount:</b>' . $currency . ' ' . $achieve_amount.'</p>';
 $message .= '</body></html>';*/
 
-$sql21 = $wpdb->prepare(
+$sql1 = $wpdb->prepare(
     "UPDATE `wp_campaignsedit` SET `update_status` = 1 WHERE id = " . $id
 );
+$wpdb->query($sql1);
+
+$sql2 = $wpdb->prepare(
+    "DELETE FROM `wp_campaignimg`  WHERE campaignid = " . $campaignedit_id
+);
+$wpdb->query($sql2);
+
+$sql3 = $wpdb->prepare(
+    "INSERT INTO `wp_campaignimg` (campaignid, image)  SELECT campaignid,imageEdit  FROM `wp_campaignimgedit` WHERE status= 0  AND campaignid = " . $campaignedit_id
+);
+$wpdb->query($sql3);
 
 
-$wpdb->query($sql21);
+$sql4 = $wpdb->prepare(
+    "UPDATE `wp_campaignimgedit` SET `status` = 1 WHERE campaignid = " . $campaignedit_id
+);
+$wpdb->query($sql4);
 
-$sql22 = $wpdb->prepare(
+$sql5 = $wpdb->prepare(
     "UPDATE wp_campaigns SET lives_count = '".$lives_count."', address = '".$address."', latitude = '".$latitude."', longitude = '".$longitude."',img_type ='".$img_type."',  image = '".$image."',video = '".$video."' ,fundraiser_title = '".$fundraiser_title."', goal_amount = '".$goal_amount."', user_type = '".$user_type."', ngo_name = '".$ngo_name."',individual_person = '".$individual_person."', beneficiary_name = '".$beneficiary_name."', cause = '".$cause."', item_name = '".$item_name."', item_qty = '".$item_qty."',location_of_need = '".$location_of_need."', product_name = '".$product_name."', product_qty = '".$product_qty."', product_price = '".$product_price."' ,product_location_of_need = '".$product_location_of_need."', short_description = '".$short_description."', end_date = '".$end_date."', created_at = '".$created_at."', status = '".$status."' WHERE id =". $campaignedit_id
 );
-$wpdb->query($sql22);
+$wpdb->query($sql5);
 
 //$sql33= $sql21.";".$sql22;
 //$mysqli->multi_query($sql33);
