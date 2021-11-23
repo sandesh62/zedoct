@@ -1338,7 +1338,7 @@ $categoriesImg = $wpdb->get_results("SELECT id , image FROM wp_campaignimg  WHER
         <?php 
  foreach($categoriesImg as $editImg):?>
  <li><div class="img-wrap edit-wrap" id="<?=$editImg['id']?>"> <span class="close">×</span> 
- <img src="https://localhost/zedoct/fundraiserimg/<?= $campaign_id ?>/<?= $editImg['image']?>"  alt='<?=$editImg['image']?>' class="thumb  edithu " data-id="<?=$editImg['id']?>">
+ <img src="https://localhost/zedoct/fundraiserimg/<?= $campaign_id ?>/<?= $editImg['image']?>"  alt='<?=$editImg['image']?>' class="thumb" data-id="<?=$editImg['id']?>">
  
 </div>
 </li>
@@ -1373,6 +1373,8 @@ var id = 0;
                         A.splice(i, 1);
                     }
                 }
+
+
 
    $("#editarray").val(A);
    console.log(A);

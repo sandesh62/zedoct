@@ -21,6 +21,7 @@ $campaigns = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}campaigns WHERE status
 
 //$categories = $wpdb->get_results("SELECT * FROM wp_service_category_relation as scr LEFT JOIN wp_service_categories as sc ON scr.category_id = sc.id WHERE scr.service_id = '".$service_id."'");
 $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_campaigntypes as sc ON scr.campaign_typeId = sc.id WHERE scr.id = '".$campaign_id."'");
+$categoriesImg = $wpdb->get_results("SELECT id , image FROM wp_campaignimg  WHERE campaignid = '".$campaign_id."'", ARRAY_A);
 
 ?>
 <!DOCTYPE html>
@@ -166,7 +167,88 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
     }
     body {
       background: #f2f2f2;
-    }
+    }   
+  /*Copied from bootstrap to handle input file multiple*/
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  /*Also */
+  .btn-success {
+    border: 1px solid #c5dbec;
+    background: #d0e5f5;
+    font-weight: bold;
+    color: #2e6e9e;
+  }
+  .fileinput-button {
+    position: relative;
+    overflow: hidden;
+  }
+  .fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: "alpha(opacity=0)";
+    font-size: 200px;
+    direction: ltr;
+    cursor: pointer;
+  }
+  .thumb {
+    height: 155px;
+    width: 155px;
+    /*border: 1px solid #000;*/
+  }
+  ul.thumb-Images li {
+    width: 170px;
+    /*float: left;*/
+    display: inline-block;
+    vertical-align: top;
+    height: 180px;
+  }
+  .img-wrap {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+  }
+  .img-wrap .close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+    background-color: #d0e5f5;
+    padding: 4px 2px 2px;
+    color: #000;
+    font-weight: bolder;
+    cursor: pointer;
+    opacity: 0.5;
+    font-size: 23px;
+    line-height: 10px;
+    border-radius: 50%;
+  }
+  .img-wrap:hover .close {
+    opacity: 1;
+    background-color: #ff0000;
+  }
+  .FileNameCaptionStyle {
+    font-size: 12px;
+  }
     .licause {
       margin-top: 13px;
       margin-bottom: 20px;
@@ -205,7 +287,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
 
 .step1:after {
     background: #fff;
-    content: '§ Step 1';
+    content: 'Step 1';
     padding: 0 4px;
     position: relative;
     top: -13px;
@@ -221,7 +303,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
 
 .step2:after {
     background: #fff;
-    content: '§ Step 2';
+    content: 'Step 2';
     padding: 0 4px;
     position: relative;
     top: -13px;
@@ -237,7 +319,7 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
 
 .step3:after {
     background: #fff;
-    content: '§ Step 3';
+    content: 'Step 3';
     padding: 0 4px;
     position: relative;
     top: -13px;
@@ -1235,18 +1317,313 @@ $categories = $wpdb->get_row("SELECT * FROM wp_campaigns as scr RIGHT JOIN wp_ca
       </div>
 
             <div class="imagediv valid" <?php if ($categories->img_type == "video"){?>style="display:none"<?php } ?>>
-              <div class="drop-zone">
+           <!--   <div class="drop-zone">
                 <span class="drop-zone__prompt"> <img src="<?= BASE_URL?>/fundraiserimg/<?= $categories->image; ?>" width="150"></span>
-                <input type="file" name="myFile" id="myFile1" class="drop-zone__input" style="opacity: 0;"> <!-- style="display: none;" -->
+                <input type="file" name="myFile" id="myFile1" class="drop-zone__input" style="opacity: 0;">
                 <input type="hidden" name="banner_img" id="banner_img" value="<?= $categories->image; ?>">
               </div>
-            </p>
+            </p>-->
+          
+
+            <div style="text-align:center;" class="imagediv valid">
+      <span class="btn btn-success fileinput-button" >
+            <span>Select Attachment</span>
+            <input type="file" name="files[]" id="files"  multiple accept="image/jpeg, image/png, image/gif," required /><br />
+            
+          </span>
+        <output id="Filelist">
+
+        </output>
+        <div id="hiddfiles">
+        <input type="hidden" name="editarray"  id="editarray" value="" >
+        <ul class="thumb-Images">
+        <?php 
+ foreach($categoriesImg as $editImg):?>
+ <li><div class="img-wrap edit-wrap" id="<?=$editImg['id']?>"> <span class="close">×</span> 
+ <img src="https://localhost/zedoct/fundraiserimg/<?= $campaign_id ?>/<?= $editImg['image']?>"  alt='<?=$editImg['image']?>' class="thumb  edithu " data-id="<?=$editImg['id']?>">
+ 
+</div>
+</li>
+   <?php  endforeach;?>
+        </ul>
+        </div>    
+        </div>
           </div>
+
+          <script>
+
+
+$(document).ready(function(){
+
+var images = []; // new Array() shorthand
+var count = 0;
+var id = 0;
+    var dvImages = $('.edit-wrap img');
+    $.each(dvImages, function(i) {
+        images.push($(this).attr("data-id"));
+    });
+
+    var A = images;
+    $('.close').on('click', e => {
+    let $this =$('.edit-wrap img');
+  //  $this.addClass('visible')
+   // let cardValue = $this.attr('data-id');
+  //  A.pop(cardValue);
+
+    for( var i = 0; i < A.length; i++){
+                    if ( A[i] == $this.attr('data-id')) {
+                        A.splice(i, 1);
+                    }
+                }
+
+   $("#editarray").val(A);
+   console.log(A);
+})
+$("#editarray").val(A);
+    console.log(A);
+});
+
+   // console.log(images);
+//alert(images.join(", "))
+
+
+          </script>
 
           <div class="videodiv valid" <?php if ($categories->img_type =="image"){?>style="display:none"<?php } ?>>
         <input type="text" id="youtubevideo" name="video" value="<?= $categories->video;?>" placeholder="Youtube video URL">
       </div>
 
+      <script>
+  
+  //I added event handler for the file upload control to access the files properties.
+  document.addEventListener("DOMContentLoaded", init, false);
+  //To save an array of attachments
+  var AttachmentArray = [];
+  //counter for attachment array
+  var arrCounter = 0;
+  //to make sure the error message for number of files will be shown only one time.
+  var filesCounterAlertStatus = false;
+  //un ordered list to keep attachments thumbnails
+  var ul = document.createElement("ul");
+  ul.className = "thumb-Images";
+  ul.id = "imgList";
+  function init() {
+    //add javascript handlers for the file upload event
+    document
+      .querySelector("#files")
+      .addEventListener("change", handleFileSelect, false);
+  }
+  //the handler for file upload event
+  function handleFileSelect(e) {
+    //to make sure the user select file/files
+    if (!e.target.files) return;
+    console.log("FILE _ COUNT == ",e.target.files.length);
+    //To obtaine a File reference
+    var files = e.target.files;
+    //$('#files').val(files);
+  
+    console.log("FILES == ",files);
+  
+    $('#imgList').html('');
+    
+      var cnt = 0;
+    // Loop through the FileList and then to render image files as thumbnails.
+    for (var i = 0, f; (f = files[i]); i++) {
+        console.log("COUNT == ",cnt);
+  
+        console.log("INPUT: "+ files[i].name);
+  
+        /* var hiddfiles = '<input type="hidden" value="'+files[i].name+'" name="fname[]"><input type="hidden" value="'+files[i].type+'" name="ftype[]"><input type="hidden" value="'+files[i].size+'" name="fsize[]"><input type="hidden" value="'+files[i].tmp_name+'" name="ftmp_name[]">';
+        jQuery('#hiddfiles').append(hiddfiles); */
+  
+        //console.log("FILES ARRAY == ",files[i]);
+       
+        cnt = cnt+1;
+      //instantiate a FileReader object to read its contents into memory
+      var fileReader = new FileReader();
+      // Closure to capture the file information and apply validation.
+      fileReader.onload = (function(readerEvt) {
+        return function(e) {
+  
+          //var hiddfiles = '<input type="hidden" value="'+e.target.result+'" name="hiddfiles[]" id="hiddfiles" accept="image/jpeg, image/png, image/gif,"/>';
+          //jQuery('#hiddfiles').append(hiddfiles);
+  
+          //Apply the validation rules for attachments upload
+          ApplyFileValidationRules(readerEvt);
+          //Render attachments thumbnails.
+          RenderThumbnail(e, readerEvt);
+  
+          //Fill the array of attachment
+          FillAttachmentArray(e, readerEvt);
+        };
+      })(f);
+      // Read in the image file as a data URL.
+      // readAsDataURL: The result property will contain the file/blob's data encoded as a data URL.
+      // More info about Data URI scheme https://en.wikipedia.org/wiki/Data_URI_scheme
+      fileReader.readAsDataURL(f);
+    }
+  
+    document
+      .getElementById("files")
+      .addEventListener("change", handleFileSelect, false);
+  }
+  //To remove attachment once user click on x button
+  jQuery(function($) {
+    $("div").on("click", ".img-wrap .close", function() {
+      var id = $(this)
+        .closest(".img-wrap")
+        .find("img")
+        .data("id");
+      //to remove the deleted item from array
+      var elementPos = AttachmentArray.map(function(x) {
+        return x.FileName;
+      }).indexOf(id);
+      if (elementPos !== -1) {
+        AttachmentArray.splice(elementPos, 1);
+      }
+      //document.getElementById('files')
+      //to remove image tag
+      $(this)
+        .parent()
+        .find("img")
+        .not()
+        .remove();
+      //to remove div tag that contain the image
+      $(this)
+        .parent()
+        .find("div")
+        .not()
+        .remove();
+      //to remove div tag that contain caption name
+      $(this)
+        .parent()
+        .parent()
+        .find("div")
+        .not()
+        .remove();
+      //to remove li tag
+      var lis = document.querySelectorAll("#imgList li");
+      for (var i = 0; (li = lis[i]); i++) {
+        if (li.innerHTML == "") {
+          li.parentNode.removeChild(li);
+        }
+      }
+    });
+  });
+  //Apply the validation rules for attachments upload
+  function ApplyFileValidationRules(readerEvt) {
+    //To check file type according to upload conditions
+    if (CheckFileType(readerEvt.type) == false) {
+      alert(
+        "The file (" +
+          readerEvt.name +
+          ") does not match the upload conditions, You can only upload jpg/png/gif files"
+      );
+      e.preventDefault();
+      return;
+    }
+    //To check file Size according to upload conditions
+    if (CheckFileSize(readerEvt.size) == false) {
+      alert(
+        "The file (" +
+          readerEvt.name +
+          ") does not match the upload conditions, The maximum file size for uploads should not exceed 2 MB"
+      );
+      e.preventDefault();
+      return;
+    }
+    //To check files count according to upload conditions
+    if (CheckFilesCount(AttachmentArray) == false) {
+      if (!filesCounterAlertStatus) {
+        filesCounterAlertStatus = true;
+        alert(
+          "You have added more than 5 files. According to upload conditions you can upload 5 files maximum"
+        );
+      }
+      e.preventDefault();
+      return;
+    }
+  }
+  //To check file type according to upload conditions
+  function CheckFileType(fileType) {
+    if (fileType == "image/jpeg") {
+      return true;
+    } else if (fileType == "image/png") {
+      return true;
+    } else if (fileType == "image/gif") {
+      return true;
+    } else {
+      return false;
+    }
+    return true;
+  }
+  //To check file Size according to upload conditions
+  function CheckFileSize(fileSize) {
+    if (fileSize < 2000000) {
+      return true;
+    } else {
+      return false;
+    }
+    return true;
+  }
+  //To check files count according to upload conditions
+  function CheckFilesCount(AttachmentArray) {
+    //Since AttachmentArray.length return the next available index in the array,
+    //I have used the loop to get the real length
+    var len = 0;
+    for (var i = 0; i < AttachmentArray.length; i++) {
+      if (AttachmentArray[i] !== undefined) {
+        len++;
+      }
+    }
+    //To check the length does not exceed 10 files maximum
+    if (len > 4) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  //Render attachments thumbnails.
+  function RenderThumbnail(e, readerEvt) {
+    
+    var li = document.createElement("li");
+  
+    ul.appendChild(li);
+    li.innerHTML = [
+      '<div class="img-wrap"> <span class="close">&times;</span>' +
+        '<img class="thumb" src="',
+      e.target.result,
+      '" title="',
+      escape(readerEvt.name),
+      '" data-id="',
+      readerEvt.name,
+      '"/>' + "</div>"
+    ].join("");
+    var div = document.createElement("div");
+    div.className = "FileNameCaptionStyle";
+    li.appendChild(div);
+    div.innerHTML = [readerEvt.name].join("");
+    document.getElementById("Filelist").insertBefore(ul, null);
+  }
+  //Fill the array of attachment
+  function FillAttachmentArray(e, readerEvt) {
+    AttachmentArray[arrCounter] = {
+      AttachmentType: 1,
+      ObjectType: 1,
+      FileName: readerEvt.name,
+      FileDescription: "Attachment",
+      NoteText: "",
+      MimeType: readerEvt.type,
+      Content: e.target.result.split("base64,")[1],
+      FileSizeInBytes: readerEvt.size
+    };
+    arrCounter = arrCounter + 1;
+  }
+  
+  //end of file upload script
+  </script>
+  
+  
           <script>
         document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
         const dropZoneElement = inputElement.closest(".drop-zone");
