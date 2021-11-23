@@ -6,9 +6,6 @@
  * @subpackage Twenty_Fourteen
  * @since Twenty Fourteen 1.0
  */
-get_header();
-
-
 
 ?>
 
@@ -28,19 +25,36 @@ get_header();
   
 
   global $wpdb;
-  $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND id =" . $id, OBJECT);
+  $results = $wpdb->get_results("SELECT CONCAT (fundraiser_title, '', item_name) AS title FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND id =" . $id, OBJECT);
+ 
+  
+  $resultsd = $wpdb->get_results("SELECT short_description FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND id =" . $id, OBJECT);
+  
+  $resultsc = $wpdb->get_results("SELECT image FROM {$wpdb->prefix}campaignimg WHERE campaignid =" . $id, OBJECT);
   $titleshare='';
   $imgshare='';
   $descshare='';
-foreach($results as $result ){
-  $titleshare=$result->fundraiser_title;
-  $imgshare =$result->image;
+foreach($results as $result ){ 
+  $titleshare=$result->title;
+  
+
+}
+
+foreach($resultsd as $result ){
+  
+ 
+
   $descshare=$result->short_description;
 }
 
+foreach($resultsc as $result ){
+ 
+  $imgshare =$result->image;
+
+}
 //$sharelink="www.google.com";
-$fundtitle="fund";
-$iimage="https://jedaidevbed.in/zedaid/wp-content/themes/zed/images/zed.png";
+//$fundtitle="fund";
+//$iimage="https://jedaidevbed.in/zedaid/wp-content/themes/zed/images/zed.png";
 
 $id = $_GET['id'];
 
@@ -51,6 +65,18 @@ $id = $_GET['id'];
 $sharelink = $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if(!empty( $_GET['id'])) {
 ?>
+<!-- twitter meta tag --->
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="<?php echo $titleshare;?>"/>
+<meta property="twitter:description" content="<?php echo substr(strip_tags($descshare), 0, 100);?>"/>
+<meta property="twitter:url" content=content="<?php echo $sharelink;?>"/>
+<meta property="twitter:image:src" content="<?php echo  BASE_URL . 'fundraiserimg/' . $imgshare;?>"/>
+
+
+
+
+
  <meta property="og:title" content="<?php echo $titleshare;?>" />
 <meta  property="og:image" content="<?php echo  BASE_URL . 'fundraiserimg/' . $imgshare;?>" />
 <meta property="og:url" content="<?php echo $sharelink;?>" />
@@ -60,7 +86,7 @@ if(!empty( $_GET['id'])) {
  <?php }?>
   
   
-  
+ <?php get_header(); ?> 
   <title>Detail Cause | Zed</title>
   <link href="<?php echo bloginfo('template_directory'); ?>/css/themify-icons.css" rel="stylesheet" />
   <link href="<?php echo bloginfo('template_directory'); ?>/css/font-awesome.min.css" rel="stylesheet" />
@@ -99,7 +125,24 @@ if(!empty( $_GET['id'])) {
 </head>
 <body>
   <?php
- 
+   
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+$url = "https://";   
+else  
+$url = "http://";   
+// Append the host(domain name, ip) to the URL.   
+$url= $_SERVER['HTTP_HOST'];   
+
+// Append the requested resource location to the URL   
+$url= $_SERVER['REQUEST_URI'];        
+
+
+
+//$url = 'http://https://jedaidevbed.in/zedaid/i-need/?id=31';
+$url_components = parse_url($url);
+parse_str($url_components['query'], $params);
+$request_id = array_key_exists('id',$params) ? $params['id'] : -1;
+
   
   
   $btn_status = 'active';
@@ -117,6 +160,10 @@ if(!empty( $_GET['id'])) {
   $campaign_typeId = $res->campaign_typeId;
   $resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigntypes WHERE id =" . $campaign_typeId, OBJECT);
   $res = $results[0];
+  
+  $resultImg = $wpdb->get_results("SELECT * FROM wp_campaignimg WHERE campaignid =". $request_id, ARRAY_A);
+  $resImg = $resultImg[0];
+  
   if ($res->image) {
     $iimage = BASE_URL . 'fundraiserimg/' . $res->image;
   } else {
@@ -280,6 +327,55 @@ if(!empty( $_GET['id'])) {
               <div class="tp-case-details-text">
                 <div id="Description">
                   <div class="tp-case-details-img">
+                    
+
+                  <?php
+                    if ($res->video) { 
+                        ?>
+
+
+                        <iframe width="750" height="300" src="https://www.youtube.com/embed/<?= str_replace("https://www.youtube.com/watch?v=", "", $res->video); ?>">
+                        </iframe>
+                           
+                    <?php
+
+                    } else{
+                        ?>
+
+
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">	  
+                                
+                            <div class="carousel-inner">	  
+                               
+                             <?php $i=0;foreach ($resultImg as $tt) : ?>
+                             <div class="item <?php if($i++==0) echo 'active'?>">
+                             <img src="<?php echo BASE_URL . 'fundraiserimg/' . $tt ['image'];?>" 
+                             style="height:350px;" class="img-responsive center-block" >
+                             
+                             </div>  
+                           <?php endforeach; ?>
+ 
+                             </div>	 
+                             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                               <span class="glyphicon glyphicon-chevron-left"></span>
+                             </a>
+                             <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                               <span class="glyphicon glyphicon-chevron-right"></span>
+                             </a>	 
+                            
+                           </div>
+
+                        
+                    <?php
+                    }
+                    ?>
+                  </div>
+                    
+                    
+                    
+                    
+                    
+                  <!--<div class="tp-case-details-img">
                     <?php
                     if ($res->image) {
                         ?>
@@ -292,7 +388,7 @@ if(!empty( $_GET['id'])) {
                     <?php
                     }
                     ?>
-                  </div>
+                  </div>-->
                   <div class="tp-case-content">
                     <div class="tp-case-text-top">
                       <h2><?php echo $fundtitle; ?></h2>
