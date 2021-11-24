@@ -24,7 +24,7 @@ $wpdb->insert('wp_support_change_status', array(
 $date = date("Y-m-d H:i:s");
 $last_status_updated_id = $wpdb->insert_id;
 
-$wpdb->query($wpdb->prepare("UPDATE wp_support_them SET supportDetails='$support_details', `status` = '1' WHERE floodCrisisId=$pid"));
+$wpdb->query($wpdb->prepare("UPDATE wp_support_them SET supportDetails='$supportDetails', `status` = '1' WHERE floodCrisisId=$pid"));
 
 $wpdb->query($wpdb->prepare("UPDATE wp_flood_crisis_data SET last_status_updated_id='$userId', `status` = '1' WHERE id=$pid"));
 

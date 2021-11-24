@@ -89,10 +89,10 @@ if($img_type == "image"){
         $filename = $_POST['banner_img'];
     }
     $video = NULL;
+    
 }else{
     
     $filename = NULL;
-    
     $video = $_POST['video'];
 
 }

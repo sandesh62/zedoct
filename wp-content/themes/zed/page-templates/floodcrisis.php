@@ -940,7 +940,10 @@ a.loc-icon {
                                     if ( ($supporter_id == $userId && $userId != '0') || ($userId != '0' && $userId == $res['userId']) || ($emailid == $emailAddress) || ($emailid == $results_supports[0]['email']) || ($userId == '1') ) {
                                         if ($status == '0' || $status == '3') {
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
-                                        }else{
+                                        } elseif ($status == '1') {
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopReopen('.$pid.','.$userId.');">Reopen Status</button>';
+                                        }
+                                        else{
                                             $chnageStatusBtn = '';
                                         }
                                     }else{
@@ -970,7 +973,15 @@ a.loc-icon {
                                         }else{
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
                                         }
-                                    }else{
+                                    }elseif($status =='1'){
+                                        if((($userId == $res['userId']) && $userId != 0) || ($emailid == $emailAddress)){
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupreopen('.$pid.','.$userId.');">Reopen Status</button>';
+                                        }else{
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupreopen('.$pid.','.$userId.');">Reopen Status</button>';
+                                        }
+
+                                    }
+                                    else{
                                         $chnageStatusBtn = '';
                                     }
                                 }
@@ -2539,4 +2550,37 @@ $(document).ready(function () {
             jQuery('#btn-submit-loader').css('display', 'none');
         }
     });
+
+
+    function openPopupreopen(pid, userId){
+        /* if(userId == 0){
+            window.location.href = "<?php echo get_site_url(); ?>/login";
+        }else{  
+            jQuery('#changeStatus').modal('show');
+            jQuery('#pid').val(pid);
+        } */
+        //jQuery('#changeStatus').modal('show');
+       jQuery('#pid').val(pid);
+
+
+       jQuery.ajax({
+                type: "POST",
+                url: '../reopenfloodstatus.php',
+                data: 'pid='+pid+'&userId='+userId,
+                success: function(response)
+                {
+                    //jQuery('#btn-submit').css('display', '');
+                   // jQuery('#btn-submit-loader').css('display', 'none');
+                  //  jQuery('#changeStatus').modal('hide');
+                    bootbox.alert("Status reopen successfully.", function(){ 
+                       window.location.reload(true);
+                    });
+                }
+            });
+    }
+
+   // jQuery('#btn-submit-reopen').on('click', function() {
+   
+
+   //     });
 </script>
