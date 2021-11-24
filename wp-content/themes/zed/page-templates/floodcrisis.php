@@ -941,7 +941,7 @@ a.loc-icon {
                                         if ($status == '0' || $status == '3') {
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
                                         } elseif ($status == '1') {
-                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopReopen('.$pid.','.$userId.');">Reopen Status</button>';
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupreopen('.$pid.','.$userId.');">Reopen Status</button>';
                                         }
                                         else{
                                             $chnageStatusBtn = '';
@@ -1719,6 +1719,9 @@ a.loc-icon {
             </div>
         </div>
         <!-- End -->
+
+
+
 
         <!-- Toggle the status: -->
         <div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="startfunrmodalTitle" aria-hidden="true">

@@ -76,7 +76,7 @@ get_header();
                             $cookie_name = "login_data";
                             setcookie($cookie_name, json_encode($_POST), time() + (86400 * 30), "/"); // 86400 = 1 day
                             $errors = array();
-                            if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+                            /*if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
                             {
                                 $secret = '6LdAzmYbAAAAAOkATjmL2ASVmjZDFQIsinlODDCs';
                                 $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
@@ -92,7 +92,7 @@ get_header();
                                 $errors['invaliddetail'] = "Robot verification failed, please try again.";
                                 header("Location: " .BASE_URL."/login?f=2" );
                                 exit;
-                            }
+                            }*/
                             
                             //We shall SQL escape all inputs
                             $username = strtolower($wpdb->escape($_POST['user_email']));

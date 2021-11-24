@@ -1332,12 +1332,12 @@ $categoriesImg = $wpdb->get_results("SELECT id , image FROM wp_campaignimg  WHER
         <output id="Filelist">
 
         </output>
-        <div id="hiddfiles">
+        <div id="hiddfiles" >
         <input type="hidden" name="editarray"  id="editarray" value="" >
-        <ul class="thumb-Images">
+        <ul class="thumb-Images" id="imgList1">
         <?php 
  foreach($categoriesImg as $editImg):?>
- <li><div class="img-wrap edit-wrap" id="<?=$editImg['id']?>"> <span class="close">×</span> 
+ <li><div class="img-wrap edit-wrap" > <span class="close" id="<?=$editImg['id']?>">×</span> 
  <img src="https://localhost/zedoct/fundraiserimg/<?= $campaign_id ?>/<?= $editImg['image']?>"  alt='<?=$editImg['image']?>' class="thumb" data-id="<?=$editImg['id']?>">
  
 </div>
@@ -1367,12 +1367,27 @@ var id = 0;
   //  $this.addClass('visible')
    // let cardValue = $this.attr('data-id');
   //  A.pop(cardValue);
-
+console.log($this.attr('data-id'));
     for( var i = 0; i < A.length; i++){
                     if ( A[i] == $this.attr('data-id')) {
                         A.splice(i, 1);
                     }
                 }
+
+/*
+
+                $('.close').click(function() {
+    let $this = $('.edit-wrap img');
+  //  $this.addClass('visible')
+   // let cardValue = $this.attr('data-id');
+  //  A.pop(cardValue);
+console.log($this.attr('data-id'));
+    for( var i = 0; i < A.length; i++){
+                    if ( A[i] == $this.attr('data-id')) {
+                        A.splice(i, 1);
+                    }
+                }
+*/
 
 
 
@@ -1388,6 +1403,7 @@ $("#editarray").val(A);
 
 
           </script>
+
  
           <div class="videodiv valid" <?php if ($categories->img_type =="image"){?>style="display:none"<?php } ?>>
         <input type="text" id="youtubevideo" name="video" value="<?= $categories->video;?>" placeholder="Youtube video URL">
@@ -1494,6 +1510,7 @@ jQuery(function($) {
       .find("div")
       .not()
       .remove();
+
     //to remove div tag that contain caption name
     $(this)
       .parent()
@@ -1504,6 +1521,15 @@ jQuery(function($) {
     //to remove li tag
     var lis = document.querySelectorAll("#imgList li");
     for (var i = 0; (li = lis[i]); i++) {
+      if (li.innerHTML == "") {
+        li.parentNode.removeChild(li);
+      }
+    }
+
+
+
+    var lic = document.querySelectorAll("#imgList1 li");
+    for (var i = 0; (li = lic[i]); i++) {
       if (li.innerHTML == "") {
         li.parentNode.removeChild(li);
       }
