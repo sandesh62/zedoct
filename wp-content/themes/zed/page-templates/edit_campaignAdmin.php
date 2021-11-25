@@ -1767,7 +1767,11 @@ $("#editarray").val(A);
             </div>
             <input type="hidden" name="s_id" id="s_id">
             <div class="modal-body mx-3 text-center">
-                <p>Are you sure want to delete this campaign?</p>
+            <form id="frmChangeStatus" action="<?php echo BASE_URL ?>delete_campaign.php" enctype="multipart/form-data" method="post" class="f1" >
+            <label class="lbform">Reason for deleting the campaign?</label>
+            <textarea id="deleteReason" name="deleteReason" class="form-control" value=""></textarea>
+               <!-- <p>Are you sure want to delete this campaign?</p>-->
+            </form>
             </div>
 
             <div class="modal-footer d-flex justify-content-center">
@@ -1908,16 +1912,17 @@ $('body #user_type').change(function() {
     }
 
     function deleteCampaign(s_id){
+      let delete_reason = document.getElementById("deleteReason").value;
       jQuery.ajax({
           type: "POST",
           url: '../delete_campaign.php',
-          data: 'campaign_id='+s_id,
+          data: 'campaign_id='+s_id+'&deleteReason='+delete_reason,
           success: function(response)
           {
               jQuery('#deleteCampaign').modal('hide');
-              bootbox.alert("Campaign deleted successfully.", function(){ 
-                window.location.href='../my-account';
-              });
+            bootbox.alert("Campaign deleted successfully.", function(){ 
+              window.location.href='../my-account';
+             });
           }
       });
     }

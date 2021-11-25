@@ -16,6 +16,12 @@ get_header();
 <head>
   <title>Start Campaign | Zed</title>
   <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!---tooltip --->
+  <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.css" rel="stylesheet">
+
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -304,6 +310,12 @@ get_header();
   .editor-error{
     color: red;
   }
+  .fa-solid, .fas {
+   
+    font-size: 25px;
+    color: slategray;
+    padding-left: 5px;
+}
 </style>
 <?php
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -339,16 +351,35 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
 
     <div class="tab mainvalid">
       <div class="col-lg-12 col-md-12 col-12 valid" style="padding:0px;">
-        <select name="campaign_typeId" id="campaign_typeId" class="phonedropdown drp">
+        <select name="campaign_typeId" id="campaign_typeId" class="phonedropdown drp" style="width: 94%;">
           <?php foreach ($result as $row) {
             ?>
             <option value="<?= $row["id"]; ?>"><?= $row["title"]; ?></option>
           <?php
           } ?>
         </select>
+        <a class="tooltip-right" data-jbox-title="Title 1" data-jbox-content="Content 1"><i class="fas fa-info-circle"></i></a>
+
+        <script>
+          $(document).ready(function(){
+            // Tooltip to the right
+              
+            new jBox('Tooltip', {
+                attach: '.tooltip-right',
+                theme: 'TooltipLight',
+                getTitle: 'data-jbox-title',
+                getContent: 'data-jbox-content',
+                position: {
+                  x: 'right',
+                  y: 'center'
+                },
+                outside: 'x' // Horizontal Tooltips need to change their outside position
+  });
+          });
+        </script>
       </div>
       <p class="valid">
-        <input placeholder="Campaign’s Target (How many lives will get the benefits of the campaign)" 
+        <input placeholder="How many lives (#ZedLives) will get the benefits from the campaign" 
             oninput="this.className = ''" id="lives_count" name="lives_count" class="numberic_class" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
       </p>
       <p class="valid">
@@ -829,7 +860,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
           });
       </script>
        <div class="md-form mb-5" style="display: inline-flex;">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> <p> I have read and agree to the <a href="https://zedaid.org/term-of-use/" target="_blank" >terms and conditions*</a></p>                                
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required> <p> I have read and agree to the <a href="https://zedaid.org/term-of-use/" target="_blank" >terms and conditions*</a></p>                                
                         </div>
     </div>
 

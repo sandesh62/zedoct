@@ -310,6 +310,15 @@ $request_id = array_key_exists('id',$params) ? $params['id'] : -1;
       $viewclass = 'viewdetails';
   }
 
+
+  if($res->status == 0){
+    $btn = 1;
+    $btntext = 'Deactivated';
+    $btn_status = 'inactive';
+    $donationurl = $shareurl;
+    $viewclass = 'viewdetails';
+}
+
   ?>
   <!-- start page-wrapper -->
   <div class="page-wrapper">

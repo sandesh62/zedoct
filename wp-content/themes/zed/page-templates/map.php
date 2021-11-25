@@ -198,17 +198,19 @@ global $wpdb;
                         </div>
                         
                         <div class="tp-blog-sidebar legendstextdesktop">
-                            <div class="widget category-widget">
+                        <div class="widget category-widget" id="service_status">
         
                                 <label style="font-size: 18px;"><b>Legends</b></label>
         
                                 <div class="row">
-                                    <div class="col-md-5 line_spacing_top_15">
-                                       <img src="https://zedaid.org/wp-content/uploads/2021/10/available.png" />
+                                <div class="col-md-12 line_spacing_top_15">
+                                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status">
+                                         <img src="https://zedaid.org/wp-content/uploads/2021/10/available.png" />
                                        <label style="font-size: 15px;display: inline;">Active</label>
                                     </div>
-                                    <div class="col-md-7 line_spacing_top_15">
-                                        <img src="<?= BASE_URL ?>/wp-content/uploads/2021/07/inactive-1.png" />
+                                    <div class="col-md-12 line_spacing_top_15">
+                                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="2" class="service_status">
+                                          <img src="<?= BASE_URL ?>/wp-content/uploads/2021/07/inactive-1.png" />
                                         <label style="font-size: 15px;display: inline;">Inactive</label>
                                     </div>
                                  </div>
@@ -235,7 +237,7 @@ global $wpdb;
 
                     <?php
 
-                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status = 1", ARRAY_A);
+                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status IN (0,1)", ARRAY_A);
                     $results = (array) $results;
                     ?>
                     <?php
@@ -400,7 +402,7 @@ global $wpdb;
                                             $currency = 'QTY';
                                         } else if ($res['campaign_typeId'] == 3) {
                                             $goal_amount = $res['product_price'];
-                                            $currency = $res['currency'];
+                                            $currency = 'QTY';
                                         } else {
                                             $goal_amount = $res['goal_amount'];
                                             $currency = $res['currency'];
@@ -642,13 +644,19 @@ global $wpdb;
                             if ($('#charity_check').is(':checked')) {
                                 selected.push($('#charity_check').val());
                             }                     
+                            var selected1 = new Array();
+                            jQuery("#service_status input[type=checkbox]:checked").each(function () {
+                                selected1.push(this.value);
+                            });
 
                             $.ajax({
                                 type: "POST",
                                 url: '<?php echo BASE_URL . 'filtermap.php' ?>',
                                 dataType: 'json',
                                 data: {
-                                    id: selected.join(",")
+                                    id: selected.join(","),
+                                    type: 'category',
+                                    status_id: selected1.join(",")
                                 }, //--> send id of checked checkbox on other page
                                 success: function(data) {
 
@@ -734,6 +742,123 @@ global $wpdb;
                             });
 
                         }
+                        
+                        jQuery('.service_status').click(function() {
+
+var selected = new Array();
+
+if ($('#fundraiser_check').is(':checked')) {
+    selected.push($('#fundraiser_check').val());
+}
+
+if ($('#material_check').is(':checked')) {
+    selected.push($('#material_check').val());
+}
+
+if ($('#charity_check').is(':checked')) {
+    selected.push($('#charity_check').val());
+}
+
+var selected1 = new Array();
+jQuery("#service_status input[type=checkbox]:checked").each(function () {
+    selected1.push(this.value);
+});
+
+console.log("Id: "+selected1.join(",")); 
+
+$.ajax({
+    type: "POST",
+    url: '<?php echo BASE_URL . 'filtermap.php' ?>',
+    dataType: 'json',
+    data: {
+        id: selected1.join(","),
+        type: 'status',
+        cat_id: selected.join(",")
+    }, //--> send id of checked checkbox on other page
+    success: function(data) {
+
+        $("#errorMap").addClass("d-none");
+        $("#mapholder2").removeClass("d-none");
+
+        var latitudec = $("#latitude").val();
+        var longitudec = $("#longitude").val();
+
+        var locations = data;
+
+        var map = new google.maps.Map(document.getElementById('mapholder2'), {
+            zoom: 4,
+            center: new google.maps.LatLng(latitudec, longitudec),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+
+            if (locations[i][3] == 1) {
+                if (locations[i][5] == 'active') {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        icon: '<?= BASE_URL ?>/wp-content/uploads/2021/07/Component-8-–-1.png',
+                        map: map
+                    });
+                }else{
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        icon: '<?= BASE_URL ?>/wp-content/uploads/2021/07/Component-11-–-1.png',
+                        map: map
+                    });
+                }
+
+            } else if (locations[i][3] == 2) {
+                if (locations[i][5] == 'active') {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        icon: '<?= BASE_URL ?>/wp-content/uploads/2021/07/Component-7-–-1.png',
+                        map: map
+                    });
+                }else{
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        icon: '<?= BASE_URL ?>/wp-content/uploads/2021/07/Component-9-–-1.png',
+                        map: map
+                    });
+                }
+            } else if (locations[i][3] == 3) {
+                if (locations[i][5] == 'active') {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        icon: '<?= BASE_URL ?>/wp-content/uploads/2021/06/marker_charity-2.png',
+                        map: map
+                    });
+                }else{
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        icon: '<?= BASE_URL ?>/wp-content/uploads/2021/07/Component-10-–-1.png',
+                        map: map
+                    });
+                }
+            } else if (locations[i][3] == 4) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ddd',
+                    map: map
+                });
+            }
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+    }
+});
+});
+
                     </script>
 
                 </div>

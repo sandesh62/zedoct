@@ -5,6 +5,12 @@ require_once('wp-config.php');
 // error_reporting(E_ALL);
 global $wpdb;
 $campaign_id = $_POST['campaign_id'];
+$deleteReason = $_POST['deleteReason'];
+
+
+
+//$wpdb->query($wpdb->prepare("UPDATE wp_campaigns SET `delete_reason` = '".$deleteReason."' WHERE id=$campaign_id"));
+
 
 $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE id =" . $campaign_id, OBJECT);
 $res = $results[0];
@@ -85,6 +91,7 @@ $message2 = str_replace('{{UNIT}}', $currency , $message2);
 $message2 = str_replace('{{Address}}', $address , $message2);
 $message2 = str_replace('{{AMOUNT}}', number_format($goal_amount) , $message2);
 $message2 = str_replace('{{TARGET_DATE}}', date("d M Y", strtotime($targetDate)) , $message2);
+$message2 = str_replace('{{DELETE_REASON}}', $deleteReason , $message2);
 
 // // Compose a simple HTML email message
 // $message = '<html><body>';
@@ -134,6 +141,6 @@ if ($err) {
 
 
 
-$wpdb->query($wpdb->prepare("UPDATE wp_campaigns SET `status` = '2',`admin_approved` = '0',`zed_verified`='0' WHERE id=$campaign_id"));
+$wpdb->query($wpdb->prepare("UPDATE wp_campaigns SET `status` = '2',`admin_approved` = '0',`zed_verified`='0' ,`delete_reason` = '".$deleteReason."'  WHERE id=$campaign_id"));
 echo 'true';
 exit;
