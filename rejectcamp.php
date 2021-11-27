@@ -54,9 +54,11 @@ $res = $results[0];
 $campt = $resultsc[0]->title;
 
 $detaillink = BASE_URL . "campaign-detail-admin/?id=" . $id;
-
-$subjectnn = "ZED$id - $campt - $fundtitle - $res->address - Has been dis-approved by ZedAid due to non-compliance of the ZedAid policies, you may connect with ZedAid at the link : $detaillink";
-
+$shorturl = shorturl($detaillink);
+// $subjectnn = "ZED$id - $campt - $fundtitle - $res->address - Has been dis-approved by ZedAid due to non-compliance of the ZedAid policies, you may connect with ZedAid at the link : $detaillink";
+$shortFundTitle = substr($fundtitle,0,30);
+$shortDisName = substr($display_name,0,30);
+$subjectnn = "Dear $shortDisName, Your request for $shortFundTitle campaign is dis-approved by ZedAid due to non-compliance of the ZedAid policies. You may connect with ZedAid at the link: $shorturl";
 $to = $user_email;
 $subject = "ZED$id - $campt - $fundtitle - $res->address - Has been dis-approved by ZedAid due to non-compliance of the ZedAid policies";
 $from = 'info@zedaid.org';
@@ -84,6 +86,9 @@ $message .= '<p><b>Achived Amount:</b>' . $currency . ' ' . $achieve_amount.'</p
 $message .= '</body></html>';
 
 wp_mail($to, $subject, $message, $headers);
+if(substr($phone,0,3) == "+91") {
+    $phone = substr($phone,3,$phone.length);    
+}
 
 $curl = curl_init();
 
@@ -95,9 +100,9 @@ curl_setopt_array($curl, array(
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => "{\"sender\":\"JEDAII\",\"route\":\"4\",\"country\":\"91\",\"unicode\":\"1\",\"sms\":[{\"message\":\"$subjectnn\",\"to\":[\"$phone\"]}]}",
+    CURLOPT_POSTFIELDS => "{\"sender\":\"ZEDAID\",\"route\":\"1\",\"country\":\"91\",\"unicode\":\"1\",\"DLT_TE_ID\":\" 1307163491079352343\",\"sms\":[{\"message\":\"$subjectnn\",\"to\":[\"$phone\"]}]}",
     CURLOPT_HTTPHEADER => array(
-        "authkey: 328268AKM9eIBEQ5eb00746P1",
+        "authkey: 328268AQTjWikZLti61725bd1P1",
         "cache-control: no-cache",
         "content-type: application/json",
         "postman-token: 976efc79-51b6-d3db-3727-e4173cb180f4"

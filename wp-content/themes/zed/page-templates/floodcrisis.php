@@ -74,6 +74,22 @@ a.loc-icon {
 }
 
 
+.custom-map-control-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
+}
+.custom-map-control-button:hover {
+  background: #ebebeb;
+}
+
     .bootbox-body {
         padding: 10px !important;
     }
@@ -438,17 +454,17 @@ a.loc-icon {
             margin-left: 0px !important;
             margin-right: 0px !important;
         }
+       /* .gm-style .gm-style-iw-c {
+            
+            height: 400vh !important;
+        }*/
+    }
+   /* @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
         .gm-style .gm-style-iw-c {
-            /* max-height: 450px !important; */
+            
             height: 400vh !important;
         }
-    }
-    @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
-        .gm-style .gm-style-iw-c {
-            /* max-height: 450px !important; */
-            height: 400vh !important;
-        }
-    }
+    }*/
 
 
     /* Main content */
@@ -643,26 +659,29 @@ a.loc-icon {
                 </div>
              
                 <div class="tp-blog-sidebar legendstextdesktop">
-                    <div class="widget category-widget">
+                <div class="widget category-widget"  id="service_status">
 
                         <label style="font-size: 18px;"><b>Legends</b></label>
 
                         <div class="row">
                             <div class="col-md-12 line_spacing_top_15">
+                            <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="0" class="service_status">
                                 <img src="<?= BASE_URL ?>wp-content/uploads/2021/08/request_open.png" />
                                 <label style="font-size: 15px;display: inline;">Request is open</label>
                             </div>
                             <div class="col-md-12 line_spacing_top_15">
+                            <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="3" class="service_status">
                                 <img src="<?= BASE_URL ?>wp-content/uploads/2021/08/orange_marker.png" />
                                 <label style="font-size: 15px;display: inline;">Supporter has responded on Request.</label>
                             </div>
-                        </div>
-                            <div class="line_spacing_top_15">
-                                <img src="<?= BASE_URL ?>wp-content/uploads/2021/07/inactive-1.png" />
+                            <div class="col-md-12 line_spacing_top_15">
+                                <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status">
+                                  <img src="<?= BASE_URL ?>wp-content/uploads/2021/07/inactive-1.png" />
                                 <label style="font-size: 15px;display: inline;">Request is Closed</label>
                             </div>
                          </div>
-                    </div>
+                    </div> 
+                </div>
 
                 <div class="legendstextdesktop">
 
@@ -682,7 +701,7 @@ a.loc-icon {
 
             <div class="col-md-8">
 
-                <div id="mapholder2" class="d-none" style="width: 100%; height: 500px; position: relative; overflow: hidden;">
+            <div id="mapholder2" class="d-none" style="width: 100%; height: 600px; position: relative; overflow: hidden;">
                     <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
                 </div>
 
@@ -697,12 +716,16 @@ a.loc-icon {
 
                 <div class="">
                     <label style="font-size: 18px;"><b>Legends:</b></label>
-                     <div>
-                        <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/08/request_open.png"/>
+                    <div id="service_status1">
+                    <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="0" class="service_status1">
+                      <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/08/request_open.png"/>
                         <label style="font-size: 15px;display: inline;">Request is open</label>
+
+                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="3" class="service_status1">
 
                         <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/08/orange_marker.png"/>
                         <label style="font-size: 15px;display: inline;">Supporter has responded on Request.</label>
+                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status1">
 
                         <img style="width: 16px;" src="<?= BASE_URL ?>wp-content/uploads/2021/07/inactive-1.png"/>
                         <label style="font-size: 15px;display: inline;">Request is Closed</label>
@@ -1014,6 +1037,48 @@ a.loc-icon {
                         });
 
                         var infowindow = new google.maps.InfoWindow();
+                        infoWindow = new google.maps.InfoWindow();
+
+                        const locationButton = document.createElement("button");
+                        locationButton.textContent = "Pan to Current Location";
+                        locationButton.classList.add("custom-map-control-button");
+                        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
+                        locationButton.addEventListener("click", () => {
+                        // Try HTML5 geolocation.
+                        if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,  
+                            };
+
+                    
+                            var current_latitude = localStorage.getItem('current_latitude');
+                            var current_longitude = localStorage.getItem('current_longitude');
+console.log(current_latitude);
+                            console.log(current_longitude);
+                            var mapCenter1 = new google.maps.LatLng(current_latitude, current_longitude);
+                             //setMap(mapCenter1);
+
+                            infoWindow.setPosition(mapCenter1);
+                            infoWindow.setContent("Location found.");
+                            infoWindow.open(map);
+                            map.setCenter(mapCenter1);
+                            },
+                            () => {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                            }
+                        );
+                        } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
+                                }
+                            });
+
+
+
 
                         var marker, i;
 
@@ -1453,11 +1518,162 @@ a.loc-icon {
 
 
                         
-                                 var latitudec = jQuery("#latitude").val();
-                                var longitudec = jQuery("#longitude").val();
+                                var latitudec = jQuery("#latitude").val();
+                                    var longitudec = jQuery("#longitude").val();
 
-                                console.log(latitudec);
-                                    console.log(longitudec);
+                                    var locations = data;
+
+                                    var map = new google.maps.Map(document.getElementById('mapholder2'), {
+                                        zoom: 4,
+                                        mapTypeControl: false,
+                                        center: new google.maps.LatLng(latitudec, longitudec),
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    });
+
+                                    var infowindow = new google.maps.InfoWindow();
+
+                                    var marker, i;
+
+                                    for (i = 0; i < locations.length; i++) {
+
+                                        if (locations[i][3] == 8) {
+                                            if (locations[i][4] == 1) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/rescue-gray.png',
+                                                    map: map
+                                                });
+                                            } else if (locations[i][4] == 3) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/rescue-amber.png',
+                                                    map: map
+                                                });
+                                            } else {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/rescue-red.png',
+                                                    map: map
+                                                });
+                                            }
+                                        } else if(locations[i][3] == 9){
+                                            if (locations[i][4] == 1) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/food-gray.png',
+                                                    map: map
+                                                });
+                                            } else if (locations[i][4] == 3) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/food-amber.png',
+                                                    map: map
+                                                });
+                                            } else {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/food-red.png',
+                                                    map: map
+                                                });
+                                            }
+                                        } else if(locations[i][3] == 10){
+                                            if (locations[i][4] == 1) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/medical-gray.png',
+                                                    map: map
+                                                });
+                                            } else if (locations[i][4] == 3) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/medical-amber.png',
+                                                    map: map
+                                                });
+                                            } else {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/medical-red.png',
+                                                    map: map
+                                                });
+                                            }
+                                        } else if(locations[i][3] == 11){
+                                            if (locations[i][4] == 1) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/finance-gray.png',
+                                                    map: map
+                                                });
+                                            } else if (locations[i][4] == 3) {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/finance-amber.png',
+                                                    map: map
+                                                });
+                                            } else {
+                                                marker = new google.maps.Marker({
+                                                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                    icon: '<?= BASE_URL ?>img/finance-red.png',
+                                                    map: map
+                                                });
+                                            }
+                                        }
+
+                                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                            return function() {
+                                                infowindow.setContent(locations[i][0]);
+                                                infowindow.open(map, marker);
+                                            }
+                                        })(marker, i));
+                                    }
+
+                                    // hideLoadingBar();
+                                }
+                            });
+                        }
+                    });
+
+                    jQuery('.service_status').click(function() {
+                        var type="status";
+
+                        var selected = new Array();
+                        jQuery("#service_status input[type=checkbox]:checked").each(function () {
+                            selected.push(this.value);
+                        });
+                        
+                        jQuery.ajax({
+                            type: "POST",
+                            url: '<?php echo BASE_URL . 'filterfloodcrisis.php' ?>',
+                            dataType: 'json',
+                            data: {
+                                id: selected.join(","),
+                                type: type
+                            }, //--> send id of checked checkbox on other page
+                            success: function(data) {
+
+                                jQuery("#errorMap").addClass("d-none");
+                                jQuery("#mapholder2").removeClass("d-none");
+                                var searchLat =   localStorage.getItem('searchLat');
+                                    var searchLong =   localStorage.getItem('searchLong');
+
+                                    if(jQuery('#location').val() != 0){
+                                        jQuery("#latitude").val(searchLat);
+                                    jQuery("#longitude").val(searchLong);
+                                    var zoomv = 10;
+                                    }else{
+                                    var current_latitude = localStorage.getItem('current_latitude');
+                                    var current_longitude = localStorage.getItem('current_longitude');
+                                     if (current_latitude == '' || current_latitude == null) {
+                                    jQuery("#latitude").val('20.5937');
+                                    jQuery("#longitude").val('78.9629');
+                                    var zoomv = 6;
+                                    }else{
+                                    jQuery("#latitude").val(current_latitude);
+                                    jQuery("#longitude").val(current_longitude);
+                                    var zoomv = 10;
+                                    }
+                                }
+                                var latitudec = jQuery("#latitude").val();
+                                var longitudec = jQuery("#longitude").val();
 
 
                                 var locations = data;
@@ -1568,7 +1784,7 @@ a.loc-icon {
                                 // hideLoadingBar();
                             }
                         });
-                    }
+                    
                     });
                 });
             </script>
@@ -1649,7 +1865,7 @@ a.loc-icon {
                                 <input type="hidden" name="lng" id="lng" value="72.877600">
                                 <div class="form-group valid">
                                     <label class="lbform">Description</label>
-                                    <textarea id="desc1" name="desc" class="form-control" maxlength="100"></textarea>
+                                    <textarea id="desc1" name="desc" class="form-control" maxlength="500"></textarea>
                                     <span id="error-desc1"></span>
                                 </div>
                             </div>
@@ -1704,7 +1920,7 @@ a.loc-icon {
                                 </div>
                                 <div class="form-group valid">
                                     <label class="lbform">Description</label>
-                                    <textarea id="desc2" name="desc" class="form-control" maxlength="100"></textarea>
+                                    <textarea id="desc2" name="desc" class="form-control" maxlength="500"></textarea>
                                     <span id="error-desc2"></span>
                                 </div>
                             </div>
@@ -1828,12 +2044,71 @@ a.loc-icon {
 
 
         function initialize() {
-$.getJSON('https://ipapi.co/<?= $ipaddress; ?>/json', function(data) {
-    latitude = 20.5937;
-    longitude = 78.9629;
-  var mapCenter = new google.maps.LatLng(latitude, longitude);
-  setMap(mapCenter, latitude, longitude, '');
-  
+//$.getJSON('https://ipapi.co/<?= $ipaddress; ?>/json', function(data) {
+    $( document ).ready(function() {
+  // latitude = 20.5937;
+ //  longitude = 78.9629;
+
+       
+    var current_latitude = localStorage.getItem('current_latitude');
+    var current_longitude = localStorage.getItem('current_longitude');
+
+    var mapCenter = new google.maps.LatLng(current_latitude, current_longitude);
+    
+
+    setMap(mapCenter, current_latitude, current_longitude, '');
+    var map;
+   map = new google.maps.Map(document.getElementById('mapholder'), {
+            center: mapCenter,
+            zoom: 15					
+          });
+
+    marker =  new google.maps.Marker({
+                      position: new google.maps.LatLng(current_latitude, current_longitude),
+                      map: map,
+                draggable:true,
+                animation: google.maps.Animation.DROP,
+                  });
+
+
+    google.maps.event.addListener(marker, 'dragend', function() {
+    geocodePosition(marker.getPosition());
+    lat1 = this.getPosition().lat();
+    long1 = this.getPosition().lng();
+
+    jQuery("#lat").val(lat1);
+     jQuery("#lng").val(long1);
+
+    });
+
+      function geocodePosition(pos) 
+      {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode
+          ({
+              latLng: pos
+
+          }, 
+              function(results, status) 
+              {
+                  if (status == google.maps.GeocoderStatus.OK) 
+                  {
+                      $("#address1").val(results[0].formatted_address);
+                      $("#mapErrorMsg").hide(100);
+                  } 
+                  else 
+                  {
+                      $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+                  }
+              }
+
+              
+          );
+      }
+   
+ // var mapCenter = new google.maps.LatLng(latitude, longitude);
+ // setMap(mapCenter, latitude, longitude, '');
+
 });
 
 var geocoder = new google.maps.Geocoder();
@@ -1861,6 +2136,7 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
             center: mapCenter,
             zoom: 16					
           });
+
     marker =  new google.maps.Marker({
                       position: new google.maps.LatLng(latitude, longitude),
                       map: map,
@@ -1878,7 +2154,7 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
 
     jQuery("#lat").val(lat1);
-                    jQuery("#lng").val(long1);
+     jQuery("#lng").val(long1);
 
     console.log(lat1);
     console.log(long1);
@@ -2396,7 +2672,7 @@ $(document).ready(function () {
                     jQuery('#btn-submit-food').css('display', '');
                     jQuery('#btn-submit-loader-food').css('display', 'none');
                     jQuery('#addCollections').modal('hide');
-                    bootbox.alert("Record added successfully.", function(){ 
+                    bootbox.alert("Don't loose patiance, we are try to locate someboday around you for help.", function(){ 
                         jQuery("#frm1")[0].reset();
                         window.location.reload(true);
                     });

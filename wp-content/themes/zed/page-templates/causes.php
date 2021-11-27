@@ -196,6 +196,25 @@ global $wpdb;
                                     </form>
                                 </div>
                             </div>
+                            <div class="tp-blog-sidebar legendstextdesktop">
+                        <div class="widget category-widget" id="service_status">
+        
+                                <label style="font-size: 18px;"><b>Legends</b></label>
+        
+                                <div class="row">
+                                <div class="col-md-12 line_spacing_top_15">
+                                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status">
+                                         <img src="https://zedaid.org/wp-content/uploads/2021/10/available.png" />
+                                       <label style="font-size: 15px;display: inline;">Active</label>
+                                    </div>
+                                    <div class="col-md-12 line_spacing_top_15">
+                                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="2" class="service_status">
+                                          <img src="<?= BASE_URL ?>/wp-content/uploads/2021/07/inactive-1.png" />
+                                        <label style="font-size: 15px;display: inline;">Inactive</label>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
                         </div>
                         <div class="col col-md-9 col-sm-6 col-12">
                             <?php

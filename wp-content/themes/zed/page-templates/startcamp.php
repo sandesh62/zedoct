@@ -358,7 +358,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
           <?php
           } ?>
         </select>
-        <a class="tooltip-right" data-jbox-title="Title 1" data-jbox-content="Content 1"><i class="fas fa-info-circle"></i></a>
+        <a class="tooltip-right"  data-jbox-content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"><i class="fas fa-info-circle"></i></a>
 
         <script>
           $(document).ready(function(){
@@ -367,7 +367,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
             new jBox('Tooltip', {
                 attach: '.tooltip-right',
                 theme: 'TooltipLight',
-                getTitle: 'data-jbox-title',
+               // getTitle: 'data-jbox-title',
                 getContent: 'data-jbox-content',
                 position: {
                   x: 'right',
@@ -379,7 +379,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
         </script>
       </div>
       <p class="valid">
-        <input placeholder="How many lives (#ZedLives) will get the benefits from the campaign" 
+        <input placeholder="How many lives (#ZedLives) will get the benefits from the campaign?" 
             oninput="this.className = ''" id="lives_count" name="lives_count" class="numberic_class" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
       </p>
       <p class="valid">

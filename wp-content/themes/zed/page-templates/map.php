@@ -267,10 +267,19 @@ global $wpdb;
                             //Location
                             var map;
 
+                           
+
+
+
+
+
+
+
+
                             function initMap() {
 
                                 var existingAddLat = $("#latitude").val();
-                                var existingAddLng = $("#longitude").val();
+                               var existingAddLng = $("#longitude").val();
 
                                 var mapCenter = new google.maps.LatLng(existingAddLat, existingAddLng);
                                 setMap(mapCenter);
@@ -361,9 +370,18 @@ global $wpdb;
                                     $("#longitude").val(longitude);
                                     var zoomv = 10;
                                 } else {
-                                    $("#latitude").val('20.5937');
-                                    $("#longitude").val('78.9629');
-                                    var zoomv = 4;
+                                    var current_latitude = localStorage.getItem('current_latitude');
+                                    var current_longitude = localStorage.getItem('current_longitude');
+                                    if (current_latitude == '' || current_latitude == null) {
+                                    jQuery("#latitude").val('20.5937');
+                                    jQuery("#longitude").val('78.9629');
+                                    var zoomv = 6;
+
+                            }else{
+                                jQuery("#latitude").val(current_latitude);
+                                jQuery("#longitude").val(current_longitude);
+                                var zoomv = 10;
+                            }
                                 }
 
                                 var latitudec = $("#latitude").val();
@@ -485,11 +503,18 @@ global $wpdb;
 
                                 console.log(locations);
 
+
+                            
+      
+
+
                                 var map = new google.maps.Map(document.getElementById('mapholder2'), {
                                     zoom: zoomv,
                                     center: new google.maps.LatLng(latitudec, longitudec),
                                     mapTypeId: google.maps.MapTypeId.ROADMAP
                                 });
+
+                                
 
                                 var infowindow = new google.maps.InfoWindow();
 

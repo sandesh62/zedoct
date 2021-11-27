@@ -13,11 +13,19 @@ global $wpdb;
 
 
 $id = ltrim(rtrim($_POST['id'], ','), ',');
-
+$type = $_POST['type'];
 
 
 // echo "SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND campaign_typeId IN (" . $id . ")";
-
+if($type=='status'){
+    if(!empty($_POST['cat_id'])){
+        $cat_id = ltrim(rtrim($_POST['cat_id'], ','), ',');
+        $resultscc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND campaign_typeId IN (" . $cat_id . ")", ARRAY_A);
+    }else{
+        $resultscc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", ARRAY_A);
+    }
+    
+}else{
 if ($id) {
 
     $resultscc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND campaign_typeId IN (" . $id . ")", ARRAY_A);
@@ -26,6 +34,7 @@ if ($id) {
 
     $resultscc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", ARRAY_A);
 
+}
 }
 
 
@@ -64,13 +73,12 @@ foreach ($resultscc as $res) {
 
         $goal_amount = $res['item_qty'];
 
-        $currency = 'QTY';
+        $currency = 'Qty';
 
     } else if ($res['campaign_typeId'] == 3) {
 
-        $goal_amount = $res['product_price'];
-
-        $currency = $res['currency'];
+        $goal_amount = $res['product_qty'];
+        $currency = 'Qty';
 
     } else {
 
@@ -158,7 +166,9 @@ foreach ($resultscc as $res) {
     if (str_ireplace(",","", $achieve_amount) >= str_ireplace(",","", $goal_amount)) {
         $cstatus = "inactive";
     }
-
+    if ($type == 'status') {
+        if($_POST['id'] == '1'){
+            if ($cstatus == 'active') {
 
     $alldata[$i][] = '<a href="' . $shareurl . '" style="text-decoration: none;color:#282828 !important;"><div class="/ccc/" style="text-align: center;"><img src="' . $iimage . '" height="150" width="200" /></div><div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500; margin-left: 5%;">' . $fundtitle . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Goal:</b> ' . $currency . ' ' . $goal_amount . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Raised:</b></div><div class="" style="margin: 10px 0 0 0;color:' . $closedc . ' !important; font-weight: 500;text-align:center"><b>' . $closed . '</b></div><div class="" style="margin: 10px 0 0 0; text-align:center"><b>' . $zed_verified . '</b></div></a>';
 
@@ -175,6 +185,62 @@ foreach ($resultscc as $res) {
 
     $i++;
 
+}
+}else if($_POST['id'] == '2'){
+    if ($date1 > $date2 || str_ireplace(",","", $achieve_amount) >= str_ireplace(",","", $goal_amount)) {
+        
+        $alldata[$i][] = '<a href="' . $shareurl . '" style="text-decoration: none;color:#282828 !important;"><div class="/ccc/" style="text-align: center;"><img src="' . $iimage . '" height="150" width="200" /></div><div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500; margin-left: 5%;">' . $fundtitle . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Goal:</b> ' . $currency . ' ' . $goal_amount . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Raised:</b></div><div class="" style="margin: 10px 0 0 0;color:' . $closedc . ' !important; font-weight: 500;text-align:center"><b>' . $closed . '</b></div><div class="" style="margin: 10px 0 0 0; text-align:center"><b>' . $zed_verified . '</b></div></a>';
+        $alldata[$i][] = $res['latitude'];
+        $alldata[$i][] = $res['longitude'];
+        $alldata[$i][] = $res['campaign_typeId'];
+        $alldata[$i][] = '12';
+        $alldata[$i][] = $cstatus;
+        $i++;
+    }
+}else{
+    
+    $alldata[$i][] = '<a href="' . $shareurl . '" style="text-decoration: none;color:#282828 !important;"><div class="/ccc/" style="text-align: center;"><img src="' . $iimage . '" height="150" width="200" /></div><div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500; margin-left: 5%;">' . $fundtitle . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Goal:</b> ' . $currency . ' ' . $goal_amount . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Raised:</b></div><div class="" style="margin: 10px 0 0 0;color:' . $closedc . ' !important; font-weight: 500;text-align:center"><b>' . $closed . '</b></div><div class="" style="margin: 10px 0 0 0; text-align:center"><b>' . $zed_verified . '</b></div></a>';
+    $alldata[$i][] = $res['latitude'];
+    $alldata[$i][] = $res['longitude'];
+    $alldata[$i][] = $res['campaign_typeId'];
+    $alldata[$i][] = '12';
+    $alldata[$i][] = $cstatus;
+    $i++;
+}
+}else{
+    if($_POST['status_id'] == '1'){
+        if ($cstatus == 'active') {
+            
+            $alldata[$i][] = '<a href="' . $shareurl . '" style="text-decoration: none;color:#282828 !important;"><div class="/ccc/" style="text-align: center;"><img src="' . $iimage . '" height="150" width="200" /></div><div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500; margin-left: 5%;">' . $fundtitle . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Goal:</b> ' . $currency . ' ' . $goal_amount . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Raised:</b></div><div class="" style="margin: 10px 0 0 0;color:' . $closedc . ' !important; font-weight: 500;text-align:center"><b>' . $closed . '</b></div><div class="" style="margin: 10px 0 0 0; text-align:center"><b>' . $zed_verified . '</b></div></a>';
+            $alldata[$i][] = $res['latitude'];
+            $alldata[$i][] = $res['longitude'];
+            $alldata[$i][] = $res['campaign_typeId'];
+            $alldata[$i][] = '12';
+            $alldata[$i][] = $cstatus;
+            $i++;
+        }
+    }else if($_POST['status_id'] == '2'){
+        if ($date1 > $date2 || str_ireplace(",","", $achieve_amount) >= str_ireplace(",","", $goal_amount)) {
+            
+            $alldata[$i][] = '<a href="' . $shareurl . '" style="text-decoration: none;color:#282828 !important;"><div class="/ccc/" style="text-align: center;"><img src="' . $iimage . '" height="150" width="200" /></div><div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500; margin-left: 5%;">' . $fundtitle . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Goal:</b> ' . $currency . ' ' . $goal_amount . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Raised:</b></div><div class="" style="margin: 10px 0 0 0;color:' . $closedc . ' !important; font-weight: 500;text-align:center"><b>' . $closed . '</b></div><div class="" style="margin: 10px 0 0 0; text-align:center"><b>' . $zed_verified . '</b></div></a>';
+            $alldata[$i][] = $res['latitude'];
+            $alldata[$i][] = $res['longitude'];
+            $alldata[$i][] = $res['campaign_typeId'];
+            $alldata[$i][] = '12';
+            $alldata[$i][] = $cstatus;
+            $i++;
+        }
+    }else{
+        
+        $alldata[$i][] = '<a href="' . $shareurl . '" style="text-decoration: none;color:#282828 !important;"><div class="/ccc/" style="text-align: center;"><img src="' . $iimage . '" height="150" width="200" /></div><div class="" style="margin: 10px 0 0 0;font-size: 15px;font-weight: 500; margin-left: 5%;">' . $fundtitle . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Goal:</b> ' . $currency . ' ' . $goal_amount . '</div><div class="" style="margin: 10px 0 0 0; font-weight: 500; margin-left: 5%;"><b style="font-weight: 500;">Raised:</b></div><div class="" style="margin: 10px 0 0 0;color:' . $closedc . ' !important; font-weight: 500;text-align:center"><b>' . $closed . '</b></div><div class="" style="margin: 10px 0 0 0; text-align:center"><b>' . $zed_verified . '</b></div></a>';
+        $alldata[$i][] = $res['latitude'];
+        $alldata[$i][] = $res['longitude'];
+        $alldata[$i][] = $res['campaign_typeId'];
+        $alldata[$i][] = '12';
+        $alldata[$i][] = $cstatus;
+        $i++;
+    }
+}
 }
 
 

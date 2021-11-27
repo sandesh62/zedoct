@@ -72,7 +72,11 @@ $userId = $user_ID;
             display: block;
             color: #fff;
         } */
-
+        .main_container {
+            display: inline-flex;
+            align-items: flex-end;
+            margin-top: -10%;
+        }
         .ff {
             font-style: unset;
             margin-right: 10px;
@@ -259,6 +263,24 @@ $userId = $user_ID;
             width: 50%;
             margin-right: 20px;
         }
+        a#accept_btn {
+            background: #3eba64;
+            color: #fff !important;
+            padding: 4px;
+            border-radius: 5px;
+        }
+        a#decline_btn {
+            background: #D62C5B;
+            color: #fff !important;
+            padding: 4px;
+            border-radius: 5px;
+        }
+        .dbtnss{
+            background: #3D3D8A;
+            color: #fff !important;
+            padding: 4px;
+            border-radius: 5px;
+        }
 
         .cause-text ul li a {
             padding: 10px 20px;
@@ -313,6 +335,39 @@ $userId = $user_ID;
             left: 48%;
             z-index: 100;
         }
+        .col-md-2 {
+            width: 20% !important;
+        }
+        @media (max-width: 768px){
+            .dashdropdown {
+                width: 100% !important;
+            }
+            .col-md-2 {
+                width: 100% !important;
+            }
+            .tabcontent {
+                width: 100% !important;
+            }
+            .tab {
+                width: 100% !important;
+                margin: 20px 50px 0px 10px !important;
+            }
+            .tp-blog-sidebar .widget {
+                width: 100% !important;
+                margin: 10px 0px 0px 0px !important;
+
+            }
+            .cause-text ul li a {
+                width: auto;
+            }
+            .tp-blog-sidebar .widget {
+
+            }
+
+            .main_container {
+                display: contents;
+            }
+        }
     </style>
 </head>
 
@@ -356,10 +411,11 @@ $userId = $user_ID;
 
     if ($res->campaign_typeId == 2) {
         $goal_amount = $res->item_qty;
-        $currency = 'QTY';
+        $currency = 'Qty';
+
     } else if ($res->campaign_typeId == 3) {
-        $goal_amount = $res->product_price * $res->product_qty;
-        $currency = $res->currency;
+        $goal_amount = $res->product_qty;
+        $currency = 'Qty';
     } else {
         $goal_amount = $res->goal_amount;
         $currency = $res->currency;
@@ -368,7 +424,7 @@ $userId = $user_ID;
     $achieve_amountc = 0;
     foreach ($resultsdonacc as $tt) {
         if ($tt['campaign_typeId'] == 3) {
-            $achieve_amountcn = $tt['amount'] ? $tt['amount'] * $res->product_price : 0;
+            $achieve_amountcn = $tt['amount'] ? $tt['amount'] : 0;
         } else {
             $achieve_amountcn = $tt['amount'] ? $tt['amount'] : 0;
         }
@@ -392,12 +448,23 @@ $userId = $user_ID;
             $achieve_amount += $achieve_amountn;
         }
         // $percn = $achieve_amount / $goal_amount * 100;
-        $totalRaiedAmount = 0;
+        /* $totalRaiedAmount = 0;
         foreach ($resultsdonacc as $tt) {
             if ($tt['campaign_typeId'] == 3) {
-                $totalRaiedAmountn = $tt['amount'] ? $tt['amount'] * ($res->product_price ? $res->product_price : 0) : 0;
+                $totalRaiedAmountn = $tt['amount'] ? $tt['amount'] : 0;
             } else {
                 $totalRaiedAmountn = $tt['amount'] ? $tt['amount'] : 0;
+            }
+            $totalRaiedAmount += $totalRaiedAmountn;
+        }
+        $percn = $totalRaiedAmount / $goal_amount * 100; */   
+
+        $totalRaiedAmount = 0;
+        foreach ($resultsdona as $tt) {
+            if ($tt->campaign_typeId == 3) {
+                $totalRaiedAmountn = $tt->amount ? $tt->amount : 0;
+            } else {
+                $totalRaiedAmountn = $tt->amount ? $tt->amount : 0;
             }
             $totalRaiedAmount += $totalRaiedAmountn;
         }
@@ -405,6 +472,16 @@ $userId = $user_ID;
 
         if($percn>100) {
             $percn = 100;
+        }
+        
+        $totalRaiedAmounts = 0;
+        foreach ($resultsdona as $tt) {
+            if ($tt->campaign_typeId == 3) {
+                $totalRaiedAmountsn = $tt->amount ? $tt->amount : 0;
+            } else {
+                $totalRaiedAmountsn = $tt->amount ? $tt->amount : 0;
+            }
+            $totalRaiedAmounts += $totalRaiedAmountsn;
         }
     }
     ?>
@@ -496,23 +573,23 @@ $userId = $user_ID;
                                     </div>
                                 </div>                                
                             </div>
-                            <div class="tp-blog-sidebar col-md-12" style="display: inline-flex;
-                                align-items: flex-end;margin-top: -10%;">
+                            <div class="tp-blog-sidebar col-md-12 main_container">
+           
                                 <div class="widget category-widget col-md-4" style="display:inline-flex;margin-right: 10px;">
                                     <div style="float:left">
                                         <button style="width:50px" class="tablinks bod"><img src="<?php echo bloginfo('template_directory'); ?>/images/view.png" alt="">
                                         </button>
                                     </div>
-                                    <div style="float:right;text-align: center;col-md-4"> <?= count($resultsipa); ?> views Today </div>
+                                    <div style="float:right;text-align: center;col-md-4"> <?= count($resultsipa); ?> <br>views Today </div>
                                 </div>
                                 <div class="widget category-widget" style="display:inline-flex;margin-right: 10px;">
                                     <div style="float:left;">
                                         <button style="width:50px" class="tablinks bod"><img src="<?php echo bloginfo('template_directory'); ?>/images/zero.png" alt="">
                                         </button>
                                     </div>
-                                    <div style="float:right;text-align: center !important;col-md-4"> <?php echo $currency; ?> <?= $achieve_amountc; ?> Raised today </div>
+                                    <div style="float:right;text-align: center !important;col-md-4"> <?php echo $currency; ?> <?= $achieve_amountc; ?> <br>Raised today </div>
                                 </div>
-                                <div class="widget category-widget" style="display:inline-flex;width:40%">
+                                <div class="widget category-widget" style="display:inline-flex;">
                                     <div style="float:left">
                                         <button style="width:50px" class="tablinks bod"><img src="<?php echo bloginfo('template_directory'); ?>/images/users.png" alt="">
                                         </button>
@@ -761,6 +838,7 @@ $userId = $user_ID;
                                                 <th>Date|Time</th>
                                                 <th>QTY</th>
                                                 <th>Status</th>
+                                                <th>Comment</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -828,6 +906,12 @@ $userId = $user_ID;
 
                                                     </td>
                                                 <?php } ?>
+                                                <?php if($resul->comment == 0){  ?>
+                                                <td><a href="#donateComment" class="btn btn-default btn-rounded mb-4 openBtn" data-toggle="modal" style="background: #3d3d8a;color:#fff">Comment</a></td>
+                                                <?php }else{ ?>
+                                                    <td><?php echo $resul->comment; ?></td>
+                                                    <?php } ?>
+
                                             </tr>
                                             <?php
                                                 }
@@ -840,6 +924,34 @@ $userId = $user_ID;
                         </div>
                     </div>
                 </div>
+
+<!----modal--->
+                <div class="modal fade" id="donateComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Comment</h4>
+                <button type="button" class="close deleteService-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body mx-3 text-center">
+            <form id="frmChangeStatus" action="<?php echo BASE_URL ?>donate_comment.php" enctype="multipart/form-data" method="post" class="f1" >
+            <label class="lbform">Please comment here</label>
+            <textarea id="commentValue" name="commentValue" class="form-control" value=""></textarea>
+               <!-- <p>Are you sure want to delete this campaign?</p>-->
+            </form>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" style="background: #ccc;" type="button" class="close deleteService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" type="button" onclick="donateComment('<?= $campaign_id; ?>')">Confirm</button>
+            </div>
+          </div>
+      </div>
+    </div>  
+<!---modal end--->
             </section>
         </div>
     <?php
@@ -856,6 +968,27 @@ $userId = $user_ID;
     }
     ?>
     <script>
+
+function denateComment(s_id){
+     // let delete_reason = document.getElementById("deleteReason").value;
+      jQuery.ajax({
+          type: "POST",
+          url: '../donate_comment.php',
+          data: 'campaign_id='+s_id+'&deleteReason='+delete_reason,
+          success: function(response)
+          {
+              jQuery('#deleteCampaign').modal('hide');
+            bootbox.alert("Campaign deleted successfully.", function(){ 
+              window.location.href='../my-account';
+             });
+          }
+      });
+    }
+
+
+
+
+
         jQuery(document).ready(function() {
             jQuery('#example').DataTable({
                 /* "scrollY": 200, */
