@@ -2126,8 +2126,6 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
       var mapCenter = new google.maps.LatLng(latitude, longitude); //Google map Coordinates
       setMap(mapCenter, latitude, longitude, '');
 
-      
-
     }
     console.log(latitude);
    console.log(longitude);

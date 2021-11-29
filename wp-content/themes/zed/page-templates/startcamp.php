@@ -232,7 +232,7 @@ get_header();
 
   .drp {
     padding: 10px;
-    width: 100%;
+    width: 94%;
     font-size: 15px;
     font-family: "Hind Vadodara", sans-serif;
     margin-bottom: 15px;
@@ -281,6 +281,10 @@ get_header();
   }
 
   @media (max-width: 767px) {
+
+    .drp{
+      width: 88%;
+    }
      .drp1 {
           width: 30%;  
           padding-left: 10px;
@@ -351,7 +355,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
 
     <div class="tab mainvalid">
       <div class="col-lg-12 col-md-12 col-12 valid" style="padding:0px;">
-        <select name="campaign_typeId" id="campaign_typeId" class="phonedropdown drp" style="width: 94%;">
+        <select name="campaign_typeId" id="campaign_typeId" class="phonedropdown drp">
           <?php foreach ($result as $row) {
             ?>
             <option value="<?= $row["id"]; ?>"><?= $row["title"]; ?></option>
@@ -363,12 +367,15 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
         <script>
           $(document).ready(function(){
             // Tooltip to the right
+          
               
             new jBox('Tooltip', {
                 attach: '.tooltip-right',
                 theme: 'TooltipLight',
+                width:200,
                // getTitle: 'data-jbox-title',
                 getContent: 'data-jbox-content',
+               
                 position: {
                   x: 'right',
                   y: 'center'

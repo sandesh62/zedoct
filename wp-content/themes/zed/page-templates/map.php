@@ -811,7 +811,7 @@ $.ajax({
         var locations = data;
 
         var map = new google.maps.Map(document.getElementById('mapholder2'), {
-            zoom: 4,
+            zoom: 6,
             center: new google.maps.LatLng(latitudec, longitudec),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });

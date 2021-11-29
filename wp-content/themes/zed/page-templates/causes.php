@@ -166,12 +166,18 @@ global $wpdb;
                     } else {
                         $type = '';
                     }
+                    if (isset($_GET) && isset($_GET['status'])) {
+                        $status = $_GET['status'];
+                    } else {
+                        $status = '';
+                    }
                     ?>
                     <div class="row">
                         <div class="widget search-widget ">
                             <form class="mapbyname" id="mapbyname" action="">
                                 <div>
                                     <input type="hidden" name="type" value="<?= $type; ?>">
+                                    <input type="hidden" name="status" value="<?= $status; ?>">
                                     <input type="text" name="c" value="<?= $c; ?>" class="form-control serach" placeholder="Search For Campaigns"/>
                                     <button class="btn" id="searchbtn" type="submit"><i class="ti-search icons"></i></button>
                                 </div>
@@ -201,18 +207,33 @@ global $wpdb;
         
                                 <label style="font-size: 18px;"><b>Legends</b></label>
         
-                                <div class="row">
+                                <!--<div class="row">
+                                              <?php 
+                                            $status_arr = explode(',',$status);
+                                            ?>
                                 <div class="col-md-12 line_spacing_top_15">
-                                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="1" class="service_status">
+                                        <input type="checkbox" id="fundraiser_check_service" name="service_status" class="service_status" value="1"  <?php if(in_array(1, $status_arr)){?>checked<?php } ?>>
                                          <img src="https://zedaid.org/wp-content/uploads/2021/10/available.png" />
                                        <label style="font-size: 15px;display: inline;">Active</label>
                                     </div>
                                     <div class="col-md-12 line_spacing_top_15">
-                                        <input type="checkbox" id="fundraiser_check_service" name="service_status[]" value="2" class="service_status">
+                                        <input type="checkbox" id="fundraiser_check_service" name="service_status" class="service_status" value="0"  <?php if(in_array(0, $status_arr)){?>checked<?php } ?>>
                                           <img src="<?= BASE_URL ?>/wp-content/uploads/2021/07/inactive-1.png" />
                                         <label style="font-size: 15px;display: inline;">Inactive</label>
                                     </div>
-                                 </div>
+                                 </div>-->
+
+                                 <form>
+                                        <ul>
+
+                                        <?php 
+                                            $status_arr = explode(',',$status);
+                                            ?>
+                                            <li class="bor"><input type="checkbox" id="fundraiser_check_service" name="service_status" class="service_status" value="1"  <?php if(in_array(1, $status_arr)){?>checked<?php } ?>>Active</li>
+                                            <li class="bor"><input type="checkbox" id="fundraiser_check_service" name="service_status" class="service_status" value="0"  <?php if(in_array(0, $status_arr)){?>checked<?php } ?>>Inactive</li>
+                                        </ul>
+                                    </form>
+
                             </div>
                         </div>
                         </div>
@@ -227,21 +248,26 @@ global $wpdb;
                             };  
                             $start_from = ($page-1) * $limit;
                             
-                            if (!empty($c) && empty($type)) {
+                            if (!empty($c) && empty($type) && empty($status)) {
                                 $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND admin_approved = 1 AND status IN (0,1) order by id DESC LIMIT $start_from, $limit", OBJECT);
 
                                 $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND admin_approved = 1 AND status IN (0,1) order by id DESC", OBJECT);
                                 
-                            } else if(!empty($type) && !empty($c)){
-                                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 AND status IN (0,1) order by id DESC LIMIT $start_from, $limit", OBJECT);
+                            } else if(!empty($type) && !empty($c) && !empty($status)){
+                                $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 AND status IN (" . $status . ") order by id DESC LIMIT $start_from, $limit", OBJECT);
 
-                                $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 AND status IN (0,1) order by id DESC", OBJECT); 
+                                $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE (fundraiser_title LIKE '%" . $c . "%' OR item_name LIKE '%" . $c . "%' OR product_name LIKE '%" . $c . "%') AND campaign_typeId IN (" . $type . ") AND admin_approved = 1 AND status IN (" . $status . ") order by id DESC", OBJECT); 
                             } else {
                                 if ($type) {
                                     $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status IN (0,1) AND campaign_typeId IN (" . $type . ") order by id DESC LIMIT $start_from, $limit", OBJECT);
 
                                     $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status IN (0,1) AND campaign_typeId IN (" . $type . ") order by id DESC", OBJECT); 
-                                } else {
+                                }elseif ($status) {
+                                    $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status IN (" . $status . ") order by id DESC LIMIT $start_from, $limit", OBJECT);
+
+                                    $campaigns = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 AND status IN (" . $status . ") order by id DESC", OBJECT); 
+                                }
+                                else {
                                     $results = $wpdb->get_results("SELECT * FROM `wp_campaigns` WHERE admin_approved = 1 AND status IN (0,1)  order by id DESC LIMIT $start_from, $limit", OBJECT);
 
                                     $campaigns = $wpdb->get_results("SELECT id FROM `wp_campaigns` WHERE admin_approved = 1 AND status IN (0,1) order by id DESC", OBJECT); 
@@ -463,7 +489,10 @@ global $wpdb;
                                         }
                                         if ($type) {
                                             $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-campaigns/?pg=".$i."&type=".$type."'>".$i."</a></li>";	
-                                        }else{
+                                        }elseif ($status) {
+                                            $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-campaigns/?pg=".$i."&status=".$status."'>".$i."</a></li>";	
+                                        }
+                                        else{
                                             $pagLink .= "<li class='page-item'><a class='page-link $active' href='".BASE_URL."browse-campaigns/?pg=".$i."'>".$i."</a></li>";
                                         }
                                         
@@ -524,6 +553,20 @@ global $wpdb;
             var url = '<?= BASE_URL . 'browse-campaigns/?type=' ?>'+id;
             window.location.href=url;
         });
+
+
+
+        $('.service_status').click(function(){
+            var arr = [];
+            $.each($("input[name='service_status']:checked"), function(){
+                arr.push($(this).val());
+            });
+            var id = arr.join(",");
+            var url = '<?= BASE_URL . 'browse-campaigns/?status=' ?>'+id;
+            window.location.href=url;
+        });
+
+
     });
     </script>
 </body>

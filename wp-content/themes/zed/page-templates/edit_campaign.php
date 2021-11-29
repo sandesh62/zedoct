@@ -1337,7 +1337,7 @@ $categoriesImg = $wpdb->get_results("SELECT id , image FROM wp_campaignimg  WHER
         <ul class="thumb-Images" id="imgList1">
         <?php 
  foreach($categoriesImg as $editImg):?>
- <li><div class="img-wrap edit-wrap" > <span class="close" id="<?=$editImg['id']?>">×</span> 
+ <li><div class="img-wrap edit-wrap" > <span class="close" onclick="dosomething(<?=$editImg['id']?>)">×</span> 
  <img src="https://localhost/zedoct/fundraiserimg/<?= $campaign_id ?>/<?= $editImg['image']?>"  alt='<?=$editImg['image']?>' class="thumb" data-id="<?=$editImg['id']?>">
  
 </div>
@@ -1349,7 +1349,12 @@ $categoriesImg = $wpdb->get_results("SELECT id , image FROM wp_campaignimg  WHER
           </div>
 
           <script>
-
+function dosomething(val){
+  //console.log(val);
+  
+   id00 = val;
+  
+}
 
 $(document).ready(function(){
 
@@ -1363,13 +1368,15 @@ var id = 0;
 
     var A = images;
     $('.close').on('click', e => {
-    let $this =$('.edit-wrap img');
+    //let $this =$('.edit-wrap img');
   //  $this.addClass('visible')
    // let cardValue = $this.attr('data-id');
   //  A.pop(cardValue);
-console.log($this.attr('data-id'));
+//console.log($this.attr('data-id'));
+
+let imgId = id00;
     for( var i = 0; i < A.length; i++){
-                    if ( A[i] == $this.attr('data-id')) {
+                    if ( A[i] == imgId) {
                         A.splice(i, 1);
                     }
                 }

@@ -40,12 +40,14 @@ $userId = $user_ID;
     <link href="<?php echo bloginfo('template_directory'); ?>/css/style.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+    
 
     <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" rel="stylesheet">
 
     <script src="<?php echo bloginfo('template_directory'); ?>/js/jquery.min.js"></script>
     <script src="<?php echo bloginfo('template_directory'); ?>/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
@@ -831,6 +833,7 @@ $userId = $user_ID;
                                     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>id</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Address</th>
@@ -880,6 +883,7 @@ $userId = $user_ID;
 
                                                     ?>
                                             <tr>
+                                                <td id="id1" class="defectId"><?php echo $resul->id; ?></td>
                                                 <td><?php echo $resul->fullName; ?></td>
                                                 <td><?php echo $resul->emailId; ?></td>
                                                 <td><?php echo $resul->address; ?></td>
@@ -906,8 +910,8 @@ $userId = $user_ID;
 
                                                     </td>
                                                 <?php } ?>
-                                                <?php if($resul->comment == 0){  ?>
-                                                <td><a href="#donateComment" class="btn btn-default btn-rounded mb-4 openBtn" data-toggle="modal" style="background: #3d3d8a;color:#fff">Comment</a></td>
+                                                <?php if($resul->comment == NULL){  ?>
+                                                <td class="btn11" ><a href="#donateComment" class="btn btn-default btn-rounded mb-4 openBtn" data-toggle="modal" style="background: #3d3d8a;color:#fff" onclick="dosomething(<?php echo $resul->id; ?>)">Comment</a></td>
                                                 <?php }else{ ?>
                                                     <td><?php echo $resul->comment; ?></td>
                                                     <?php } ?>
@@ -938,6 +942,10 @@ $userId = $user_ID;
             
             <div class="modal-body mx-3 text-center">
             <form id="frmChangeStatus" action="<?php echo BASE_URL ?>donate_comment.php" enctype="multipart/form-data" method="post" class="f1" >
+            <input type="hidden" name="donateId" id="donateId" value="<?php echo $resul->id; ?>">
+            <input type="hidden" name="donateName" id="donateName" value="<?php echo $resul->fullName; ?>">
+            <input type="hidden" name="donatePhone" id="donatePhone" value="<?php echo $resul->phonenumber; ?>">
+            <input type="hidden" name="donateEmail" id="donateEmail" value="<?php echo $resul->emailId; ?>">
             <label class="lbform">Please comment here</label>
             <textarea id="commentValue" name="commentValue" class="form-control" value=""></textarea>
                <!-- <p>Are you sure want to delete this campaign?</p>-->
@@ -946,7 +954,7 @@ $userId = $user_ID;
 
             <div class="modal-footer d-flex justify-content-center">
                 <button class="btn btn-indigo loaderbtn" id="supporter-btn" style="background: #ccc;" type="button" class="close deleteService-close" data-dismiss="modal" aria-label="Close">Cancel</button>
-                <button class="btn btn-indigo loaderbtn" id="supporter-btn" type="button" onclick="donateComment('<?= $campaign_id; ?>')">Confirm</button>
+                <button class="btn btn-indigo loaderbtn" id="supporter-btn" type="button" onclick="donateComment()">Confirm</button>
             </div>
           </div>
       </div>
@@ -968,23 +976,39 @@ $userId = $user_ID;
     }
     ?>
     <script>
+function dosomething(val){
+  //console.log(val);
+  
+   id00 = val;
+  
+}
 
-function denateComment(s_id){
-     // let delete_reason = document.getElementById("deleteReason").value;
+function donateComment(){
+
+    let donate_id =  id00;
+    let donate_comment = document.getElementById("commentValue").value;
+
+   // let donate_id = document.getElementById("id1").value;
+     
+      
       jQuery.ajax({
           type: "POST",
           url: '../donate_comment.php',
-          data: 'campaign_id='+s_id+'&deleteReason='+delete_reason,
+          data: 'id='+donate_id+'&donate_comment='+donate_comment,
           success: function(response)
           {
-              jQuery('#deleteCampaign').modal('hide');
-            bootbox.alert("Campaign deleted successfully.", function(){ 
-              window.location.href='../my-account';
-             });
+
+           // console.log(donate_id);
+            //console.log(donate_comment);
+            jQuery('#donateComment').modal('hide');
+              
+           bootbox.alert("Comment added successfully.", function(){ 
+            window.location.href='../my-account';
+           });
+           
           }
       });
     }
-
 
 
 

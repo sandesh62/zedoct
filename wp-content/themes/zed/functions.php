@@ -720,6 +720,25 @@ if (!function_exists('is_customize_preview')) :
 	}
 endif;
 
+wp_register_style( 'Font_Awesome1', 'https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css' );
+wp_enqueue_style('Font_Awesome1');
+wp_register_style( 'Font_Awesome1', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css' );
+wp_enqueue_style('Font_Awesome1');
+wp_register_style( 'Font_Awesome1', 'https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css' );
+wp_enqueue_style('Font_Awesome1');
+wp_register_script( 'jQuery1', 'https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js', null, null, true );
+wp_enqueue_script('jQuery1');
+wp_register_script( 'TweenMax1', 'https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js', null, null, true );
+wp_enqueue_script('TweenMax1');
+wp_register_script( 'TweenMax2', 'http://cdn.datatables.net/plug-ins/1.11.3/sorting/datetime-moment.js', null, null, true );
+wp_enqueue_script('TweenMax2');
+
+
+
+//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css
+
+
+
 
 
 // create custom plugin settings menu
@@ -740,30 +759,23 @@ function my_cool_plugin_settings_page()
         <?php
             global $wpdb;
 
-            if (isset($_GET['pageno'])) {
-                $pageno = $_GET['pageno'];
-            } else {
-                $pageno = 1;
-            }
-            $no_of_records_per_page = 10;
-            $offset = ($pageno - 1) * $no_of_records_per_page;
+        
 
-            $resultscount = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (admin_approved = 0 OR admin_approved = 2)", OBJECT);
-
-            $total_rows = count($resultscount);
-            $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-            $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (admin_approved = 0 OR admin_approved = 2) ORDER BY id desc LIMIT $offset, $no_of_records_per_page", OBJECT);
+            $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE (admin_approved = 0 OR admin_approved = 2) ORDER BY id desc", OBJECT);
             ?>
-        <table class="form-table" border="1">
-            <tr valign="top">
-                <td><b>Image</b></td>
-                <td><b>Title</b></td>
-                <td><b>User Details</b></td>
-                <td><b>Goal Amount</b></td>
-                <td><b>Detail</b></td>
-                <td><b>Action</b></td>
+        <table id="example" class="form-table table table-striped table-bordered" style="width:100%" border="1">
+            <thead>
+            <tr>
+                <th >Image</th>
+                <th>Title</th>
+                <th >User Details</th>
+                <th >Goal Amount</th>
+                <th >Detail</th>
+                <th >Action</th>
+                <th >Date</th>
             </tr>
+            </thead>
+            <tbody>
             <?php
                 if ($results) {
                     foreach ($results as $res) {
@@ -820,8 +832,8 @@ function my_cool_plugin_settings_page()
                                         ?>
                             <td>
                                 <div id="acceptdivmain<?php echo $res->id; ?>">
-                                    <button type="button" class="btn btn-success align-middle" onclick="acceptcamp('<?php echo $res->id; ?>');">Accept</button>
-                                    <button type="button" class="btn btn-success align-middle" onclick="verifiedcamp('<?php echo $res->id; ?>');">ZED Verified</button>
+                                    <button type="button" class="btn btn-success align-middle" onclick="acceptcamp('<?php echo $res->id; ?>');">Accept</button><hr>
+                                    <button type="button" class="btn btn-success align-middle" onclick="verifiedcamp('<?php echo $res->id; ?>');">ZED Verified</button><hr>
                                     <button type="button" class="btn btn-success align-middle" onclick="rejectcamp('<?php echo $res->id; ?>');">Decline</button>
                                 </div>
 
@@ -845,6 +857,8 @@ function my_cool_plugin_settings_page()
                         <?php
                                     }
                                     ?>
+
+                            <td ><?php echo date("m/d/Y", strtotime($res->created_at)); ?></td>
                     </tr>
                 <?php }
                     } else {
@@ -855,21 +869,32 @@ function my_cool_plugin_settings_page()
             <?php
                 }
                 ?>
+               </thead> 
         </table>
 
-        <?php
-            $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $pagLink = "<br/><ul class='pagination'>";
-            if ($total_pages > 1) {
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    $pagLink .= "<li style='display: inline;float: left' class='page-item'><a style='text-decoration: none;color: white;margin-left: 10px;padding: 15px;background-color: #999;' class='page-link' href='" . $actual_link . "&pageno=" . $i . "'>" . $i . "</a></li>";
-                }
-            }
-
-            echo $pagLink . "</ul>";
-            ?>
+    
 
         <script>
+
+            
+
+jQuery(document).ready(function() {
+    
+            jQuery('#example').DataTable({
+                "searchable": true,
+                "orderable": true,
+                "columnDefs": [ {
+      "targets": [ 0, 1 ,2, 3,4 ,5],
+      "orderable": false
+    } ],
+                /* "scrollY": 200, */
+                "scrollX": true
+            });
+        });
+
+
+       
+
             function acceptcamp(id) {
                 // showLoadingBar();
                 jQuery('#loadingdiv' + id).css('display', '');
@@ -985,37 +1010,31 @@ function my_cool_plugin_settings_page2()
         <?php
             global $wpdb;
 
-            if (isset($_GET['pageno'])) {
-                $pageno = $_GET['pageno'];
-            } else {
-                $pageno = 1;
-            }
-            $no_of_records_per_page = 10;
-            $offset = ($pageno - 1) * $no_of_records_per_page;
+           
 
-            $resultscount = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1", OBJECT);
+           
 
-            $total_rows = count($resultscount);
-            $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-            $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 ORDER BY id desc LIMIT $offset, $no_of_records_per_page", OBJECT);
+            $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE admin_approved = 1 ORDER BY id desc", OBJECT);
             
-			$resultsedit = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaignsedit WHERE update_status = 0 ORDER BY id desc LIMIT $offset, $no_of_records_per_page", OBJECT);
+			$resultsedit = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaignsedit WHERE update_status = 0 ORDER BY id desc", OBJECT);
 
 			
 			?>
-        <table class="form-table" border="1">
+        <table id="example1" class="form-table table table-striped table-bordered" width="100%" border="1">
+            <thead>
             <tr valign="top">
-                <td><b>Image</b></td>
-                <td><b>Title</b></td>
-                <td><b>User Details</b></td>
-                <td><b>Goal Amount</b></td>
-                <td><b>Achieve Amount</b></td>
-                <td><b>Detail</b></td>
-				<td><b>Update</b></td>
-                <td><b>Action</b></td>
+                <th><b>Image</b></th>
+                <th><b>Title</b></th>
+                <th><b>User Details</b></th>
+                <th><b>Goal Amount</b></th>
+                <th><b>Achieve Amount</b></th>
+                <th><b>Detail</b></th>
+				<th><b>Update</b></th>
+                <th><b>Action</b></th>
+                <th><b>Date</b></th>
             </tr>
-
+            </thead>
+            <tbody>
 			<?php
                 if ($resultsedit) {
                     foreach ($resultsedit as $res1) {
@@ -1090,6 +1109,7 @@ function my_cool_plugin_settings_page2()
                              </div>
 
                             </td>
+                            <td><?php echo date("m/d/Y", strtotime($res1->created_at)); ?></td>
                         
 
                     </tr>
@@ -1236,7 +1256,7 @@ function my_cool_plugin_settings_page2()
                         <?php
                                     }
                                     ?>
-
+                            <td><?php echo date("m/d/Y", strtotime($res->created_at)); ?></td>
                     </tr>
                 <?php }
                     } else {
@@ -1246,19 +1266,28 @@ function my_cool_plugin_settings_page2()
                 </tr>
             <?php
                 } ?>
+                </thead>
         </table>
-        <?php
-            $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $pagLink = "<br/><ul class='pagination'>";
-            if ($total_pages > 1) {
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    $pagLink .= "<li style='display: inline;float: left' class='page-item'><a style='text-decoration: none;color: white;margin-left: 10px;padding: 15px;background-color: #999;' class='page-link' href='" . $actual_link . "&pageno=" . $i . "'>" . $i . "</a></li>";
-                }
-            }
-
-            echo $pagLink . "</ul>";
-            ?>
+       
         <script>
+ 
+jQuery(document).ready(function() {
+    
+    jQuery('#example1').DataTable({
+        "searchable": true,
+        "orderable": true,
+        "columnDefs": [ {
+"targets": [ 0 ,2, 3,4 ,5,6,7],
+"orderable": false
+} ],
+        /* "scrollY": 200, */
+        "scrollX": true
+    });
+});
+
+
+
+
             function verifiedcamp(id) {
                 // showLoadingBar();
                 jQuery('#loadingdiv' + id).css('display', '');
