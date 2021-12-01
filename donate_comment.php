@@ -8,8 +8,8 @@ global $wpdb;
 $donateId = $_POST['id'];
 $donate_comment = $_POST['donate_comment'];
 
+$results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigndonations WHERE id = " . $donateId, OBJECT);
 
-$results = $wpdb->prepare("SELECT * FROM wp_campaigndonations  WHERE id=$donateId");
 $res = $results[0];
 
 $fullname = $res->fullName;
@@ -18,22 +18,22 @@ $phone = $res->phonenumber;
 $amount = $res->amount;
 $campaign_id = $res->campaign_Id;
 
-
-$resultsc = $wpdb->prepare("SELECT * FROM wp_campaigns  WHERE id=$campaign_id");
+$resultsc = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}campaigns WHERE id = " . $campaign_id, OBJECT);
 
 if ($resultsc->campaign_typeId == 2) {
     $fundtitle = $resultsc->item_name;
+    $currency = 'QTY';
    
 } else if ($resultsc->campaign_typeId == 3) {
     $fundtitle = $resultsc->product_name;
+    $currency = $resultsc->currency;
     
 } else {
     $fundtitle = $resultsc->fundraiser_title;
+    $currency = $resultsc->currency;
    
 }
 
-
-$wpdb->query($wpdb->prepare("UPDATE wp_campaigndonations SET `comment` = '".$donate_comment."'  WHERE id=$donateId"));
 
 
 
@@ -58,7 +58,7 @@ $message2 = fread($myfile,filesize($file));
 $message2 = str_replace('{{Name}}', $fullname , $message2);
 $message2 = str_replace('{{campaign Name}}', $fundtitle , $message2);
 $message2 = str_replace('{{comment}}', $donate_comment , $message2);
-// $message2 = str_replace('{{UNIT}}', $currency , $message2);
+$message2 = str_replace('{{UNIT}}', $currency , $message2);
 $message2 = str_replace('{{amount}}', $amount , $message2);
 
 // Compose a simple HTML email message
@@ -75,6 +75,7 @@ $message .= '</body></html>';*/
 
 wp_mail($to, $subject, $message2, $headers);
 
+/*
 $curl = curl_init();
 if ($res->campaign_typeId == 3) {
     $smstext = 'You have got one donation request on ZedAid campaign '.$fundtitle;
@@ -108,6 +109,14 @@ if ($err) {
 } else {
     // echo $response;
 }
+
+*/
+
+
+$wpdb->query($wpdb->prepare("UPDATE wp_campaigndonations SET `comment` = '".$donate_comment."'  WHERE id=$donateId"));
+
+
+
  exit;
 // header("Location: " . BASE_URL . "donate-thank-you/");
 

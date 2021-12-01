@@ -195,7 +195,6 @@
         });
     });
 
-
     var lat = $('#current_latitude').val();
     var lng = $('#current_longitude').val();
 

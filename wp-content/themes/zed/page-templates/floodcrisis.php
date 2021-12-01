@@ -947,22 +947,47 @@ a.loc-icon {
                                 $lastUpdated = '<span style="color:black !important; font-size: 14px;">Last updatedAt: ' . date("d M Y h:i A", strtotime("+330 minutes", strtotime($res['updatedAt']))) . $verified_by . '</span>';
 
                                 $supportDetails = '';
+
+
+                                $contact= $results_supports[0]['mobile_number'] ;
+                                        $result_contact = substr($contact, 0, 5);
+                                        $result_contact .= "*****";
+                                        $support_email = $results_supports[0]['email'] ;
+                                
+
+
+                                 $supportButton = '<input type="hidden" id="support-email" value="'.$support_email.'"><input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><input type="hidden" id="support-phone" value="'.$contact.'"><button type="button" class="btn btn-next" style="margin-left:10px"  onclick="openSupportContact('.$pid.');"><i class="fa fa-envelope" style="padding-right:5px;"></i>Contact</button> ';  
+
+
+                                 
+
                                 if (!empty($results_supports)) {
-                                    if (!empty($results_supports[0]['organization_name'])) {
-                                        $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['organization_name'].'</b><br>Contact: <b>'.$results_supports[0]['mobile_number'].'</b><br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
+                                    if( ($supporter_id == $userId && $userId != '0') || ($userId != '0' && $userId == $res['userId']) || ($emailid == $emailAddress) || ($emailid == $results_supports[0]['email']) || ($userId == '1') ){
+                                       
+                                        if (!empty($results_supports[0]['organization_name'])) {
+                                            $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['organization_name'].'</b><br>Contact: <b>'.$results_supports[0]['mobile_number'].'</b><br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
+                                        }else{
+                                            $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['name'].'</b><br>Contact: <b>'.$results_supports[0]['mobile_number'].'</b><br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
+                                        }
+                                        
                                     }else{
-                                        $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['name'].'</b><br>Contact: <b>'.$results_supports[0]['mobile_number'].'</b><br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
+                                        if (!empty($results_supports[0]['organization_name'])) {
+                                            $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['organization_name'].'</b><br>Contact: <b>'.$result_contact.'</b>'.$supportButton.'<br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
+                                        }else{
+                                            $supportDetails = '<br>Supporter Info:<br>Name: <b>'.$results_supports[0]['name'].'</b><br>Contact: <b>'.$result_contact.'</b>'.$supportButton.'<br>Description: <b>'.$results_supports[0]['supportDetails'].'</b>';
+                                        }
                                     }
 
+
                                     if(!empty($results_change_status)){
-                                        $supportDetails .= '<br><br>Change Status Info:<br>Name: <b>'.$results_change_status[0]['name'].'</b><br>Contact: <b>'.$results_change_status[0]['mobileNumber'].'</b><br>Description: <b>'.$results_change_status[0]['supportDetails'].'</b>';
+                                        $supportDetails .= '<br><br>Need Fullfill Info:<br>Name: <b>'.$results_change_status[0]['name'].'</b><br>Contact: <b>'.$results_change_status[0]['mobileNumber'].'</b><br>Description: <b>'.$results_change_status[0]['supportDetails'].'</b>';
                                     }
 
                                     // $supportDetails = '<br>Name: <b>'.$results_supports[0]['name'].'</b><br>Support Info: <b>'.$results_supports[0]['supportDetails'].'</b>';
 
                                     if ( ($supporter_id == $userId && $userId != '0') || ($userId != '0' && $userId == $res['userId']) || ($emailid == $emailAddress) || ($emailid == $results_supports[0]['email']) || ($userId == '1') ) {
                                         if ($status == '0' || $status == '3') {
-                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Need Fullfill</button>';
                                         } elseif ($status == '1') {
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupreopen('.$pid.','.$userId.');">Reopen Status</button>';
                                         }
@@ -988,13 +1013,13 @@ a.loc-icon {
                                     }
                                     if ($status == '0') {
                                         if((($userId == $res['userId']) && $userId != 0) || ($emailid == $emailAddress)){
-                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Need Fullfill</button>';
                                         }else if ($loginPhoneNumber != $mobileNumber) {
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupSupportThem('.$pid.','.$status.','.$userId.');">Support Them</button>';
                                         } else if($userId == 0){
                                             $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopupSupportThem('.$pid.','.$status.','.$userId.');">Support Them</button>';
                                         }else{
-                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Change Status</button>';
+                                            $chnageStatusBtn = '<input type="hidden" id="status-title-'.$pid.'" value="'.$title.'"><br><br><button type="button" class="btn btn-next" onclick="openPopup('.$pid.','.$userId.');">Need Fullfill</button>';
                                         }
                                     }elseif($status =='1'){
                                         if((($userId == $res['userId']) && $userId != 0) || ($emailid == $emailAddress)){
@@ -1945,7 +1970,7 @@ console.log(current_latitude);
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" onclick="formreset()">&times;</button>
-                        <h4 class="modal-title text-center" id="change_status">Change Status</h4>
+                        <h4 class="modal-title text-center" id="change_status">Need Fullfill</h4>
                     </div>
                     <div class="modal-body">
                         <form id="frmChangeStatus" action="<?php echo BASE_URL ?>changestatus.php" enctype="multipart/form-data" method="post" class="f1">
@@ -1986,6 +2011,52 @@ console.log(current_latitude);
             </div>
         </div>
         <!-- End -->
+<!---Support COntact --->
+        <div class="modal fade" id="supportContact" tabindex="-1" role="dialog" aria-labelledby="startfunrmodalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" onclick="formreset()">&times;</button>
+                        <h4 class="modal-title text-center" id="change_status">Contact Supporter</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmsupportContact" action="<?php echo BASE_URL ?>contactsupporter.php" enctype="multipart/form-data" method="post" class="f1">
+                        <input type="hidden" value="<?= $userId; ?>" name="userId" />
+                            <input type="hidden" value="" name="pid" id="pid"/>
+                        <br>
+                            <div class="mainvalid">
+                                <div class="form-group valid">
+                                    <label class="lbform">Name</label>
+                                    <input type="text" id="name" value="" name="name" placeholder="Enter Name" maxlength="50" class="form-control">
+                                    <span id="error-name"></span> 
+                                </div>
+                                <div class="form-group valid">
+                                    <label class="lbform">Email</label>
+                                    <input type="text" id="email" value="" name="email" placeholder="Enter Email" maxlength="100" class="form-control">
+                                    <span id="error-email"></span>
+                                </div>
+                                <div class="form-group valid">
+                                    <label class="lbform">Phone Number</label>
+                                    <input type="text" id="phone_number" value="" name="phone_number" placeholder="Enter Phone Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="10" maxlength="10" class="form-control">
+                                    <span id="error-mobile_number"></span>
+                                </div>
+                                <div class="form-group valid">
+                                    <label class="lbform">Reason for help</label>
+                                    <textarea id="supportDetails" name="supportDetails" class="form-control"></textarea>
+                                    <span id="error-supportDetails"></span>
+                                </div>
+                            </div>
+                            <div class="f1-buttons">
+                                <button type="button" id="btn-submit-supporthelp" class="btn btn-next">Submit</button>
+                               
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End -->
 
         <!-- successmsg -->
         <div class="modal fade" id="successmsg" tabindex="-1" role="dialog" aria-labelledby="startfunrmodalTitle" aria-hidden="true">
@@ -1993,10 +2064,10 @@ console.log(current_latitude);
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title text-center" id="exampleModalLongTitle">Change Status</h4>
+                        <h4 class="modal-title text-center" id="exampleModalLongTitle">Need Fullfill</h4>
                     </div>
                     <div class="modal-body">
-                        <h2>Status change successfully.</h2>
+                        <h2>Need Fullfilled.</h2>
                     </div>
                 </div>
             </div>
@@ -2320,6 +2391,19 @@ $(document).ready(function () {
         jQuery('#changeStatus').modal('show');
         jQuery('#pid').val(pid);
     }
+
+   
+    function openSupportContact(pid, userId){
+       
+        jQuery('#supportContact').modal('show');
+        jQuery('#pid').val(pid);
+    }
+    
+    $(document).ready(function () {
+        $("#popcontact").click(function () {
+            $('#supportContact').modal('show'); 
+        });
+    });
 
     function openPopupSupportThem(pid, status, userId){
         /* if(userId == 0){
@@ -2860,4 +2944,43 @@ $(document).ready(function () {
    
 
    //     });
+
+
+
+   jQuery('#btn-submit-supporthelp').on('click', function() {
+		
+        
+        var name = document.getElementById("name").value;
+       
+
+        var email = document.getElementById("email").value;
+       
+
+       
+
+        var supportDetails = document.getElementById("supportDetails").value;
+       
+
+        var mobile_number = document.getElementById("phone_number").value;
+       
+
+        
+
+            jQuery.ajax({
+                type: "POST",
+                url: '../contactsupporter.php',
+                data: 'pid='+pid+'&supportDetails='+supportDetails+'&name='+name+'&email='+email+'&phone_number='+phone_number+'&userId='+userId,
+                success: function(response)
+                {
+                    jQuery('#btn-submit-supporthelp').css('display', '');
+                    jQuery('#btn-submit-loader-supporthelp').css('display', 'none');
+                    jQuery('#changeStatus').modal('hide');
+                    bootbox.alert("Details send successfully.", function(){ 
+                      window.location.reload(true);
+                    // window.location.href='../contactsupporter.php';
+                   });
+                }
+            });
+        
+    });
 </script>

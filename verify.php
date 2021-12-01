@@ -86,7 +86,9 @@ if ($success === true) {
     $rowuserscc = mysqli_fetch_assoc($resultsuserscc);
     $resultsuserscc = (object) $rowuserscc;
     $meta_valuephone = $resultsuserscc->meta_value;
-    
+    if(substr($meta_valuephone,0,3) == "+91") {
+        $meta_valuephone = substr($meta_valuephone,3,$meta_valuephone.length);    
+     }
     $resultsusers = $conn->query("SELECT * FROM wp_users WHERE id = " . $userId);
 
     $rowusers = mysqli_fetch_assoc($resultsusers);
@@ -134,7 +136,7 @@ if ($success === true) {
     $conn->query($sqllog);
 
     $curl = curl_init();
-
+    $shortTitle = substr($fundtitle,0,30);
     curl_setopt_array($curl, array(
         CURLOPT_URL => "https://api.msg91.com/api/v2/sendsms",
         CURLOPT_RETURNTRANSFER => true,
